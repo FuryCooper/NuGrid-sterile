@@ -1,9 +1,0 @@
-============================
-Test log for thread_id 
-============================
-not implemented in this configuration.
-0.02user 0.00system 0:00.04elapsed 63%CPU (0avgtext+0avgdata 8768maxresident)k
-0inputs+16outputs (0major+4433minor)pagefaults 0swaps
-
-Finished testing thread_id 
-============================

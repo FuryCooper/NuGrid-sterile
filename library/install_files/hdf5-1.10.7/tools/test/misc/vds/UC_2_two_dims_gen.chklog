@@ -1,8 +1,0 @@
-============================
-Test log for UC_2_two_dims_gen 
-============================
-0.02user 0.00system 0:00.03elapsed 71%CPU (0avgtext+0avgdata 8744maxresident)k
-0inputs+128outputs (0major+4935minor)pagefaults 0swaps
-
-Finished testing UC_2_two_dims_gen 
-============================
