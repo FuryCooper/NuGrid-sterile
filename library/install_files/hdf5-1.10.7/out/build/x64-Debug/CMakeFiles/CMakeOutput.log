@@ -1,0 +1,609 @@
+The system is: Windows - 10.0.19043 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: D:/Visual Studio/VC/Tools/MSVC/14.30.30528/bin/Hostx64/x64/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.30.30528 版
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 14.30.30528.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/3.21.21080301-MSVC_2/CompilerIdC/CMakeCCompilerId.exe"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_721d5 && [1/2] Building C object CMakeFiles\cmTC_721d5.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_721d5.exe
+
+
+
+Determining if files ;sys/stat.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_25f31 && [1/2] Building C object CMakeFiles\cmTC_25f31.dir\H5_HAVE_SYS_STAT_H.c.obj
+[2/2] Linking C executable cmTC_25f31.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_16996 && [1/2] Building C object CMakeFiles\cmTC_16996.dir\H5_HAVE_SYS_TYPES_H.c.obj
+[2/2] Linking C executable cmTC_16996.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_63fc3 && [1/2] Building C object CMakeFiles\cmTC_63fc3.dir\H5_HAVE_SETJMP_H.c.obj
+[2/2] Linking C executable cmTC_63fc3.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_9611a && [1/2] Building C object CMakeFiles\cmTC_9611a.dir\H5_HAVE_STDDEF_H.c.obj
+[2/2] Linking C executable cmTC_9611a.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b2ab7 && [1/2] Building C object CMakeFiles\cmTC_b2ab7.dir\H5_HAVE_STDINT_H.c.obj
+[2/2] Linking C executable cmTC_b2ab7.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h;io.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_493b9 && [1/2] Building C object CMakeFiles\cmTC_493b9.dir\H5_HAVE_IO_H.c.obj
+[2/2] Linking C executable cmTC_493b9.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h;io.h;winsock2.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_a5d57 && [1/2] Building C object CMakeFiles\cmTC_a5d57.dir\H5_HAVE_WINSOCK2_H.c.obj
+[2/2] Linking C executable cmTC_a5d57.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h;io.h;winsock2.h;string.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_d388d && [1/2] Building C object CMakeFiles\cmTC_d388d.dir\H5_HAVE_STRING_H.c.obj
+[2/2] Linking C executable cmTC_d388d.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h;io.h;winsock2.h;string.h;stdlib.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_7e5e4 && [1/2] Building C object CMakeFiles\cmTC_7e5e4.dir\H5_HAVE_STDLIB_H.c.obj
+[2/2] Linking C executable cmTC_7e5e4.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h;io.h;winsock2.h;string.h;stdlib.h;memory.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_145eb && [1/2] Building C object CMakeFiles\cmTC_145eb.dir\H5_HAVE_MEMORY_H.c.obj
+[2/2] Linking C executable cmTC_145eb.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h;io.h;winsock2.h;string.h;stdlib.h;memory.h;inttypes.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_05bc9 && [1/2] Building C object CMakeFiles\cmTC_05bc9.dir\H5_HAVE_INTTYPES_H.c.obj
+[2/2] Linking C executable cmTC_05bc9.exe
+
+
+
+Determining if files sys/stat.h;sys/types.h;setjmp.h;stddef.h;stdint.h;io.h;winsock2.h;string.h;stdlib.h;memory.h;inttypes.h;stdbool.h exist passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_11944 && [1/2] Building C object CMakeFiles\cmTC_11944.dir\H5_HAVE_STDBOOL_H.c.obj
+[2/2] Linking C executable cmTC_11944.exe
+
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_9e6dc && [1/2] Building C object CMakeFiles\cmTC_9e6dc.dir\CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_9e6dc.exe
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_c4786 && [1/2] Building C object CMakeFiles\cmTC_c4786.dir\CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_c4786.exe
+
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_0f11e && [1/2] Building C object CMakeFiles\cmTC_0f11e.dir\CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_0f11e.exe
+
+
+
+Determining size of char passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b4cbf && [1/2] Building C object CMakeFiles\cmTC_b4cbf.dir\H5_SIZEOF_CHAR.c.obj
+[2/2] Linking C executable cmTC_b4cbf.exe
+
+
+
+Determining size of short passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_c4eba && [1/2] Building C object CMakeFiles\cmTC_c4eba.dir\H5_SIZEOF_SHORT.c.obj
+[2/2] Linking C executable cmTC_c4eba.exe
+
+
+
+Determining size of int passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_f3ebc && [1/2] Building C object CMakeFiles\cmTC_f3ebc.dir\H5_SIZEOF_INT.c.obj
+[2/2] Linking C executable cmTC_f3ebc.exe
+
+
+
+Determining size of unsigned passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_4b11a && [1/2] Building C object CMakeFiles\cmTC_4b11a.dir\H5_SIZEOF_UNSIGNED.c.obj
+[2/2] Linking C executable cmTC_4b11a.exe
+
+
+
+Determining size of long passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_e03e4 && [1/2] Building C object CMakeFiles\cmTC_e03e4.dir\H5_SIZEOF_LONG.c.obj
+[2/2] Linking C executable cmTC_e03e4.exe
+
+
+
+Determining size of long long passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b462f && [1/2] Building C object CMakeFiles\cmTC_b462f.dir\H5_SIZEOF_LONG_LONG.c.obj
+[2/2] Linking C executable cmTC_b462f.exe
+
+
+
+Determining size of __int64 passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_6a6cc && [1/2] Building C object CMakeFiles\cmTC_6a6cc.dir\H5_SIZEOF___INT64.c.obj
+[2/2] Linking C executable cmTC_6a6cc.exe
+
+
+
+Determining size of float passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_23ac2 && [1/2] Building C object CMakeFiles\cmTC_23ac2.dir\H5_SIZEOF_FLOAT.c.obj
+[2/2] Linking C executable cmTC_23ac2.exe
+
+
+
+Determining size of double passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_47cc2 && [1/2] Building C object CMakeFiles\cmTC_47cc2.dir\H5_SIZEOF_DOUBLE.c.obj
+[2/2] Linking C executable cmTC_47cc2.exe
+
+
+
+Determining size of long double passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_7456f && [1/2] Building C object CMakeFiles\cmTC_7456f.dir\H5_SIZEOF_LONG_DOUBLE.c.obj
+[2/2] Linking C executable cmTC_7456f.exe
+
+
+
+Determining size of int8_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_41def && [1/2] Building C object CMakeFiles\cmTC_41def.dir\H5_SIZEOF_INT8_T.c.obj
+[2/2] Linking C executable cmTC_41def.exe
+
+
+
+Determining size of uint8_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_ee90d && [1/2] Building C object CMakeFiles\cmTC_ee90d.dir\H5_SIZEOF_UINT8_T.c.obj
+[2/2] Linking C executable cmTC_ee90d.exe
+
+
+
+Determining size of int_least8_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_a1167 && [1/2] Building C object CMakeFiles\cmTC_a1167.dir\H5_SIZEOF_INT_LEAST8_T.c.obj
+[2/2] Linking C executable cmTC_a1167.exe
+
+
+
+Determining size of uint_least8_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_cd189 && [1/2] Building C object CMakeFiles\cmTC_cd189.dir\H5_SIZEOF_UINT_LEAST8_T.c.obj
+[2/2] Linking C executable cmTC_cd189.exe
+
+
+
+Determining size of int_fast8_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_7ac02 && [1/2] Building C object CMakeFiles\cmTC_7ac02.dir\H5_SIZEOF_INT_FAST8_T.c.obj
+[2/2] Linking C executable cmTC_7ac02.exe
+
+
+
+Determining size of uint_fast8_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_fee31 && [1/2] Building C object CMakeFiles\cmTC_fee31.dir\H5_SIZEOF_UINT_FAST8_T.c.obj
+[2/2] Linking C executable cmTC_fee31.exe
+
+
+
+Determining size of int16_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_c39ea && [1/2] Building C object CMakeFiles\cmTC_c39ea.dir\H5_SIZEOF_INT16_T.c.obj
+[2/2] Linking C executable cmTC_c39ea.exe
+
+
+
+Determining size of uint16_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_93bf8 && [1/2] Building C object CMakeFiles\cmTC_93bf8.dir\H5_SIZEOF_UINT16_T.c.obj
+[2/2] Linking C executable cmTC_93bf8.exe
+
+
+
+Determining size of int_least16_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_a3661 && [1/2] Building C object CMakeFiles\cmTC_a3661.dir\H5_SIZEOF_INT_LEAST16_T.c.obj
+[2/2] Linking C executable cmTC_a3661.exe
+
+
+
+Determining size of uint_least16_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_9bfee && [1/2] Building C object CMakeFiles\cmTC_9bfee.dir\H5_SIZEOF_UINT_LEAST16_T.c.obj
+[2/2] Linking C executable cmTC_9bfee.exe
+
+
+
+Determining size of int_fast16_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_57ea7 && [1/2] Building C object CMakeFiles\cmTC_57ea7.dir\H5_SIZEOF_INT_FAST16_T.c.obj
+[2/2] Linking C executable cmTC_57ea7.exe
+
+
+
+Determining size of uint_fast16_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b0616 && [1/2] Building C object CMakeFiles\cmTC_b0616.dir\H5_SIZEOF_UINT_FAST16_T.c.obj
+[2/2] Linking C executable cmTC_b0616.exe
+
+
+
+Determining size of int32_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_775a6 && [1/2] Building C object CMakeFiles\cmTC_775a6.dir\H5_SIZEOF_INT32_T.c.obj
+[2/2] Linking C executable cmTC_775a6.exe
+
+
+
+Determining size of uint32_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_3fb1a && [1/2] Building C object CMakeFiles\cmTC_3fb1a.dir\H5_SIZEOF_UINT32_T.c.obj
+[2/2] Linking C executable cmTC_3fb1a.exe
+
+
+
+Determining size of int_least32_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_5336c && [1/2] Building C object CMakeFiles\cmTC_5336c.dir\H5_SIZEOF_INT_LEAST32_T.c.obj
+[2/2] Linking C executable cmTC_5336c.exe
+
+
+
+Determining size of uint_least32_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_256c9 && [1/2] Building C object CMakeFiles\cmTC_256c9.dir\H5_SIZEOF_UINT_LEAST32_T.c.obj
+[2/2] Linking C executable cmTC_256c9.exe
+
+
+
+Determining size of int_fast32_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_ac83c && [1/2] Building C object CMakeFiles\cmTC_ac83c.dir\H5_SIZEOF_INT_FAST32_T.c.obj
+[2/2] Linking C executable cmTC_ac83c.exe
+
+
+
+Determining size of uint_fast32_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_1bdee && [1/2] Building C object CMakeFiles\cmTC_1bdee.dir\H5_SIZEOF_UINT_FAST32_T.c.obj
+[2/2] Linking C executable cmTC_1bdee.exe
+
+
+
+Determining size of int64_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_2f5ac && [1/2] Building C object CMakeFiles\cmTC_2f5ac.dir\H5_SIZEOF_INT64_T.c.obj
+[2/2] Linking C executable cmTC_2f5ac.exe
+
+
+
+Determining size of uint64_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_56db2 && [1/2] Building C object CMakeFiles\cmTC_56db2.dir\H5_SIZEOF_UINT64_T.c.obj
+[2/2] Linking C executable cmTC_56db2.exe
+
+
+
+Determining size of int_least64_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_07f92 && [1/2] Building C object CMakeFiles\cmTC_07f92.dir\H5_SIZEOF_INT_LEAST64_T.c.obj
+[2/2] Linking C executable cmTC_07f92.exe
+
+
+
+Determining size of uint_least64_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_5ad0b && [1/2] Building C object CMakeFiles\cmTC_5ad0b.dir\H5_SIZEOF_UINT_LEAST64_T.c.obj
+[2/2] Linking C executable cmTC_5ad0b.exe
+
+
+
+Determining size of int_fast64_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_f899e && [1/2] Building C object CMakeFiles\cmTC_f899e.dir\H5_SIZEOF_INT_FAST64_T.c.obj
+[2/2] Linking C executable cmTC_f899e.exe
+
+
+
+Determining size of uint_fast64_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_7eb70 && [1/2] Building C object CMakeFiles\cmTC_7eb70.dir\H5_SIZEOF_UINT_FAST64_T.c.obj
+[2/2] Linking C executable cmTC_7eb70.exe
+
+
+
+Determining size of size_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_e9fa4 && [1/2] Building C object CMakeFiles\cmTC_e9fa4.dir\H5_SIZEOF_SIZE_T.c.obj
+[2/2] Linking C executable cmTC_e9fa4.exe
+
+
+
+Determining size of off_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_00a1b && [1/2] Building C object CMakeFiles\cmTC_00a1b.dir\H5_SIZEOF_OFF_T.c.obj
+[2/2] Linking C executable cmTC_00a1b.exe
+
+
+
+Determining size of time_t passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_675e6 && [1/2] Building C object CMakeFiles\cmTC_675e6.dir\H5_SIZEOF_TIME_T.c.obj
+[2/2] Linking C executable cmTC_675e6.exe
+
+
+
+Determining size of _Bool passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_62155 && [1/2] Building C object CMakeFiles\cmTC_62155.dir\H5_SIZEOF_BOOL.c.obj
+[2/2] Linking C executable cmTC_62155.exe
+
+
+
+Determining if the function llround exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_2b3bd && [1/2] Building C object CMakeFiles\cmTC_2b3bd.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_2b3bd.exe
+
+
+
+Determining if the function llroundf exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_6bb68 && [1/2] Building C object CMakeFiles\cmTC_6bb68.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_6bb68.exe
+
+
+
+Determining if the function lround exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_6b72c && [1/2] Building C object CMakeFiles\cmTC_6b72c.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_6b72c.exe
+
+
+
+Determining if the function lroundf exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_dbafb && [1/2] Building C object CMakeFiles\cmTC_dbafb.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_dbafb.exe
+
+
+
+Determining if the function round exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_04dbf && [1/2] Building C object CMakeFiles\cmTC_04dbf.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_04dbf.exe
+
+
+
+Determining if the function roundf exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_3f3e6 && [1/2] Building C object CMakeFiles\cmTC_3f3e6.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_3f3e6.exe
+
+
+
+Determining if the function signal exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_f913d && [1/2] Building C object CMakeFiles\cmTC_f913d.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_f913d.exe
+
+
+
+Determining if the function setjmp exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_3279c && [1/2] Building C object CMakeFiles\cmTC_3279c.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_3279c.exe
+
+
+
+Determining if the function strtoll exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_5d77d && [1/2] Building C object CMakeFiles\cmTC_5d77d.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_5d77d.exe
+
+
+
+Determining if the function strtoull exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_06162 && [1/2] Building C object CMakeFiles\cmTC_06162.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_06162.exe
+
+
+
+Determining if the function tmpfile exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_983df && [1/2] Building C object CMakeFiles\cmTC_983df.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_983df.exe
+
+
+
+Performing C SOURCE FILE Test InitOnceExecuteOnce succeded with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_c611e && [1/2] Building C object CMakeFiles\cmTC_c611e.dir\HDFTests.c.obj
+[2/2] Linking C executable cmTC_c611e.exe
+
+
+Return value: 
+Determining if the function difftime exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_5d378 && [1/2] Building C object CMakeFiles\cmTC_5d378.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_5d378.exe
+
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: D:/Visual Studio/VC/Tools/MSVC/14.30.30528/bin/Hostx64/x64/cl.exe 
+Build flags: ;
+Id flags:  
+
+The output was:
+0
+用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.30.30528 版
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+CMakeCXXCompilerId.cpp
+Microsoft (R) Incremental Linker Version 14.30.30528.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCXXCompilerId.exe 
+CMakeCXXCompilerId.obj 
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+
+The CXX compiler identification is MSVC, found in "C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/3.21.21080301-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_11edc && [1/2] Building CXX object CMakeFiles\cmTC_11edc.dir\CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_11edc.exe
+
+
+
+Determining if the CXX compiler has std namespace passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_377ee && [1/2] Building CXX object CMakeFiles\cmTC_377ee.dir\TestForSTDNamespace.cxx.obj
+[2/2] Linking CXX executable cmTC_377ee.exe
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: C:/Users/13973/Desktop/NuGrid/NuGrid/library/install_files/hdf5-1.10.7/out/build/x64-Debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_59cfe && [1/2] Building CXX object CMakeFiles\cmTC_59cfe.dir\CheckIncludeFile.cxx.obj
+[2/2] Linking CXX executable cmTC_59cfe.exe
+
+
+

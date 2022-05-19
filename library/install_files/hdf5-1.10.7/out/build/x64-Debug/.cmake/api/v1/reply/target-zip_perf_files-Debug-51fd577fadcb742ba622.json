@@ -1,0 +1,47 @@
+{
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"include"
+		],
+		"files" : 
+		[
+			"tools/test/perform/CMakeTests.cmake",
+			"tools/test/perform/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 195,
+				"parent" : 0
+			},
+			{
+				"file" : 0,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 2
+			}
+		]
+	},
+	"id" : "zip_perf_files::@1783ef16c2ef48d57709",
+	"name" : "zip_perf_files",
+	"paths" : 
+	{
+		"build" : "tools/test/perform",
+		"source" : "tools/test/perform"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

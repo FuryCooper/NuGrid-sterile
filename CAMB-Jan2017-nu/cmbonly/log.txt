@@ -1,0 +1,799 @@
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.979
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.000778
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.122620
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    430.27 (m_nu=  0.072 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.795
+zstar                =  1088.98
+r_s(zstar)/Mpc       =  156.36
+100*theta            =  1.123343
+DA(zstar)/Gpc        =  13.91926
+zdrag                =  1059.02
+r_s(zdrag)/Mpc       =  159.13
+k_D(zstar) Mpc       =  0.1365
+100*theta_D          =  0.165325
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009568
+100*theta_EQ         =  0.910790
+100*theta_rs_EQ      =  0.503448
+tau_recomb/Mpc       =  302.95  tau_now/Mpc =  14222.2
+at z = 49.000 sigma8 (all matter) =  0.0227
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0225
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.985
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001006
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.123296
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    556.42 (m_nu=  0.094 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.787
+zstar                =  1088.99
+r_s(zstar)/Mpc       =  156.35
+100*theta            =  1.124032
+DA(zstar)/Gpc        =  13.91008
+zdrag                =  1059.02
+r_s(zdrag)/Mpc       =  159.12
+k_D(zstar) Mpc       =  0.1365
+100*theta_D          =  0.165421
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009568
+100*theta_EQ         =  0.911381
+100*theta_rs_EQ      =  0.503775
+tau_recomb/Mpc       =  303.16  tau_now/Mpc =  14213.0
+at z = 49.000 sigma8 (all matter) =  0.0227
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0224
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.991
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001261
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.124044
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    697.20 (m_nu=  0.117 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.779
+zstar                =  1088.99
+r_s(zstar)/Mpc       =  156.34
+100*theta            =  1.124790
+DA(zstar)/Gpc        =  13.89977
+zdrag                =  1059.02
+r_s(zdrag)/Mpc       =  159.11
+k_D(zstar) Mpc       =  0.1365
+100*theta_D          =  0.165523
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009568
+100*theta_EQ         =  0.912043
+100*theta_rs_EQ      =  0.504141
+tau_recomb/Mpc       =  302.97  tau_now/Mpc =  14202.7
+at z = 49.000 sigma8 (all matter) =  0.0226
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0224
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.997
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001532
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.124829
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    847.05 (m_nu=  0.143 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.769
+zstar                =  1089.00
+r_s(zstar)/Mpc       =  156.33
+100*theta            =  1.125585
+DA(zstar)/Gpc        =  13.88875
+zdrag                =  1059.06
+r_s(zdrag)/Mpc       =  159.09
+k_D(zstar) Mpc       =  0.1366
+100*theta_D          =  0.165629
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009569
+100*theta_EQ         =  0.912748
+100*theta_rs_EQ      =  0.504531
+tau_recomb/Mpc       =  303.14  tau_now/Mpc =  14191.6
+at z = 49.000 sigma8 (all matter) =  0.0226
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0223
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  11.006
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001814
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.125633
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=   1003.19 (m_nu=  0.169 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.760
+zstar                =  1089.01
+r_s(zstar)/Mpc       =  156.31
+100*theta            =  1.126400
+DA(zstar)/Gpc        =  13.87723
+zdrag                =  1059.06
+r_s(zdrag)/Mpc       =  159.07
+k_D(zstar) Mpc       =  0.1366
+100*theta_D          =  0.165736
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009570
+100*theta_EQ         =  0.913482
+100*theta_rs_EQ      =  0.504937
+tau_recomb/Mpc       =  302.93  tau_now/Mpc =  14180.1
+at z = 49.000 sigma8 (all matter) =  0.0225
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0222
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.979
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.000778
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.122620
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    430.27 (m_nu=  0.072 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.795
+zstar                =  1088.98
+r_s(zstar)/Mpc       =  156.36
+100*theta            =  1.123343
+DA(zstar)/Gpc        =  13.91926
+zdrag                =  1059.02
+r_s(zdrag)/Mpc       =  159.13
+k_D(zstar) Mpc       =  0.1365
+100*theta_D          =  0.165325
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009568
+100*theta_EQ         =  0.910790
+100*theta_rs_EQ      =  0.503448
+tau_recomb/Mpc       =  302.95  tau_now/Mpc =  14222.2
+at z = 49.000 sigma8 (all matter) =  0.0003
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0084
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.985
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001006
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.123296
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    556.42 (m_nu=  0.094 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.787
+zstar                =  1088.99
+r_s(zstar)/Mpc       =  156.35
+100*theta            =  1.124032
+DA(zstar)/Gpc        =  13.91008
+zdrag                =  1059.02
+r_s(zdrag)/Mpc       =  159.12
+k_D(zstar) Mpc       =  0.1365
+100*theta_D          =  0.165421
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009568
+100*theta_EQ         =  0.911381
+100*theta_rs_EQ      =  0.503775
+tau_recomb/Mpc       =  303.16  tau_now/Mpc =  14213.0
+at z = 49.000 sigma8 (all matter) =  0.0004
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0092
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.991
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001261
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.124044
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    697.20 (m_nu=  0.117 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.779
+zstar                =  1088.99
+r_s(zstar)/Mpc       =  156.34
+100*theta            =  1.124790
+DA(zstar)/Gpc        =  13.89977
+zdrag                =  1059.02
+r_s(zdrag)/Mpc       =  159.11
+k_D(zstar) Mpc       =  0.1365
+100*theta_D          =  0.165523
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009568
+100*theta_EQ         =  0.912043
+100*theta_rs_EQ      =  0.504141
+tau_recomb/Mpc       =  302.97  tau_now/Mpc =  14202.7
+at z = 49.000 sigma8 (all matter) =  0.0006
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0099
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  10.997
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001532
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.124829
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=    847.05 (m_nu=  0.143 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.769
+zstar                =  1089.00
+r_s(zstar)/Mpc       =  156.33
+100*theta            =  1.125585
+DA(zstar)/Gpc        =  13.88875
+zdrag                =  1059.06
+r_s(zdrag)/Mpc       =  159.09
+k_D(zstar) Mpc       =  0.1366
+100*theta_D          =  0.165629
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009569
+100*theta_EQ         =  0.912748
+100*theta_rs_EQ      =  0.504531
+tau_recomb/Mpc       =  303.14  tau_now/Mpc =  14191.6
+at z = 49.000 sigma8 (all matter) =  0.0007
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0106
+ nu_mass_degeneracy    1.0153333333333332     
+ grhomass    1.9020530707071472E-012
+ mass fraction   1.0000000000000000     
+ mass degeneracy   1.0153333333333332     
+Reion redshift       =  11.006
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001814
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.125633
+N_eff (total)        =  3.046000
+ 1 nu, g= 1.0153 m_nu*c^2/k_B/T_nu0=   1003.19 (m_nu=  0.169 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.760
+zstar                =  1089.01
+r_s(zstar)/Mpc       =  156.31
+100*theta            =  1.126400
+DA(zstar)/Gpc        =  13.87723
+zdrag                =  1059.06
+r_s(zdrag)/Mpc       =  159.07
+k_D(zstar) Mpc       =  0.1366
+100*theta_D          =  0.165736
+z_EQ (if v_nu=1)     =  3374.14
+k_EQ Mpc (if v_nu=1) =  0.009570
+100*theta_EQ         =  0.913482
+100*theta_rs_EQ      =  0.504937
+tau_recomb/Mpc       =  302.93  tau_now/Mpc =  14180.1
+at z = 49.000 sigma8 (all matter) =  0.0009
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0112
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.13675300000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.18122900000000000     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.68201599999999996     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.979
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.000778
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.042954
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=     59.77 (m_nu=  0.010 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=     79.21 (m_nu=  0.013 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    298.09 (m_nu=  0.050 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.794
+zstar                =  1089.86
+r_s(zstar)/Mpc       =  145.04
+100*theta            =  1.043113
+DA(zstar)/Gpc        =  13.90474
+zdrag                =  1059.70
+r_s(zdrag)/Mpc       =  147.73
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.160787
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.815925
+100*theta_rs_EQ      =  0.450840
+tau_recomb/Mpc       =  281.68  tau_now/Mpc =  14186.3
+at z = 49.000 sigma8 (all matter) =  0.0223
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0221
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.21126200000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.23041800000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.55831900000000001     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.985
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001006
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.043550
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    119.38 (m_nu=  0.020 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    130.20 (m_nu=  0.022 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    315.49 (m_nu=  0.053 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.787
+zstar                =  1089.86
+r_s(zstar)/Mpc       =  145.04
+100*theta            =  1.043720
+DA(zstar)/Gpc        =  13.89647
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.73
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.160878
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.816408
+100*theta_rs_EQ      =  0.451107
+tau_recomb/Mpc       =  281.88  tau_now/Mpc =  14178.1
+at z = 49.000 sigma8 (all matter) =  0.0223
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0221
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.25286500000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.26330799999999999     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.48382799999999998     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.991
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001261
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.044239
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    179.02 (m_nu=  0.030 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    186.41 (m_nu=  0.031 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    342.54 (m_nu=  0.057 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.778
+zstar                =  1089.86
+r_s(zstar)/Mpc       =  145.04
+100*theta            =  1.044423
+DA(zstar)/Gpc        =  13.88686
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.72
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.160985
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.816970
+100*theta_rs_EQ      =  0.451418
+tau_recomb/Mpc       =  281.72  tau_now/Mpc =  14168.4
+at z = 49.000 sigma8 (all matter) =  0.0223
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0220
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.27749600000000002     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.28399999999999997     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.43850600000000001     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.997
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001532
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.044982
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    238.67 (m_nu=  0.040 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    244.27 (m_nu=  0.041 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    377.16 (m_nu=  0.063 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.769
+zstar                =  1089.87
+r_s(zstar)/Mpc       =  145.03
+100*theta            =  1.045178
+DA(zstar)/Gpc        =  13.87642
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.72
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.161096
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.817580
+100*theta_rs_EQ      =  0.451755
+tau_recomb/Mpc       =  281.89  tau_now/Mpc =  14158.0
+at z = 49.000 sigma8 (all matter) =  0.0222
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0220
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.29287500000000000     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.29728700000000002     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.40983799999999998     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  11.006
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001814
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.045761
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    298.33 (m_nu=  0.050 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    302.82 (m_nu=  0.051 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    417.47 (m_nu=  0.070 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.760
+zstar                =  1089.87
+r_s(zstar)/Mpc       =  145.03
+100*theta            =  1.045972
+DA(zstar)/Gpc        =  13.86543
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.71
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.161216
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.818222
+100*theta_rs_EQ      =  0.452110
+tau_recomb/Mpc       =  281.71  tau_now/Mpc =  14147.0
+at z = 49.000 sigma8 (all matter) =  0.0222
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0219
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.13675300000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.18122900000000000     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.68201599999999996     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.979
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.000778
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.042954
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=     59.77 (m_nu=  0.010 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=     79.21 (m_nu=  0.013 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    298.09 (m_nu=  0.050 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.794
+zstar                =  1089.86
+r_s(zstar)/Mpc       =  145.04
+100*theta            =  1.043113
+DA(zstar)/Gpc        =  13.90474
+zdrag                =  1059.70
+r_s(zdrag)/Mpc       =  147.73
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.160787
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.815925
+100*theta_rs_EQ      =  0.450840
+tau_recomb/Mpc       =  281.68  tau_now/Mpc =  14186.3
+at z = 49.000 sigma8 (all matter) =  0.0001
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0064
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.21126200000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.23041800000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.55831900000000001     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.985
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001006
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.043550
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    119.38 (m_nu=  0.020 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    130.20 (m_nu=  0.022 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    315.49 (m_nu=  0.053 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.787
+zstar                =  1089.86
+r_s(zstar)/Mpc       =  145.04
+100*theta            =  1.043720
+DA(zstar)/Gpc        =  13.89647
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.73
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.160878
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.816408
+100*theta_rs_EQ      =  0.451107
+tau_recomb/Mpc       =  281.88  tau_now/Mpc =  14178.1
+at z = 49.000 sigma8 (all matter) =  0.0001
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0065
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.25286500000000001     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.26330799999999999     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.48382799999999998     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.991
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001261
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.044239
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    179.02 (m_nu=  0.030 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    186.41 (m_nu=  0.031 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    342.54 (m_nu=  0.057 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.778
+zstar                =  1089.86
+r_s(zstar)/Mpc       =  145.04
+100*theta            =  1.044423
+DA(zstar)/Gpc        =  13.88686
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.72
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.160985
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.816970
+100*theta_rs_EQ      =  0.451418
+tau_recomb/Mpc       =  281.72  tau_now/Mpc =  14168.4
+at z = 49.000 sigma8 (all matter) =  0.0002
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0068
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.27749600000000002     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.28399999999999997     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.43850600000000001     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  10.997
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001532
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.044982
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    238.67 (m_nu=  0.040 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    244.27 (m_nu=  0.041 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    377.16 (m_nu=  0.063 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.769
+zstar                =  1089.87
+r_s(zstar)/Mpc       =  145.03
+100*theta            =  1.045178
+DA(zstar)/Gpc        =  13.87642
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.72
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.161096
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.817580
+100*theta_rs_EQ      =  0.451755
+tau_recomb/Mpc       =  281.89  tau_now/Mpc =  14158.0
+at z = 49.000 sigma8 (all matter) =  0.0002
+at z = 49.000 sigma8^2_vd/sigma8  =  0.0072
+ Ini_SaveReadValues_File: Error creating /home/rui/workspace/NuGrid/de2_deduction/2LPTicrui/threetypes/cmbonly_params.ini
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ nu_mass_degeneracy    1.0000000000000000     
+ grhomass    1.8733286973478143E-012
+ mass fraction  0.29287500000000000     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.29728700000000002     
+ mass degeneracy   1.0000000000000000     
+ mass fraction  0.40983799999999998     
+ mass degeneracy   1.0000000000000000     
+Reion redshift       =  11.006
+Om_b h^2             =  0.022301
+Om_c h^2             =  0.118802
+Om_nu h^2            =  0.001814
+Om_Lambda            =  0.691100
+Om_K                 =  0.000000
+Neutrino degeneracy  = -0.000000
+Neutrino degeneracy  =  0.000000
+Neutrino degeneracy  =  0.000000
+Om_m (1-Om_K-Om_L)   =  0.308900
+100 theta (CosmoMC)  =  1.045761
+N_eff (total)        =  3.000000
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    298.33 (m_nu=  0.050 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    302.82 (m_nu=  0.051 eV)
+ 1 nu, g= 1.0000 m_nu*c^2/k_B/T_nu0=    417.47 (m_nu=  0.070 eV)
+ error flag =            0
+Reion opt depth      =  0.0900
+Age of universe/GYr  =  13.760
+zstar                =  1089.87
+r_s(zstar)/Mpc       =  145.03
+100*theta            =  1.045972
+DA(zstar)/Gpc        =  13.86543
+zdrag                =  1059.74
+r_s(zdrag)/Mpc       =  147.71
+k_D(zstar) Mpc       =  0.1405
+100*theta_D          =  0.161216
+z_EQ (if v_nu=1)     =  3395.11
+k_EQ Mpc (if v_nu=1) =  0.010327
+100*theta_EQ         =  0.818222
+100*theta_rs_EQ      =  0.452110
+tau_recomb/Mpc       =  281.71  tau_now/Mpc =  14147.0

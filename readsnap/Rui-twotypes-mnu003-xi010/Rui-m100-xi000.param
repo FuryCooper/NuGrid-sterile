@@ -1,0 +1,8 @@
+
+output		/ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m100-xi000/123456/matterpowerspectrum/readsnap9-m100-xi000.txt
+
+input_path	/ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m100-xi000/123456
+nu_txt          /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m100-xi000/123456/nu_pk_9.txt
+
+snapno		9
+fnu             0.0827858

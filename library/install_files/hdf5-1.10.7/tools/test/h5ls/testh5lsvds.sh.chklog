@@ -1,0 +1,15 @@
+============================
+testh5lsvds.sh  Test Log
+============================
+Testing ../../src/h5ls/h5ls -w80 -v -S 1_vds.h5                        PASSED
+Testing ../../src/h5ls/h5ls -w80 -v -S 2_vds.h5                        PASSED
+Testing ../../src/h5ls/h5ls -w80 -v -S 3_1_vds.h5                      PASSED
+Testing ../../src/h5ls/h5ls -w80 -v -S 3_2_vds.h5                      PASSED
+Testing ../../src/h5ls/h5ls -w80 -v -S 4_vds.h5                        PASSED
+Testing ../../src/h5ls/h5ls -w80 -v -S 5_vds.h5                        PASSED
+All h5ls tests passed.
+0.03user 0.05system 0:00.38elapsed 24%CPU (0avgtext+0avgdata 9468maxresident)k
+48inputs+704outputs (0major+81162minor)pagefaults 0swaps
+
+Finished testing testh5lsvds.sh 
+============================

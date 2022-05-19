@@ -1,0 +1,457 @@
+Making install in src
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/src'
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/src'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   libhdf5.la '/home/wzzhang/library/hdf5/lib'
+libtool: install: /usr/bin/install -c .libs/libhdf5.so.103.3.0 /home/wzzhang/library/hdf5/lib/libhdf5.so.103.3.0
+libtool: install: (cd /home/wzzhang/library/hdf5/lib && { ln -s -f libhdf5.so.103.3.0 libhdf5.so.103 || { rm -f libhdf5.so.103 && ln -s libhdf5.so.103.3.0 libhdf5.so.103; }; })
+libtool: install: (cd /home/wzzhang/library/hdf5/lib && { ln -s -f libhdf5.so.103.3.0 libhdf5.so || { rm -f libhdf5.so && ln -s libhdf5.so.103.3.0 libhdf5.so; }; })
+libtool: install: /usr/bin/install -c .libs/libhdf5.lai /home/wzzhang/library/hdf5/lib/libhdf5.la
+libtool: install: /usr/bin/install -c .libs/libhdf5.a /home/wzzhang/library/hdf5/lib/libhdf5.a
+libtool: install: chmod 644 /home/wzzhang/library/hdf5/lib/libhdf5.a
+libtool: install: ranlib /home/wzzhang/library/hdf5/lib/libhdf5.a
+libtool: finish: PATH="/home/wzzhang/library/mpich/bin:/opt/anaconda3/bin:/opt/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/sbin" ldconfig -n /home/wzzhang/library/hdf5/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /home/wzzhang/library/hdf5/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/include'
+ /usr/bin/install -c -m 644 hdf5.h H5api_adpt.h H5overflow.h H5pubconf.h H5public.h H5version.h H5Apublic.h H5ACpublic.h H5Cpublic.h H5Dpublic.h H5Epubgen.h H5Epublic.h H5Fpublic.h H5FDpublic.h H5FDcore.h H5FDdirect.h H5FDfamily.h H5FDhdfs.h H5FDlog.h H5FDmirror.h H5FDmpi.h H5FDmpio.h H5FDmulti.h H5FDros3.h H5FDsec2.h H5FDsplitter.h H5FDstdio.h H5FDwindows.h H5Gpublic.h H5Ipublic.h H5Lpublic.h H5MMpublic.h H5Opublic.h H5Ppublic.h H5PLextern.h H5PLpublic.h H5Rpublic.h H5Spublic.h H5Tpublic.h H5Zpublic.h '/home/wzzhang/library/hdf5/include'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/lib'
+ /usr/bin/install -c -m 644 libhdf5.settings '/home/wzzhang/library/hdf5/lib'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/src'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/src'
+Making install in test
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/test'
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/test'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/test'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/test'
+Making install in bin
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/bin'
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/bin'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+ /usr/bin/install -c h5redeploy '/home/wzzhang/library/hdf5/bin'
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/bin'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/bin'
+Making install in utils
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils'
+Making install in mirror_vfd
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils/mirror_vfd'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils/mirror_vfd'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../libtool   --mode=install /usr/bin/install -c mirror_server mirror_server_stop '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/mirror_server /home/wzzhang/library/hdf5/bin/mirror_server
+libtool: install: /usr/bin/install -c .libs/mirror_server_stop /home/wzzhang/library/hdf5/bin/mirror_server_stop
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils/mirror_vfd'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils/mirror_vfd'
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/utils'
+Making install in tools
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools'
+Making install in lib
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/lib'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/lib'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/lib'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/lib'
+Making install in src
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src'
+Making install in h5diff
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5diff'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5diff'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5diff '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5diff /home/wzzhang/library/hdf5/bin/h5diff
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5diff'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5diff'
+Making install in h5ls
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5ls'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5ls'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5ls '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5ls /home/wzzhang/library/hdf5/bin/h5ls
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5ls'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5ls'
+Making install in h5dump
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5dump'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5dump'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5dump '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5dump /home/wzzhang/library/hdf5/bin/h5dump
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5dump'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5dump'
+Making install in misc
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/misc'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/misc'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5debug h5repart h5mkgrp h5clear '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5debug /home/wzzhang/library/hdf5/bin/h5debug
+libtool: install: /usr/bin/install -c .libs/h5repart /home/wzzhang/library/hdf5/bin/h5repart
+libtool: install: /usr/bin/install -c .libs/h5mkgrp /home/wzzhang/library/hdf5/bin/h5mkgrp
+libtool: install: /usr/bin/install -c .libs/h5clear /home/wzzhang/library/hdf5/bin/h5clear
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/misc'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/misc'
+Making install in h5import
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5import'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5import'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5import '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5import /home/wzzhang/library/hdf5/bin/h5import
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5import'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5import'
+Making install in h5repack
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5repack'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5repack'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5repack '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5repack /home/wzzhang/library/hdf5/bin/h5repack
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5repack'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5repack'
+Making install in h5jam
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5jam'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5jam'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5jam h5unjam '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5jam /home/wzzhang/library/hdf5/bin/h5jam
+libtool: install: /usr/bin/install -c .libs/h5unjam /home/wzzhang/library/hdf5/bin/h5unjam
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5jam'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5jam'
+Making install in h5copy
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5copy'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5copy'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5copy '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5copy /home/wzzhang/library/hdf5/bin/h5copy
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5copy'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5copy'
+Making install in h5format_convert
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5format_convert'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5format_convert'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5format_convert '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5format_convert /home/wzzhang/library/hdf5/bin/h5format_convert
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5format_convert'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5format_convert'
+Making install in h5stat
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5stat'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5stat'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5stat '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5stat /home/wzzhang/library/hdf5/bin/h5stat
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5stat'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src/h5stat'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/src'
+Making install in test
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test'
+Making install in h5diff
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5diff'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5diff'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5diff'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5diff'
+Making install in h5ls
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5ls'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5ls'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5ls'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5ls'
+Making install in h5dump
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5dump'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5dump'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5dump'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5dump'
+Making install in misc
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc'
+Making install in vds
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc/vds'
+make[5]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc/vds'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc/vds'
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc/vds'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc'
+make[5]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc'
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/misc'
+Making install in h5import
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5import'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5import'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5import'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5import'
+Making install in h5repack
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5repack'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5repack'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5repack'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5repack'
+Making install in h5jam
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5jam'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5jam'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5jam'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5jam'
+Making install in h5copy
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5copy'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5copy'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5copy'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5copy'
+Making install in h5format_convert
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5format_convert'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5format_convert'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5format_convert'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5format_convert'
+Making install in h5stat
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5stat'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5stat'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5stat'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/h5stat'
+Making install in perform
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/perform'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/perform'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5perf_serial '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5perf_serial /home/wzzhang/library/hdf5/bin/h5perf_serial
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/perform'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test/perform'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/test'
+Making install in libtest
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/libtest'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/libtest'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/libtest'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools/libtest'
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/tools'
+Making install in .
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7'
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7'
+Making install in hl
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'
+Making install in src
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/src'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/src'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/lib'
+ /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libhdf5_hl.la '/home/wzzhang/library/hdf5/lib'
+libtool: warning: relinking 'libhdf5_hl.la'
+libtool: install: (cd /home/wzzhang/library/install_files/hdf5-1.10.7/hl/src; /bin/bash "/home/wzzhang/library/install_files/hdf5-1.10.7/libtool"  --silent --tag CC --mode=relink gcc -std=c99 -Wall -Wcast-qual -Wconversion -Wextra -Wfloat-equal -Wformat=2 -Winit-self -Winvalid-pch -Wmissing-include-dirs -Wno-c++-compat -Wno-format-nonliteral -Wshadow -Wundef -Wwrite-strings -pedantic -Wvla -Wlarger-than=2560 -Wlogical-op -Wframe-larger-than=16384 -Wpacked-bitfield-compat -Wsync-nand -Wstrict-overflow=5 -Wno-unsuffixed-float-constants -Wdouble-promotion -Wtrampolines -Wstack-usage=8192 -Wmaybe-uninitialized -Wdate-time -s -Wno-aggregate-return -Wno-inline -Wno-missing-format-attribute -Wno-missing-noreturn -Wno-overlength-strings -Wno-jump-misses-init -Wno-suggest-attribute=const -Wno-suggest-attribute=noreturn -Wno-suggest-attribute=pure -Wno-suggest-attribute=format -O3 -Werror=bad-function-cast -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=missing-declarations -Werror=missing-prototypes -Werror=nested-externs -Werror=old-style-definition -Werror=packed -Werror=pointer-sign -Werror=pointer-to-int-cast -Werror=redundant-decls -Werror=strict-prototypes -Werror=switch -Wunused-function -Wunused-variable -Wunused-parameter -Wcast-align -Wunused-but-set-variable -Wformat -version-info 101:4:1 -o libhdf5_hl.la -rpath /home/wzzhang/library/hdf5/lib H5DO.lo H5DS.lo H5IM.lo H5LT.lo H5LTanalyze.lo H5LTparse.lo H5PT.lo H5TB.lo H5LD.lo ../../src/libhdf5.la -lz -ldl -lm )
+libtool: install: /usr/bin/install -c .libs/libhdf5_hl.so.100.1.4T /home/wzzhang/library/hdf5/lib/libhdf5_hl.so.100.1.4
+libtool: install: (cd /home/wzzhang/library/hdf5/lib && { ln -s -f libhdf5_hl.so.100.1.4 libhdf5_hl.so.100 || { rm -f libhdf5_hl.so.100 && ln -s libhdf5_hl.so.100.1.4 libhdf5_hl.so.100; }; })
+libtool: install: (cd /home/wzzhang/library/hdf5/lib && { ln -s -f libhdf5_hl.so.100.1.4 libhdf5_hl.so || { rm -f libhdf5_hl.so && ln -s libhdf5_hl.so.100.1.4 libhdf5_hl.so; }; })
+libtool: install: /usr/bin/install -c .libs/libhdf5_hl.lai /home/wzzhang/library/hdf5/lib/libhdf5_hl.la
+libtool: install: /usr/bin/install -c .libs/libhdf5_hl.a /home/wzzhang/library/hdf5/lib/libhdf5_hl.a
+libtool: install: chmod 644 /home/wzzhang/library/hdf5/lib/libhdf5_hl.a
+libtool: install: ranlib /home/wzzhang/library/hdf5/lib/libhdf5_hl.a
+libtool: finish: PATH="/home/wzzhang/library/mpich/bin:/opt/anaconda3/bin:/opt/anaconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/sbin" ldconfig -n /home/wzzhang/library/hdf5/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /home/wzzhang/library/hdf5/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/include'
+ /usr/bin/install -c -m 644 hdf5_hl.h H5DOpublic.h H5IMpublic.h H5LTpublic.h H5TBpublic.h H5DSpublic.h H5PTpublic.h H5LDpublic.h '/home/wzzhang/library/hdf5/include'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/src'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/src'
+Making install in test
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/test'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/test'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/test'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/test'
+Making install in tools
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools'
+Making install in gif2h5
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/gif2h5'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/gif2h5'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c gif2h5 h52gif '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/gif2h5 /home/wzzhang/library/hdf5/bin/gif2h5
+libtool: install: /usr/bin/install -c .libs/h52gif /home/wzzhang/library/hdf5/bin/h52gif
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/gif2h5'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/gif2h5'
+Making install in h5watch
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/h5watch'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/h5watch'
+ /bin/mkdir -p '/home/wzzhang/library/hdf5/bin'
+  /bin/bash ../../../libtool   --mode=install /usr/bin/install -c h5watch '/home/wzzhang/library/hdf5/bin'
+libtool: install: /usr/bin/install -c .libs/h5watch /home/wzzhang/library/hdf5/bin/h5watch
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/h5watch'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools/h5watch'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools'
+make[4]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools'
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/tools'
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'
+make[3]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'
+for d in examples  hl; do               \
+    (cd $d && make  install-examples) || exit 1;           \
+done
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/examples'
+../bin/mkdirs /home/wzzhang/library/hdf5/share/hdf5_examples/c
++ /usr/bin/install -c ./h5_write.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_read.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_extend_write.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_chunk_read.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_compound.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_crtgrpd.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_subset.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_cmprss.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_rdwt.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_crtgrpar.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_extend.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_crtatt.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_crtgrp.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_crtdat.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_group.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_select.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_attribute.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_mount.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_drivers.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_reference.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_ref2reg.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_extlink.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_elink_unix2win.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_shared_mesg.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_debug_trace.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./ph5example.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds-exc.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds-exclim.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds-eiger.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds-simpleIO.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds-percival.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds-percival-unlim.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./h5_vds-percival-unlim-maxmin.c /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c run-c-ex.sh /home/wzzhang/library/hdf5/share/hdf5_examples/c/.
++ /usr/bin/install -c ./README /home/wzzhang/library/hdf5/share/hdf5_examples/.
++ /usr/bin/install -c ./run-all-ex.sh /home/wzzhang/library/hdf5/share/hdf5_examples/.
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/examples'
+make[1]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'
+for d in examples ; do               \
+    (cd $d && make  install-examples) || exit 1;           \
+done
+make[2]: Entering directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/examples'
+../../bin/mkdirs /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c
++ /usr/bin/install -c ./ex_lite1.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_lite2.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_lite3.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ptExampleFL.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_image1.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_image2.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_01.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_02.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_03.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_04.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_05.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_06.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_07.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_08.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_09.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_10.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_11.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_table_12.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./ex_ds1.c /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./image24pixel.txt /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./image8.txt /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./pal_rgb.h /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c run-hlc-ex.sh /home/wzzhang/library/hdf5/share/hdf5_examples/hl/c/.
++ /usr/bin/install -c ./run-hl-ex.sh /home/wzzhang/library/hdf5/share/hdf5_examples/hl/.
+make[2]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl/examples'
+make[1]: Leaving directory '/home/wzzhang/library/install_files/hdf5-1.10.7/hl'

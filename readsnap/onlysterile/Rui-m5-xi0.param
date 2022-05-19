@@ -1,0 +1,8 @@
+
+output		/home/rui/workspace/Gadget_output/m5-xi0/123456/readsnap9-m5-xi0.txt
+
+input_path	/home/rui/workspace/Gadget_output/m5-xi0/123456
+nu_txt          /home/rui/workspace/Gadget_output/m5-xi0/123456/nu_pk_9.txt
+
+snapno		9
+fnu             0.272617

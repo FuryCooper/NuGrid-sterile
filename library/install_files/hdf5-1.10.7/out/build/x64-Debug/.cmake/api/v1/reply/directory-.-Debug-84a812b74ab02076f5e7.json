@@ -1,0 +1,326 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"include"
+		],
+		"files" : 
+		[
+			"CMakeInstallation.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1049,
+				"parent" : 0
+			},
+			{
+				"file" : 0,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 32,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 94,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 110,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 129,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 196,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 240,
+				"parent" : 2
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 3,
+			"component" : "configinstall",
+			"destination" : "cmake/hdf5",
+			"exportName" : "hdf5-targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "hdf5-static::@145eef247bfb46b6828c",
+					"index" : 208
+				},
+				{
+					"id" : "hdf5-shared::@145eef247bfb46b6828c",
+					"index" : 207
+				},
+				{
+					"id" : "mirror_server::@edd85cbb6a27aace9cb4",
+					"index" : 259
+				},
+				{
+					"id" : "mirror_server_stop::@edd85cbb6a27aace9cb4",
+					"index" : 260
+				},
+				{
+					"id" : "hdf5_tools-static::@41cc600e058f50a3ffea",
+					"index" : 218
+				},
+				{
+					"id" : "hdf5_tools-shared::@41cc600e058f50a3ffea",
+					"index" : 217
+				},
+				{
+					"id" : "h5diff::@6b1a87ed6e3659707ae8",
+					"index" : 161
+				},
+				{
+					"id" : "h5diff-shared::@6b1a87ed6e3659707ae8",
+					"index" : 162
+				},
+				{
+					"id" : "h5ls::@6c71ec9551908923a1f3",
+					"index" : 182
+				},
+				{
+					"id" : "h5ls-shared::@6c71ec9551908923a1f3",
+					"index" : 183
+				},
+				{
+					"id" : "h5debug::@49dd33fd766b90d215b5",
+					"index" : 159
+				},
+				{
+					"id" : "h5repart::@49dd33fd766b90d215b5",
+					"index" : 194
+				},
+				{
+					"id" : "h5mkgrp::@49dd33fd766b90d215b5",
+					"index" : 186
+				},
+				{
+					"id" : "h5clear::@49dd33fd766b90d215b5",
+					"index" : 153
+				},
+				{
+					"id" : "h5debug-shared::@49dd33fd766b90d215b5",
+					"index" : 160
+				},
+				{
+					"id" : "h5repart-shared::@49dd33fd766b90d215b5",
+					"index" : 195
+				},
+				{
+					"id" : "h5mkgrp-shared::@49dd33fd766b90d215b5",
+					"index" : 187
+				},
+				{
+					"id" : "h5clear-shared::@49dd33fd766b90d215b5",
+					"index" : 154
+				},
+				{
+					"id" : "h5import::@8a0f1f79a3b2c1d4dc6d",
+					"index" : 175
+				},
+				{
+					"id" : "h5import-shared::@8a0f1f79a3b2c1d4dc6d",
+					"index" : 176
+				},
+				{
+					"id" : "h5repack::@0e3b1ad78303e456b85b",
+					"index" : 190
+				},
+				{
+					"id" : "h5repack-shared::@0e3b1ad78303e456b85b",
+					"index" : 191
+				},
+				{
+					"id" : "h5jam::@ddba664147688c6f6b68",
+					"index" : 179
+				},
+				{
+					"id" : "h5unjam::@ddba664147688c6f6b68",
+					"index" : 202
+				},
+				{
+					"id" : "h5jam-shared::@ddba664147688c6f6b68",
+					"index" : 180
+				},
+				{
+					"id" : "h5unjam-shared::@ddba664147688c6f6b68",
+					"index" : 203
+				},
+				{
+					"id" : "h5copy::@51afc6f23c96a8b0256d",
+					"index" : 156
+				},
+				{
+					"id" : "h5copy-shared::@51afc6f23c96a8b0256d",
+					"index" : 157
+				},
+				{
+					"id" : "h5stat::@0e76af7bbacd6d38b805",
+					"index" : 198
+				},
+				{
+					"id" : "h5stat-shared::@0e76af7bbacd6d38b805",
+					"index" : 199
+				},
+				{
+					"id" : "h5dump::@c4253e4c6782f1dfa48f",
+					"index" : 164
+				},
+				{
+					"id" : "h5dump-shared::@c4253e4c6782f1dfa48f",
+					"index" : 165
+				},
+				{
+					"id" : "h5format_convert::@3bf2c25c0b5bff47b491",
+					"index" : 173
+				},
+				{
+					"id" : "h5format_convert-shared::@3bf2c25c0b5bff47b491",
+					"index" : 174
+				},
+				{
+					"id" : "hdf5_hl-static::@e6a9f3e154d4ee988355",
+					"index" : 212
+				},
+				{
+					"id" : "hdf5_hl-shared::@e6a9f3e154d4ee988355",
+					"index" : 211
+				},
+				{
+					"id" : "gif2h5::@63ea2353f979828134db",
+					"index" : 115
+				},
+				{
+					"id" : "gif2h5-shared::@63ea2353f979828134db",
+					"index" : 116
+				},
+				{
+					"id" : "h52gif::@63ea2353f979828134db",
+					"index" : 118
+				},
+				{
+					"id" : "h52gif-shared::@63ea2353f979828134db",
+					"index" : 119
+				},
+				{
+					"id" : "h5watch::@73f77e87759a63cead4e",
+					"index" : 204
+				},
+				{
+					"id" : "h5watch-shared::@73f77e87759a63cead4e",
+					"index" : 205
+				},
+				{
+					"id" : "hdf5_cpp-static::@1799249fd85ba52d2c3c",
+					"index" : 210
+				},
+				{
+					"id" : "hdf5_cpp-shared::@1799249fd85ba52d2c3c",
+					"index" : 209
+				},
+				{
+					"id" : "hdf5_hl_cpp-static::@b2df9556170e7dd2929d",
+					"index" : 214
+				},
+				{
+					"id" : "hdf5_hl_cpp-shared::@b2df9556170e7dd2929d",
+					"index" : 213
+				}
+			],
+			"paths" : 
+			[
+				"CMakeFiles/Export/cmake/hdf5/hdf5-targets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "configinstall",
+			"destination" : "cmake/hdf5",
+			"paths" : 
+			[
+				"out/build/x64-Debug/CMakeFiles/hdf5-config.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "configinstall",
+			"destination" : "cmake/hdf5",
+			"paths" : 
+			[
+				"out/build/x64-Debug/CMakeFiles/hdf5-config-version.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "libraries",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"out/build/x64-Debug/libhdf5.settings"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "hdfdocuments",
+			"destination" : ".",
+			"paths" : 
+			[
+				"COPYING"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "hdfdocuments",
+			"destination" : ".",
+			"paths" : 
+			[
+				"release_docs/USING_HDF5_CMake.txt",
+				"release_docs/COPYING",
+				"release_docs/RELEASE.txt",
+				"release_docs/USING_HDF5_VS.txt"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}

@@ -1,0 +1,8 @@
+
+output		/ds/rui/Gadget_output/twotypes-omega/m1.03-xi0-twotypes/123456/readsnap9-m1.03-xi0-twotypes.txt
+
+input_path	/ds/rui/Gadget_output/twotypes-omega/m1.03-xi0-twotypes/123456
+nu_txt          /ds/rui/Gadget_output/twotypes-omega/m1.03-xi0-twotypes/123456/nu_pk_9.txt
+
+snapno		9
+fnu             0.0729642

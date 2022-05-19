@@ -1,0 +1,9 @@
+
+output		/ds/rui/Gadget_output/sum/m001-xi0-sum/123456/readsnap9-m001-xi0-sum.txt
+
+input_path	/ds/rui/Gadget_output/sum/m001-xi0-sum/123456
+nu_txt          /ds/rui/Gadget_output/sum/m001-xi0-sum/123456/nu_pk_9.txt
+
+snapno		9
+fnu             0.0054588
+

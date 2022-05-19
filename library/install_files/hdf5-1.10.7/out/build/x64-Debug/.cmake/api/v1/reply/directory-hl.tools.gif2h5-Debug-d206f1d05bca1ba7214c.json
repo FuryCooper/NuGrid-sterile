@@ -1,0 +1,81 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"hl/tools/gif2h5/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 99,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "hltoolsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/gif2h5.exe"
+			],
+			"targetId" : "gif2h5::@63ea2353f979828134db",
+			"targetIndex" : 115,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "hltoolsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/gif2h5-shared.exe"
+			],
+			"targetId" : "gif2h5-shared::@63ea2353f979828134db",
+			"targetIndex" : 116,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "hltoolsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/h52gif.exe"
+			],
+			"targetId" : "h52gif::@63ea2353f979828134db",
+			"targetIndex" : 118,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "hltoolsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/h52gif-shared.exe"
+			],
+			"targetId" : "h52gif-shared::@63ea2353f979828134db",
+			"targetIndex" : 119,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "hl/tools/gif2h5",
+		"source" : "hl/tools/gif2h5"
+	}
+}

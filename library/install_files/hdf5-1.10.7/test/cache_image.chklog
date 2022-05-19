@@ -1,0 +1,30 @@
+============================
+Test log for cache_image 
+============================
+=========================================
+Cache image tests
+        express_test = 1
+=========================================
+Testing metadata cache image control flow test 1                       PASSED
+Testing metadata cache image control flow test 2                       PASSED
+Testing metadata cache image control flow test 3                       PASSED
+Testing metadata cache image control flow test 4                       PASSED
+Testing metadata cache image control flow test 5                       PASSED
+Testing metadata cache image control flow test 6                       PASSED
+Testing metadata cache image smoke check 1                             PASSED
+Testing metadata cache image smoke check 2                             PASSED
+Testing metadata cache image smoke check 3                             PASSED
+Testing metadata cache image smoke check 4                             PASSED
+Testing metadata cache image smoke check 5                             PASSED
+Testing metadata cache image smoke check 6                             PASSED
+Testing metadata cache image api error check 1                         PASSED
+Testing metadata cache image api error check 2                         PASSED
+Testing metadata cache image api error check 3                         PASSED
+Testing metadata cache image api error check 4                         PASSED
+Testing Cache image / H5Fget_free_sections() interaction               PASSED
+Testing Cache image / evict on close interaction                       PASSED
+312.28user 11.21system 5:23.47elapsed 100%CPU (0avgtext+0avgdata 135080maxresident)k
+0inputs+4246216outputs (0major+58773minor)pagefaults 0swaps
+
+Finished testing cache_image 
+============================

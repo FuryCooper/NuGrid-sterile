@@ -1,0 +1,105 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"INSTALL_PROGRAM_PDB"
+		],
+		"files" : 
+		[
+			"config/cmake_ext_mod/HDFMacros.cmake",
+			"utils/mirror_vfd/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 54,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 97,
+				"parent" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 54,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 97,
+				"parent" : 3
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 57,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "utilsapplications",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"out/build/x64-Debug/bin/mirror_server.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "utilsapplications",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"out/build/x64-Debug/bin/mirror_server_stop.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "utilsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/mirror_server.exe"
+			],
+			"targetId" : "mirror_server::@edd85cbb6a27aace9cb4",
+			"targetIndex" : 259,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "utilsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/mirror_server_stop.exe"
+			],
+			"targetId" : "mirror_server_stop::@edd85cbb6a27aace9cb4",
+			"targetIndex" : 260,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "utils/mirror_vfd",
+		"source" : "utils/mirror_vfd"
+	}
+}

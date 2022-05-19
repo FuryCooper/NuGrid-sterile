@@ -1,0 +1,20 @@
+============================
+Test log for file_image 
+============================
+Testing File Image Functionality.
+Testing File image property list functions                             PASSED
+Testing Callback use in property list operations                       PASSED
+Testing Initial file image and callbacks in Core VFD                   PASSED
+Testing H5Fget_file_image() with sec2 driver                           PASSED
+Testing H5Fget_file_image() with stdio driver                          PASSED
+Testing H5Fget_file_image() with core driver                           PASSED
+Testing H5Fget_file_image() with sec2 driver                           PASSED
+Testing H5Fget_file_image() with stdio driver                          PASSED
+Testing H5Fget_file_image() with core driver                           PASSED
+Testing H5Fget_file_image() error rejection                            PASSED
+All File Image tests passed.
+0.02user 0.01system 0:00.06elapsed 65%CPU (0avgtext+0avgdata 8856maxresident)k
+24inputs+520outputs (0major+4990minor)pagefaults 0swaps
+
+Finished testing file_image 
+============================

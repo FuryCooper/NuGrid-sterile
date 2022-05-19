@@ -1,0 +1,8 @@
+
+output		/home/rui/workspace/Gadget_output/m3-xi0-twotypes/123456/readsnap9-m3-xi0-twotypes.txt
+
+input_path	/home/rui/workspace/Gadget_output/m3-xi0-twotypes/123456
+nu_txt          /home/rui/workspace/Gadget_output/m3-xi0-twotypes/123456/nu_pk_9.txt
+
+snapno		9
+fnu             0.185957

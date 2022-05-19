@@ -1,0 +1,7 @@
+#!/bin/sh
+
+python ratio.py /ds/rui/workspace/NuGrid/de2_deduction/2LPTic/rui/Rui_twotypes cmbonly_m020-xi000-cdm-49-twotypes.txt cmbonly_m020-xi000-nu-49-twotypes.txt /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m020-xi000/ratio_cmbonly_m020-xi000-twotypes.txt
+python ratio.py /ds/rui/workspace/NuGrid/de2_deduction/2LPTic/rui/Rui_twotypes cmbonly_m040-xi000-cdm-49-twotypes.txt cmbonly_m040-xi000-nu-49-twotypes.txt /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m040-xi000/ratio_cmbonly_m040-xi000-twotypes.txt
+python ratio.py /ds/rui/workspace/NuGrid/de2_deduction/2LPTic/rui/Rui_twotypes cmbonly_m060-xi000-cdm-49-twotypes.txt cmbonly_m060-xi000-nu-49-twotypes.txt /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m060-xi000/ratio_cmbonly_m060-xi000-twotypes.txt
+python ratio.py /ds/rui/workspace/NuGrid/de2_deduction/2LPTic/rui/Rui_twotypes cmbonly_m080-xi000-cdm-49-twotypes.txt cmbonly_m080-xi000-nu-49-twotypes.txt /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m080-xi000/ratio_cmbonly_m080-xi000-twotypes.txt
+python ratio.py /ds/rui/workspace/NuGrid/de2_deduction/2LPTic/rui/Rui_twotypes cmbonly_m100-xi000-cdm-49-twotypes.txt cmbonly_m100-xi000-nu-49-twotypes.txt /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m100-xi000/ratio_cmbonly_m100-xi000-twotypes.txt

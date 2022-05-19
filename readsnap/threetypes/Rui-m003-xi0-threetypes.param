@@ -1,0 +1,8 @@
+
+output		/ds/rui/Gadget_output/threetypes/m003-xi0-threetypes/123456/readsnap9-m003-xi0-threetypes.txt
+
+input_path	/ds/rui/Gadget_output/threetypes/m003-xi0-threetypes/123456
+nu_txt          /ds/rui/Gadget_output/threetypes/m003-xi0-threetypes/123456/nu_pk_9.txt
+
+snapno		9
+fnu             0.00881646

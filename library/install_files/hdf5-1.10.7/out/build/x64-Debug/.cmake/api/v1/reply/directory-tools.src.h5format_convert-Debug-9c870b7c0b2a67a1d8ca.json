@@ -1,0 +1,105 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"INSTALL_PROGRAM_PDB"
+		],
+		"files" : 
+		[
+			"config/cmake_ext_mod/HDFMacros.cmake",
+			"tools/src/h5format_convert/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 97,
+				"parent" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 97,
+				"parent" : 3
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 44,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "toolsapplications",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"out/build/x64-Debug/bin/h5format_convert.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "toolsapplications",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"out/build/x64-Debug/bin/h5format_convert-shared.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "toolsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/h5format_convert.exe"
+			],
+			"targetId" : "h5format_convert::@3bf2c25c0b5bff47b491",
+			"targetIndex" : 173,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "toolsapplications",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/h5format_convert-shared.exe"
+			],
+			"targetId" : "h5format_convert-shared::@3bf2c25c0b5bff47b491",
+			"targetIndex" : 174,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "tools/src/h5format_convert",
+		"source" : "tools/src/h5format_convert"
+	}
+}

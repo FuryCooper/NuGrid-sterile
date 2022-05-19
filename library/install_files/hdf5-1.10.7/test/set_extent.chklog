@@ -1,0 +1,21 @@
+============================
+Test log for set_extent 
+============================
+Testing with old file format and chunk cache disabled:
+  Testing datasets with ranks 1 to 4 (all configurations)              PASSED
+Testing with old file format and chunk cache enabled:
+  Testing datasets with ranks 1 to 4 (all configurations)              PASSED
+Testing external file use                                              PASSED
+Testing storage layout use - tested with all low/high library format bounds PASSED
+Testing with new file format and chunk cache disabled:
+  Testing datasets with ranks 1 to 4 (all configurations)              PASSED
+Testing with new file format and chunk cache enabled:
+  Testing datasets with ranks 1 to 4 (all configurations)              PASSED
+Testing external file use                                              PASSED
+Testing storage layout use - tested with all low/high library format bounds PASSED
+All H5Dset_extent tests passed.
+44.12user 4.12system 0:49.34elapsed 97%CPU (0avgtext+0avgdata 20888maxresident)k
+0inputs+577456outputs (0major+92729minor)pagefaults 0swaps
+
+Finished testing set_extent 
+============================

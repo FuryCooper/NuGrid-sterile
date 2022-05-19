@@ -1,0 +1,1099 @@
+============================
+testflushrefresh.sh  Test Log
+============================
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Testing individual object flush behavior:
+Testing to ensure H5Gflush correctly flushes single groups            perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+Testing to ensure H5Dflush correctly flushes single datasets          perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+Testing to ensure H5Tflush correctly flushes single datatypes         perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+Testing to ensure H5Oflush correctly flushes single objects           perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Testing individual object refresh behavior:
+Testing to ensure that H5Drefresh correctly refreshes single datasets perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+Testing to ensure that H5Grefresh correctly refreshes single groups   perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+Testing to ensure that H5Trefresh correctly refreshes single datatypesperl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+Testing to ensure that H5Orefresh correctly refreshes single objects  perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+ PASSED
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = "en_HK:en",
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = (unset)
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+flush/refresh objects tests passed.
+0.86user 2.25system 0:02.46elapsed 126%CPU (0avgtext+0avgdata 8956maxresident)k
+128inputs+2592outputs (1major+366255minor)pagefaults 0swaps
+
+Finished testing testflushrefresh.sh 
+============================

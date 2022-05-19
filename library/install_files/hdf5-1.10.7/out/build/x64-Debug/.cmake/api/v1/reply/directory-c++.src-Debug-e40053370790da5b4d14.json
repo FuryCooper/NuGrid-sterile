@@ -1,0 +1,185 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"INSTALL_TARGET_PDB"
+		],
+		"files" : 
+		[
+			"c++/src/CMakeLists.txt",
+			"config/cmake_ext_mod/HDFMacros.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 134,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 148,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 84,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 151,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 84,
+				"parent" : 4
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 154,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 194,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "cppheaders",
+			"destination" : "include",
+			"paths" : 
+			[
+				"c++/src/H5AbstractDs.h",
+				"c++/src/H5Alltypes.h",
+				"c++/src/H5ArrayType.h",
+				"c++/src/H5AtomType.h",
+				"c++/src/H5Attribute.h",
+				"c++/src/H5Classes.h",
+				"c++/src/H5CommonFG.h",
+				"c++/src/H5CompType.h",
+				"c++/src/H5Cpp.h",
+				"c++/src/H5CppDoc.h",
+				"c++/src/H5DataSet.h",
+				"c++/src/H5DataSpace.h",
+				"c++/src/H5DataType.h",
+				"c++/src/H5DaccProp.h",
+				"c++/src/H5DcreatProp.h",
+				"c++/src/H5DxferProp.h",
+				"c++/src/H5EnumType.h",
+				"c++/src/H5Exception.h",
+				"c++/src/H5FaccProp.h",
+				"c++/src/H5FcreatProp.h",
+				"c++/src/H5File.h",
+				"c++/src/H5FloatType.h",
+				"c++/src/H5Group.h",
+				"c++/src/H5IdComponent.h",
+				"c++/src/H5Include.h",
+				"c++/src/H5IntType.h",
+				"c++/src/H5LaccProp.h",
+				"c++/src/H5LcreatProp.h",
+				"c++/src/H5Library.h",
+				"c++/src/H5Location.h",
+				"c++/src/H5Object.h",
+				"c++/src/H5OcreatProp.h",
+				"c++/src/H5PredType.h",
+				"c++/src/H5PropList.h",
+				"c++/src/H5StrType.h",
+				"c++/src/H5VarLenType.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "cpplibraries",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"out/build/x64-Debug/bin/.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "cpplibraries",
+			"destination" : "lib",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"out/build/x64-Debug/bin/.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "cpplibraries",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"bin/libhdf5_cpp_D.lib"
+			],
+			"targetId" : "hdf5_cpp-static::@1799249fd85ba52d2c3c",
+			"targetIndex" : 210,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "cpplibraries",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"bin/hdf5_cpp_D.lib"
+			],
+			"targetId" : "hdf5_cpp-shared::@1799249fd85ba52d2c3c",
+			"targetIndex" : 209,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "cpplibraries",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/hdf5_cpp_D.dll"
+			],
+			"targetId" : "hdf5_cpp-shared::@1799249fd85ba52d2c3c",
+			"targetIndex" : 209,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "cpplibraries",
+			"destination" : "lib/pkgconfig",
+			"paths" : 
+			[
+				"out/build/x64-Debug/CMakeFiles/hdf5_cpp-1.10.7.pc"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "c++/src",
+		"source" : "c++/src"
+	}
+}

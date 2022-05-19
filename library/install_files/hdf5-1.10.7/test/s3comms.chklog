@@ -1,0 +1,10 @@
+============================
+Test log for s3comms 
+============================
+Testing S3Communications functionality.
+SKIPPED - read-only S3 VFD not built
+0.01user 0.00system 0:00.03elapsed 62%CPU (0avgtext+0avgdata 8628maxresident)k
+0inputs+16outputs (0major+4406minor)pagefaults 0swaps
+
+Finished testing s3comms 
+============================
