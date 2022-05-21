@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "allvars.h"
 #include "proto.h"
-#include "zzcneutrino.h"
+#include "neutrino.h"
 
 #define WORKSIZE 100000
 
@@ -50,14 +50,12 @@ double PowerSpec(double k)
 
 
   if(WDM_On == 1)
-    {
+  {
       /* Eqn. (A9) in Bode, Ostriker & Turok (2001), assuming gX=1.5  */
-      alpha =
-	0.048 * pow((Omega - OmegaBaryon) / 0.4, 0.15) * pow(HubbleParam / 0.65,
-							     1.3) * pow(1.0 / WDM_PartMass_in_kev, 1.15);
+      alpha = 0.048 * pow((Omega - OmegaBaryon) / 0.4, 0.15) * pow(HubbleParam / 0.65, 1.3) * pow(1.0 / WDM_PartMass_in_kev, 1.15);
       Tf = pow(1 + pow(alpha * k * (3.085678e24 / UnitLength_in_cm), 2 * 1.2), -5.0 / 1.2);
       power *= Tf * Tf;
-    }
+  }
 
 #if defined(MULTICOMPONENTGLASSFILE) && defined(DIFFERENT_TRANSFER_FUNC)
 
@@ -137,18 +135,17 @@ void read_power_table(void)
 
   NPowerTable = 0;
   do
-    {
-      if(fscanf(fd, " %lg %lg ", &k, &p) == 2)
-	{
-        PowerTable[NPowerTable].logk = log10(k);  //zzc modified to be log10
-        PowerTable[NPowerTable].logD = log10(p);
-        //printf("PK %lf N %d k %f\n", pow(10,PowerTable[NPowerTable].logD), NPowerTable, pow(10,PowerTable[NPowerTable].logk));
-	  NPowerTable++;
-	}
-      else
-	break;
-    }
-  while(1);
+  {
+    if(fscanf(fd, " %lg %lg ", &k, &p) == 2)
+	  {
+      PowerTable[NPowerTable].logk = log10(k);  //zzc modified to be log10
+      PowerTable[NPowerTable].logD = log10(p);
+      //printf("PK %lf N %d k %f\n", pow(10,PowerTable[NPowerTable].logD), NPowerTable, pow(10,PowerTable[NPowerTable].logk));
+	    NPowerTable++;
+	  }
+    else
+	    break;
+  }while(1);
 
   fclose(fd);
 
@@ -187,29 +184,29 @@ void initialize_powerspectrum(void)
   Type = 1;
 #endif
     
-    if(ReNormalizeInputSpectrum == 0 && WhichSpectrum == 2)
-    {
-        Norm = 1.0;
-        /* tabulated file is already at the initial redshift */
-        Dplus = GrowthFactor(InitTime, 1.0);
-    }
-    
-    else{
-  Norm = 1.0;
-  res = TopHatSigma2(R8);
-  printf("res0 = %.20lf res1 = %.20lf\n", res, TopHatSigma2(R8));
+  if(ReNormalizeInputSpectrum == 0 && WhichSpectrum == 2)
+  {
+    Norm = 1.0;
+    /* tabulated file is already at the initial redshift */
+    Dplus = GrowthFactor(InitTime, 1.0);
+  }
+  else
+  {
+    Norm = 1.0;
+    res = TopHatSigma2(R8);
+    printf("res0 = %.20lf res1 = %.20lf\n", res, TopHatSigma2(R8));
         
-  if(ThisTask == 0 && WhichSpectrum == 2)
-    printf("\nNormalization of spectrum in file:  Sigma8 = %g\n", sqrt(res));
+    if(ThisTask == 0 && WhichSpectrum == 2)
+      printf("\nNormalization of spectrum in file:  Sigma8 = %g\n", sqrt(res));
 
-  Norm = Sigma8 * Sigma8 / res;
-        printf("sigma8^2 = %f res = %.20lf norm = %f\n", Sigma8 * Sigma8, res, Norm);
+    Norm = Sigma8 * Sigma8 / res;
+    printf("sigma8^2 = %f res = %.20lf norm = %f\n", Sigma8 * Sigma8, res, Norm);
 
-  if(ThisTask == 0 && WhichSpectrum == 2)
-    printf("Normalization adjusted to  Sigma8=%g   (Normfac=%g)\n\n", Sigma8, Norm);
+    if(ThisTask == 0 && WhichSpectrum == 2)
+      printf("Normalization adjusted to  Sigma8=%g   (Normfac=%g)\n\n", Sigma8, Norm);
 
-  Dplus = GrowthFactor(InitTime, 1.0);
-    }
+    Dplus = GrowthFactor(InitTime, 1.0);
+  }
 }
 
 double PowerSpec_Tabulated(double k)
@@ -230,13 +227,13 @@ double PowerSpec_Tabulated(double k)
   binhigh = NPowerTable - 1;
 
   while(binhigh - binlow > 1)
-    {
-      binmid = (binhigh + binlow) / 2;
-      if(logk < PowerTable[binmid].logk)
-	binhigh = binmid;
-      else
-	binlow = binmid;
-    }
+  {
+    binmid = (binhigh + binlow) / 2;
+    if(logk < PowerTable[binmid].logk)
+	    binhigh = binmid;
+    else
+	    binlow = binmid;
+  }
 
   dlogk = PowerTable[binhigh].logk - PowerTable[binlow].logk;
 
@@ -263,7 +260,7 @@ double PowerSpec_Efstathiou(double k)
 
 double PowerSpec_EH(double k)	/* Eisenstein & Hu */
 {
-    return Norm * k * pow(tk_eh(k), 2);
+  return Norm * k * pow(tk_eh(k), 2);
 }
 
 
@@ -330,41 +327,40 @@ double sigma2_int(double k)
 
 double TopHatSigma2(double R)
 {
-    double result, abserr;
-    gsl_integration_workspace *workspace;
-    gsl_function F;
-    workspace = gsl_integration_workspace_alloc(WORKSIZE);
+  double result, abserr;
+  gsl_integration_workspace *workspace;
+  gsl_function F;
+  workspace = gsl_integration_workspace_alloc(WORKSIZE);
     
-    F.function = &sigma2_int;
+  F.function = &sigma2_int;
     
-    r_tophat = R;
+  r_tophat = R;
     
-    gsl_integration_qag(&F, 0, 500.0 * 1 / R,
-                        0, 1.0e-6, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
+  gsl_integration_qag(&F, 0, 500.0 * 1 / R, 0, 1.0e-6, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
+
+  gsl_integration_workspace_free(workspace);
+  //printf("result = %.20lf r = %f norm = %f\n", result, R, Norm);
+  return result;
     
-    gsl_integration_workspace_free(workspace);
-    //printf("result = %.20lf r = %f norm = %f\n", result, R, Norm);
-    return result;
-    
-    /* note: 500/R is here chosen as (effectively) infinity integration boundary */
+  /* note: 500/R is here chosen as (effectively) infinity integration boundary */
 }
 
 
 double sigma2_int(double k)
 {
-    double kr, kr3, kr2, w, x;
+  double kr, kr3, kr2, w, x;
     
-    kr = r_tophat * k;
-    kr2 = kr * kr;
-    kr3 = kr2 * kr;
+  kr = r_tophat * k;
+  kr2 = kr * kr;
+  kr3 = kr2 * kr;
     
-    if(kr < 1e-8)
-        return 0;
+  if(kr < 1e-8)
+    return 0;
     
-    w = 3 * (sin(kr) / kr3 - cos(kr) / kr2);
-    x = 4 * PI * k * k * w * w * PowerSpec(k);
-    //printf("sigma2_int Pk = %.12lf k = %lf\n", PowerSpec(k, 1), k);
-    return x;
+  w = 3 * (sin(kr) / kr3 - cos(kr) / kr2);
+  x = 4 * PI * k * k * w * w * PowerSpec(k);
+  //printf("sigma2_int Pk = %.12lf k = %lf\n", PowerSpec(k, 1), k);
+  return x;
 }
 
 
@@ -398,143 +394,107 @@ double growth_int(double a)
 
 double growth(double a)
 {
-    double hubble_a;
-    double roneu;
-    //only for one active/sterile neutrino and for one active + sterile neutrino
-    switch (expan_on)
+  double hubble_a;
+  double roneu;
+  
+  roneu = 0.0;
+  if (expan_on == 0)
+  {
+    roneu = neutrino_integration(a, 0.0, 0.0) * NNeutrino;
+  }
+  if (expan_on == 1)
+  {
+    for (int i = 0; i < NNeutrino; i++)
     {
-    case 3:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 2:
-      roneu = neutrino_integration(a, mass_3, xi_3);
-      break;
-    
-    case 1:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_2, xi_2) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 0:
-      roneu = neutrino_integration(a, 0., 0.) * 3;
-      break;
-    
-    default:
-      break;
+      roneu += neutrino_integration(a, Mass[i], Xi[i]);
     }
+  }
     
-    //hubble_a = sqrt(Omega / (a * a * a) + (1 - Omega - OmegaLambda - Omega_nu0_expan) / (a * a) + OmegaLambda + roneu);
-    hubble_a = sqrt(Omega2 / (a * a * a) + (1 - Omega2 - OmegaLambda - Omega_nu0_expan) / (a * a) + OmegaLambda + roneu);
+  //hubble_a = sqrt(Omega / (a * a * a) + (1 - Omega - OmegaLambda - Omega_nu0_expan) / (a * a) + OmegaLambda + roneu);
+  hubble_a = sqrt(Omega2 / (a * a * a) + (1 - Omega2 - OmegaLambda - Omega_nu0_expan) / (a * a) + OmegaLambda + roneu);
     
-    double result, abserr;
-    gsl_integration_workspace *workspace;
-    gsl_function F;
+  double result, abserr;
+  gsl_integration_workspace *workspace;
+  gsl_function F;
     
-    workspace = gsl_integration_workspace_alloc(WORKSIZE);
+  workspace = gsl_integration_workspace_alloc(WORKSIZE);
     
-    F.function = &growth_int;
+  F.function = &growth_int;
     
-    gsl_integration_qag(&F, 0, a, 0, 1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
+  gsl_integration_qag(&F, 0, a, 0, 1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
     
-    gsl_integration_workspace_free(workspace);
+  gsl_integration_workspace_free(workspace);
     
-    return hubble_a * result;
+  return hubble_a * result;
 }
 
 double growth_int(double a)
-{ double roneu, x;
-    //only for one active/sterile neutrino and for one active + sterile neutrino
-    switch (expan_on)
+{ 
+  double roneu, x;
+
+  roneu = 0.0;
+  if (expan_on == 0)
+  {
+    roneu = neutrino_integration(a, 0.0, 0.0) * NNeutrino;
+  }
+  if (expan_on == 1)
+  {
+    for (int i = 0; i < NNeutrino; i++)
     {
-    case 3:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 2:
-      roneu = neutrino_integration(a, mass_3, xi_3);
-      break;
-    
-    case 1:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_2, xi_2) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 0:
-      roneu = neutrino_integration(a, 0., 0.) * 3;
-      break;
-    
-    default:
-      break;
+      roneu += neutrino_integration(a, Mass[i], Xi[i]);
     }
-    return pow(a / (Omega2 + (1 - Omega2 - OmegaLambda - Omega_nu0_expan) * a + OmegaLambda * a * a * a + roneu * a * a * a), 1.5);
+  }
+
+  return pow(a / (Omega2 + (1 - Omega2 - OmegaLambda - Omega_nu0_expan) * a + OmegaLambda * a * a * a + roneu * a * a * a), 1.5);
 }
 
 
 
 double F_Omega(double a)
 {
-    double omega_a;
-    double roneu = 0.;
-    
-    //only for one active/sterile neutrino and for one active + sterile neutrino
-    switch (expan_on)
+  double omega_a;
+  double roneu;
+
+  roneu = 0.0;
+  if (expan_on == 0)
+  {
+    roneu = neutrino_integration(a, 0.0, 0.0) * NNeutrino;
+  }
+  if (expan_on == 1)
+  {
+    for (int i = 0; i < NNeutrino; i++)
     {
-    case 3:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 2:
-      roneu = neutrino_integration(a, mass_3, xi_3);
-      break;
-    
-    case 1:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_2, xi_2) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 0:
-      roneu = neutrino_integration(a, 0., 0.) * 3;
-      break;
-    
-    default:
-      break;
+      roneu += neutrino_integration(a, Mass[i], Xi[i]);
     }
+  }
 
-    omega_a = Omega2 / (Omega2 + a * (1 - Omega2 - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
-    //omega_a = Omega / (Omega + a * (1 - Omega - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
+  omega_a = Omega2 / (Omega2 + a * (1 - Omega2 - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
+  //omega_a = Omega / (Omega + a * (1 - Omega - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
     
-    return pow(omega_a, 0.6);
+  return pow(omega_a, 0.6);
 }
 
 
 double F2_Omega(double a)
 {
   double omega_a;
-    double roneu = 0.;
+  double roneu;
     
-    //only for one active/sterile neutrino and for one active + sterile neutrino
-    switch (expan_on)
+  roneu = 0.0;
+  if (expan_on == 0)
+  {
+    roneu = neutrino_integration(a, 0.0, 0.0) * NNeutrino;
+  }
+  if (expan_on == 1)
+  {
+    for (int i = 0; i < NNeutrino; i++)
     {
-    case 3:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 2:
-      roneu = neutrino_integration(a, mass_3, xi_3);
-      break;
-    
-    case 1:
-      roneu = neutrino_integration(a, mass_1, xi_1) + neutrino_integration(a, mass_2, xi_2) + neutrino_integration(a, mass_3, xi_3);
-      break;
-
-    case 0:
-      roneu = neutrino_integration(a, 0., 0.) * 3;
-      break;
-    
-    default:
-      break;
+      roneu += neutrino_integration(a, Mass[i], Xi[i]);
     }
+  }
     
-    omega_a = Omega2 / (Omega2 + a * (1 - Omega2 - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
-    //omega_a = Omega / (Omega + a * (1 - Omega - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
+  omega_a = Omega2 / (Omega2 + a * (1 - Omega2 - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
+  //omega_a = Omega / (Omega + a * (1 - Omega - OmegaLambda- Omega_nu0_expan) + a * a * a * OmegaLambda + a * a * a * roneu);
     
   return 2 * pow(omega_a, 4./7.);
 }
@@ -542,35 +502,35 @@ double F2_Omega(double a)
 
 double growth_nu(double a, double k, double Omega_m, double Omega_nu0_frstr_0)
 {
-    double fcb, fnu, pcb, yfs, D1, q, theta, Dcbnu, kprime;   //From Eisenstein Hu 9710252
+  double fcb, fnu, pcb, yfs, D1, q, theta, Dcbnu, kprime;   //From Eisenstein Hu 9710252
     
-    //printf("kprime %f k %f unit %f\n", kprime, k, (3.085678e24 / UnitLength_in_cm));
-    theta = 2.7250 / 2.7;
-    q = k * theta * theta / ((Omega_m) * HubbleParam * HubbleParam);
+  //printf("kprime %f k %f unit %f\n", kprime, k, (3.085678e24 / UnitLength_in_cm));
+  theta = 2.7250 / 2.7;
+  q = k * theta * theta / ((Omega_m) * HubbleParam * HubbleParam);
     
-    /*fcb = Omega_m / (Omega_m + Omega_nu0_frstr_0);
-     fnu = Omega_nu0_frstr_0 / (Omega_m + Omega_nu0_frstr_0);*/
+  /* fcb = Omega_m / (Omega_m + Omega_nu0_frstr_0);
+    fnu = Omega_nu0_frstr_0 / (Omega_m + Omega_nu0_frstr_0);*/
     
-    fcb = (Omega_m - Omega_nu0_frstr_0) / (Omega_m);
-    fnu = Omega_nu0_frstr_0 / (Omega_m);
+  fcb = (Omega_m - Omega_nu0_frstr_0) / (Omega_m);
+  fnu = Omega_nu0_frstr_0 / (Omega_m);
     
-    pcb = 0.25 * (5. - sqrt(1. + 24. * fcb));
-    yfs = 17.2 * fnu * (1. + 0.488 * pow(fnu, - 7. / 6.)) * (3. * q / fnu) * (3. * q / fnu);
-    //D1 = growth(a);
-    if(a == 1.){
-        D1 = D11;
-    }
-    if(a == InitTime){
-        D1 = D10;
-    }
+  pcb = 0.25 * (5. - sqrt(1. + 24. * fcb));
+  yfs = 17.2 * fnu * (1. + 0.488 * pow(fnu, - 7. / 6.)) * (3. * q / fnu) * (3. * q / fnu);
+  //D1 = growth(a);
+  if(a == 1.){
+    D1 = D11;
+  }
+  if(a == InitTime){
+    D1 = D10;
+  }
     
-    if(a != 1. && a != InitTime){
-        printf("your stupid bet is done bro\n");
-    }
-    Dcbnu = pow((pow(fcb, 0.7 / pcb) + pow(D1 / (1. + yfs), 0.7)), pcb / 0.7) * pow(D1, 1. - pcb);
+  if(a != 1. && a != InitTime){
+    printf("your stupid bet is done bro\n");
+  }
+  Dcbnu = pow((pow(fcb, 0.7 / pcb) + pow(D1 / (1. + yfs), 0.7)), pcb / 0.7) * pow(D1, 1. - pcb);
 
-    //printf("k %f, Dcbnu %f a %f fcb %f pcb %f D1 %f yfs %f\n", k, Dcbnu, a, fcb, pcb, D1, yfs);
-    return Dcbnu;
+  //printf("k %f, Dcbnu %f a %f fcb %f pcb %f D1 %f yfs %f\n", k, Dcbnu, a, fcb, pcb, D1, yfs);
+  return Dcbnu;
     
 }
 

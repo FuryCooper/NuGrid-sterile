@@ -4,9 +4,6 @@
 #include "allvars.h"
 #include "proto.h"
 
-
-
-
 void write_particle_data(void)
 {
   int nprocgroup, groupTask, masterTask;
@@ -14,15 +11,12 @@ void write_particle_data(void)
   if(ThisTask == 0)
     printf("\nwriting initial conditions... \n");
 
-
   if((NTask < NumFilesWrittenInParallel))
     {
-      printf
-	("Fatal error.\nNumber of processors must be a smaller or equal than `NumFilesWrittenInParallel'.\n");
+      printf("Fatal error.\nNumber of processors must be a smaller or equal than `NumFilesWrittenInParallel'.\n");
       FatalError(24131);
     }
-
-
+  
   nprocgroup = NTask / NumFilesWrittenInParallel;
 
   if((NTask % NumFilesWrittenInParallel))
@@ -30,15 +24,13 @@ void write_particle_data(void)
 
   masterTask = (ThisTask / nprocgroup) * nprocgroup;
 
-
   for(groupTask = 0; groupTask < nprocgroup; groupTask++)
-    {
-      if(ThisTask == (masterTask + groupTask))	/* ok, it's this processor's turn */
-	save_local_data();
-
+  {
+    if(ThisTask == (masterTask + groupTask))	/* ok, it's this processor's turn */
+	    save_local_data();
       /* wait inside the group */
-      MPI_Barrier(MPI_COMM_WORLD);
-    }
+    MPI_Barrier(MPI_COMM_WORLD);
+  }
 
   if(ThisTask == 0)
     printf("done with writing initial conditions.\n");
@@ -98,16 +90,10 @@ void save_local_data(void)
       (OmegaBaryon) * 3 * Hubble * Hubble / (8 * PI * G) * pow(Box, 3) / (header.npartTotal[0]);
 
   if(header.npartTotal[1])
-    header.mass[1] =
-      (Omega - OmegaBaryon - OmegaDM_2ndSpecies) * 3 * Hubble * Hubble / (8 * PI * G) * pow(Box,
-											    3) /
-      (header.npartTotal[1]);
+    header.mass[1] = (Omega - OmegaBaryon - OmegaDM_2ndSpecies) * 3 * Hubble * Hubble / (8 * PI * G) * pow(Box, 3) / (header.npartTotal[1]);
 
   if(header.npartTotal[2])
-    header.mass[2] =
-      (OmegaDM_2ndSpecies) * 3 * Hubble * Hubble / (8 * PI * G) * pow(Box, 3) / (header.npartTotal[2]);
-
-
+    header.mass[2] = (OmegaDM_2ndSpecies) * 3 * Hubble * Hubble / (8 * PI * G) * pow(Box, 3) / (header.npartTotal[2]);
 #else
 
   header.npart[1] = NumPart;
@@ -122,7 +108,6 @@ void save_local_data(void)
   header.mass[1] = (Omega - OmegaBaryon) * 3 * Hubble * Hubble / (8 * PI * G) * pow(Box, 3) / TotNumPart;
 #endif
 #endif
-
 
   header.time = InitTime;
   header.redshift = 1.0 / InitTime - 1;
@@ -154,7 +139,6 @@ void save_local_data(void)
   shift_gas = -0.5 * (Omega - OmegaBaryon) / (Omega) * meanspacing;
   shift_dm = +0.5 * OmegaBaryon / (Omega) * meanspacing;
 
-
   if(!(block = malloc(bytes = BUFFER * 1024 * 1024)))
     {
       printf("failed to allocate memory for `block' (%g bytes).\n", (double)bytes);
@@ -175,47 +159,43 @@ void save_local_data(void)
 #endif
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
   for(i = 0, pc = 0; i < NumPart; i++)
-    {
-      for(k = 0; k < 3; k++)
-	{
-	  block[3 * pc + k] = P[i].Pos[k];
+  {
+    for(k = 0; k < 3; k++)
+	  {
+	    block[3 * pc + k] = P[i].Pos[k];
 #ifdef  PRODUCEGAS
-	  block[3 * pc + k] = periodic_wrap(P[i].Pos[k] + shift_gas);
+	    block[3 * pc + k] = periodic_wrap(P[i].Pos[k] + shift_gas);
 #endif
-	}
-
-      pc++;
-
-      if(pc == blockmaxlen)
-	{
-	  my_fwrite(block, sizeof(float), 3 * pc, fd);
-	  pc = 0;
-	}
-    }
+	  }
+    pc++;
+      
+    if(pc == blockmaxlen)
+	  {
+	    my_fwrite(block, sizeof(float), 3 * pc, fd);
+	    pc = 0;
+	  }
+  }
   if(pc > 0)
     my_fwrite(block, sizeof(float), 3 * pc, fd);
 #ifdef  PRODUCEGAS
   for(i = 0, pc = 0; i < NumPart; i++)
-    {
-      for(k = 0; k < 3; k++)
-	{
-	  block[3 * pc + k] = periodic_wrap(P[i].Pos[k] + shift_dm);
-	}
+  {
+    for(k = 0; k < 3; k++)
+	  {
+	    block[3 * pc + k] = periodic_wrap(P[i].Pos[k] + shift_dm);
+	  }
+    pc++;
 
-      pc++;
-
-      if(pc == blockmaxlen)
-	{
-	  my_fwrite(block, sizeof(float), 3 * pc, fd);
-	  pc = 0;
-	}
-    }
+    if(pc == blockmaxlen)
+	  {
+	    my_fwrite(block, sizeof(float), 3 * pc, fd);
+	    pc = 0;
+	  }
+  }
   if(pc > 0)
     my_fwrite(block, sizeof(float), 3 * pc, fd);
 #endif
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
-
-
 
   /* write velocities */
   dummy = sizeof(float) * 3 * NumPart;
@@ -224,52 +204,49 @@ void save_local_data(void)
 #endif
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
   for(i = 0, pc = 0; i < NumPart; i++)
-    {
-      for(k = 0; k < 3; k++)
-	block[3 * pc + k] = P[i].Vel[k];
-
+  {
+    for(k = 0; k < 3; k++)
+	    block[3 * pc + k] = P[i].Vel[k];
 #ifdef MULTICOMPONENTGLASSFILE
       if(WDM_On == 1 && WDM_Vtherm_On == 1 && P[i].Type == 1)
-	add_WDM_thermal_speeds(&block[3 * pc]);
+	      add_WDM_thermal_speeds(&block[3 * pc]);
 #else
 #ifndef PRODUCEGAS
       if(WDM_On == 1 && WDM_Vtherm_On == 1)
-	add_WDM_thermal_speeds(&block[3 * pc]);
+	      add_WDM_thermal_speeds(&block[3 * pc]);
 #endif
 #endif
+    pc++;
 
-      pc++;
-
-      if(pc == blockmaxlen)
-	{
-	  my_fwrite(block, sizeof(float), 3 * pc, fd);
-	  pc = 0;
-	}
-    }
+    if(pc == blockmaxlen)
+	  {
+	    my_fwrite(block, sizeof(float), 3 * pc, fd);
+	    pc = 0;
+	  }
+  }
   if(pc > 0)
     my_fwrite(block, sizeof(float), 3 * pc, fd);
 #ifdef PRODUCEGAS
   for(i = 0, pc = 0; i < NumPart; i++)
+  {
+    for(k = 0; k < 3; k++)
+      block[3 * pc + k] = P[i].Vel[k];
+
+    if(WDM_On == 1 && WDM_Vtherm_On == 1)
+	    add_WDM_thermal_speeds(&block[3 * pc]);
+
+    pc++;
+
+    if(pc == blockmaxlen)
     {
-      for(k = 0; k < 3; k++)
-	block[3 * pc + k] = P[i].Vel[k];
-
-      if(WDM_On == 1 && WDM_Vtherm_On == 1)
-	add_WDM_thermal_speeds(&block[3 * pc]);
-
-      pc++;
-
-      if(pc == blockmaxlen)
-	{
-	  my_fwrite(block, sizeof(float), 3 * pc, fd);
-	  pc = 0;
-	}
-    }
+	    my_fwrite(block, sizeof(float), 3 * pc, fd);
+	    pc = 0;
+	  }
+  }
   if(pc > 0)
     my_fwrite(block, sizeof(float), 3 * pc, fd);
 #endif
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
-
 
   /* write particle ID */
 #ifdef NO64BITID
@@ -282,119 +259,111 @@ void save_local_data(void)
 #endif
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
   for(i = 0, pc = 0; i < NumPart; i++)
-    {
+  {
 #ifdef NO64BITID
-      blockid[pc] = P[i].ID;
+    blockid[pc] = P[i].ID;
 #else
-      blocklongid[pc] = P[i].ID;
+    blocklongid[pc] = P[i].ID;
 #endif
+    pc++;
 
-      pc++;
-
-      if(pc == maxlongidlen)
-	{
+    if(pc == maxlongidlen)
+	  {
 #ifdef NO64BITID
-	  my_fwrite(blockid, sizeof(int), pc, fd);
+	    my_fwrite(blockid, sizeof(int), pc, fd);
 #else
-	  my_fwrite(blocklongid, sizeof(long long), pc, fd);
+	    my_fwrite(blocklongid, sizeof(long long), pc, fd);
 #endif
-	  pc = 0;
-	}
-    }
+	    pc = 0;
+	  }
+  }
   if(pc > 0)
-    {
+  {
 #ifdef NO64BITID
-      my_fwrite(blockid, sizeof(int), pc, fd);
+    my_fwrite(blockid, sizeof(int), pc, fd);
 #else
-      my_fwrite(blocklongid, sizeof(long long), pc, fd);
+    my_fwrite(blocklongid, sizeof(long long), pc, fd);
 #endif
-    }
+  }
 
 #ifdef PRODUCEGAS
   for(i = 0, pc = 0; i < NumPart; i++)
-    {
+  {
 #ifdef NO64BITID
-      blockid[pc] = P[i].ID + TotNumPart;
+    blockid[pc] = P[i].ID + TotNumPart;
 #else
-      blocklongid[pc] = P[i].ID + TotNumPart;
+    blocklongid[pc] = P[i].ID + TotNumPart;
 #endif
 
-      pc++;
+    pc++;
 
-      if(pc == maxlongidlen)
-	{
+    if(pc == maxlongidlen)
+	  {
 #ifdef NO64BITID
-	  my_fwrite(blockid, sizeof(int), pc, fd);
+	    my_fwrite(blockid, sizeof(int), pc, fd);
 #else
-	  my_fwrite(blocklongid, sizeof(long long), pc, fd);
+	    my_fwrite(blocklongid, sizeof(long long), pc, fd);
 #endif
-	  pc = 0;
-	}
-    }
+	    pc = 0;
+	  }
+  }
   if(pc > 0)
-    {
+  {
 #ifdef NO64BITID
-      my_fwrite(blockid, sizeof(int), pc, fd);
+    my_fwrite(blockid, sizeof(int), pc, fd);
 #else
-      my_fwrite(blocklongid, sizeof(long long), pc, fd);
+    my_fwrite(blocklongid, sizeof(long long), pc, fd);
 #endif
-    }
+  }
 #endif
 
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
-
-
-
-
 
   /* write zero temperatures if needed */
 #ifdef  PRODUCEGAS
   dummy = sizeof(float) * NumPart;
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
   for(i = 0, pc = 0; i < NumPart; i++)
+  {
+    block[pc] = 0;
+
+    pc++;
+
+    if(pc == blockmaxlen)
     {
-      block[pc] = 0;
-
-      pc++;
-
-      if(pc == blockmaxlen)
-	{
-	  my_fwrite(block, sizeof(float), pc, fd);
-	  pc = 0;
-	}
-    }
+	    my_fwrite(block, sizeof(float), pc, fd);
+	    pc = 0;
+	  }
+  }
   if(pc > 0)
     my_fwrite(block, sizeof(float), pc, fd);
   my_fwrite(&dummy, sizeof(dummy), 1, fd);
 #endif
 
-
   /* write zero temperatures if needed */
 #ifdef  MULTICOMPONENTGLASSFILE
   if(header.npart[0])
-    {
-      dummy = sizeof(float) * header.npart[0];
-      my_fwrite(&dummy, sizeof(dummy), 1, fd);
+  {
+    dummy = sizeof(float) * header.npart[0];
+    my_fwrite(&dummy, sizeof(dummy), 1, fd);
 
-      for(i = 0, pc = 0; i < header.npart[0]; i++)
-	{
-	  block[pc] = 0;
+    for(i = 0, pc = 0; i < header.npart[0]; i++)
+	  {
+	    block[pc] = 0;
 
-	  pc++;
+	    pc++;
 
-	  if(pc == blockmaxlen)
+	    if(pc == blockmaxlen)
 	    {
 	      my_fwrite(block, sizeof(float), pc, fd);
 	      pc = 0;
 	    }
-	}
-      if(pc > 0)
-	my_fwrite(block, sizeof(float), pc, fd);
-      my_fwrite(&dummy, sizeof(dummy), 1, fd);
-    }
+	  }
+    if(pc > 0)
+	    my_fwrite(block, sizeof(float), pc, fd);
+    my_fwrite(&dummy, sizeof(dummy), 1, fd);
+  }
 #endif
-
-
 
   free(block);
 
@@ -425,11 +394,11 @@ size_t my_fread(void *ptr, size_t size, size_t nmemb, FILE * stream)
   size_t nread;
 
   if((nread = fread(ptr, size, nmemb, stream)) != nmemb)
-    {
-      printf("I/O error (fread) on task=%d has occured.\n", ThisTask);
-      fflush(stdout);
-      FatalError(778);
-    }
+  {
+    printf("I/O error (fread) on task=%d has occured.\n", ThisTask);
+    fflush(stdout);
+    FatalError(778);
+  }
   return nread;
 }
 

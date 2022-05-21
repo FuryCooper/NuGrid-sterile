@@ -3,7 +3,7 @@
 #include <string.h>
 #include "allvars.h"
 #include "proto.h"
-#include "zzcneutrino.h"
+#include "neutrino.h"
 
 void read_parameterfile(char *fname)
 {
@@ -124,57 +124,63 @@ void read_parameterfile(char *fname)
   addr[nt] = &InputSpectrum_UnitLength_in_cm;
   id[nt++] = FLOAT;
 
-    strcpy(tag[nt], "ReNormalizeInputSpectrum");
-    addr[nt] = &ReNormalizeInputSpectrum;
-    id[nt++] = INT;
+  strcpy(tag[nt], "ReNormalizeInputSpectrum");
+  addr[nt] = &ReNormalizeInputSpectrum;
+  id[nt++] = INT;
     
-    /*strcpy(tag[nt], "mass_nu_expan");
-    addr[nt] = &mass_nu_expan;
-    id[nt++] = FLOAT;
+  /*strcpy(tag[nt], "mass_nu_expan");
+  addr[nt] = &mass_nu_expan;
+  id[nt++] = FLOAT;
     
-    strcpy(tag[nt], "xi_expan");
-    addr[nt] = &xi_expan;
-    id[nt++] = FLOAT;
+  strcpy(tag[nt], "xi_expan");
+  addr[nt] = &xi_expan;
+  id[nt++] = FLOAT;
     
-    strcpy(tag[nt], "mass_nu_frstr");
-    addr[nt] = &mass_nu_frstr;
-    id[nt++] = FLOAT;
+  strcpy(tag[nt], "mass_nu_frstr");
+  addr[nt] = &mass_nu_frstr;
+  id[nt++] = FLOAT;
     
-    strcpy(tag[nt], "xi_frstr");
-    addr[nt] = &xi_frstr;
-    id[nt++] = FLOAT;*/
+  strcpy(tag[nt], "xi_frstr");
+  addr[nt] = &xi_frstr;
+  id[nt++] = FLOAT;*/
 
-    strcpy(tag[nt], "mass_1");
-    addr[nt] = &mass_1;
+  for (int i = 0; i < 5; i++)
+  {
+    strcpy(tag[nt], "mass_%d", i);
+    addr[nt] = &Mass[i];
     id[nt++] = FLOAT;
+  }
     
-    strcpy(tag[nt], "xi_3");
-    addr[nt] = &xi_3;
+  for (int i = 0; i < 5; i++)
+  {
+    strcpy(tag[nt], "xi_%d", i);
+    addr[nt] = &Xi[i];
     id[nt++] = FLOAT;
+  }
+
+  strcpy(tag[nt], "Tneu0");
+  addr[nt] = &Tneu0;
+  id[nt++] = FLOAT;
     
-    strcpy(tag[nt], "Tneu0");
-    addr[nt] = &Tneu0;
-    id[nt++] = FLOAT;
-    
-    strcpy(tag[nt], "ICfrstr");
-    addr[nt] = &ICfrstr;
-    id[nt++] = INT;
+  strcpy(tag[nt], "ICfrstr");
+  addr[nt] = &ICfrstr;
+  id[nt++] = INT;
   
-    strcpy(tag[nt], "expan_on");
-    addr[nt] = &expan_on;
-    id[nt++] = INT;
+  strcpy(tag[nt], "expan_on");
+  addr[nt] = &expan_on;
+  id[nt++] = INT;
     
-    strcpy(tag[nt], "mass_hierarchy");
-    addr[nt] = &mass_hierarchy;
-    id[nt++] = INT;
+  strcpy(tag[nt], "mass_hierarchy");
+  addr[nt] = &mass_hierarchy;
+  id[nt++] = INT;
     
-    strcpy(tag[nt], "lepton_asymmetry");
-    addr[nt] = &lepton_asymmetry;
-    id[nt++] = INT;
+  strcpy(tag[nt], "lepton_asymmetry");
+  addr[nt] = &lepton_asymmetry;
+  id[nt++] = INT;
     
-    strcpy(tag[nt], "deductfromDE");
-    addr[nt] = &deductfromDE;
-    id[nt++] = INT;
+  strcpy(tag[nt], "deductfromDE");
+  addr[nt] = &deductfromDE;
+  id[nt++] = INT;
     
   strcpy(tag[nt], "WDM_On");
   addr[nt] = &WDM_On;
@@ -188,77 +194,77 @@ void read_parameterfile(char *fname)
   addr[nt] = &WDM_PartMass_in_kev;
   id[nt++] = FLOAT;
 
+  strcpy(tag[nt], "Number_Neutrino");
+  addr[nt] = &NNeutrino;
+  id[nt++] = INT;
+
   if((fd = fopen(fname, "r")))
-    {
-      while(!feof(fd))
-	{
-	  buf[0] = 0;
-	  fgets(buf, 200, fd);
+  {
+    while(!feof(fd))
+	  {
+	    buf[0] = 0;
+	    fgets(buf, 200, fd);
 
-	  if(sscanf(buf, "%s%s%s", buf1, buf2, buf3) < 2)
-	    continue;
+	    if(sscanf(buf, "%s%s%s", buf1, buf2, buf3) < 2)
+        continue;
 
-	  if(buf1[0] == '%')
-	    continue;
+	    if(buf1[0] == '%')
+        continue;
 
-	  for(i = 0, j = -1; i < nt; i++)
-	    if(strcmp(buf1, tag[i]) == 0)
-	      {
-		j = i;
-		tag[i][0] = 0;
-		break;
-	      }
+	    for(i = 0, j = -1; i < nt; i++)
+	      if(strcmp(buf1, tag[i]) == 0)
+        {
+		      j = i;
+		      tag[i][0] = 0;
+	        break;
+        }
 
-	  if(j >= 0)
+	    if(j >= 0)
 	    {
-	      switch (id[j])
-		{
-		case FLOAT:
-		  *((double *) addr[j]) = atof(buf2);
-		  break;
-		case STRING:
-		  strcpy(addr[j], buf2);
-		  break;
-		case INT:
-		  *((int *) addr[j]) = atoi(buf2);
-		  break;
-		}
-	    }
-	  else
+        switch (id[j])
+		    {
+	        case FLOAT:
+	          *((double *) addr[j]) = atof(buf2);
+		        break;
+		      case STRING:
+	          strcpy(addr[j], buf2);
+	          break;
+          case INT:
+		        *((int *) addr[j]) = atoi(buf2);
+		        break;
+	      }
+      }
+      else
 	    {
 	      if(ThisTask == 0)
-		fprintf(stdout, "Error in file %s:   Tag '%s' not allowed or multiple defined.\n", fname,
-			buf1);
-	      errorFlag = 1;
-	    }
-	}
-      fclose(fd);
-
-    }
+	        fprintf(stdout, "Error in file %s:   Tag '%s' not allowed or multiple defined.\n", fname,	buf1);
+        errorFlag = 1;
+      }
+	  }
+    fclose(fd);
+  }
   else
-    {
-      if(ThisTask == 0)
-	fprintf(stdout, "Parameter file %s not found.\n", fname);
-      errorFlag = 1;
-    }
-
+  {
+    if(ThisTask == 0)
+	    fprintf(stdout, "Parameter file %s not found.\n", fname);
+    errorFlag = 1;
+  }
 
   for(i = 0; i < nt; i++)
-    {
-      if(*tag[i])
-	{
-	  if(ThisTask == 0)
-	    fprintf(stdout, "Error. I miss a value for tag '%s' in parameter file '%s'.\n", tag[i], fname);
-	  errorFlag = 1;
-	}
-    }
+  {
+    if(*tag[i])
+	  {
+	    if(ThisTask == 0)
+	      fprintf(stdout, "Error. I miss a value for tag '%s' in parameter file '%s'.\n", tag[i], fname);
+	    errorFlag = 1;
+	  }
+  }
 
   if(errorFlag)
-    {
-      MPI_Finalize();
-      exit(0);
-    }
-
+  {
+    MPI_Finalize();
+    exit(0);
+  }
 
 #undef FLOAT
 #undef STRING

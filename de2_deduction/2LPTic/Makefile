@@ -1,9 +1,9 @@
 EXEC   = 2LPTic
 
-OBJS   = main.o power.o allvars.o save.o read_param.o  read_glass.o  zzcneutrino.o\
+OBJS   = main.o power.o allvars.o save.o read_param.o  read_glass.o  neutrino.o\
          nrsrc/nrutil.o nrsrc/qromb.o nrsrc/polint.o nrsrc/trapzd.o
 
-INCL   = allvars.h proto.h zzcneutrino.h nrsrc/nrutil.h  Makefile
+INCL   = allvars.h proto.h neutrino.h nrsrc/nrutil.h  Makefile
 
 
 

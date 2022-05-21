@@ -73,6 +73,8 @@ double Dplus;			/* growth factor */
 
 double Omega_nu0_expan;
 double Omega_nu0_frstr;
+double Mass[5];
+double Xi[5];
 double mass_1;
 double mass_2;
 double mass_3;
@@ -89,6 +91,7 @@ int ICfrstr;
 int expan_on;
 int mass_hierarchy;
 int lepton_asymmetry;
+int NNeutrino;
 double H0;
 double D10;
 double D11;
