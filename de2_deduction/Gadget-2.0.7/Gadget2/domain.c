@@ -65,81 +65,81 @@ void domain_Decomposition(void)
 
 #ifdef PMGRID
   if(All.PM_Ti_endstep == All.Ti_Current)
-    {
-      All.NumForcesSinceLastDomainDecomp = 1 + All.TotNumPart * All.TreeDomainUpdateFrequency;
-      /* to make sure that we do a domain decomposition before the PM-force is evaluated.
-         this is needed to make sure that the particles are wrapped into the box */
-    }
+  {
+    All.NumForcesSinceLastDomainDecomp = 1 + All.TotNumPart * All.TreeDomainUpdateFrequency;
+    /* to make sure that we do a domain decomposition before the PM-force is evaluated.
+      this is needed to make sure that the particles are wrapped into the box */
+  }
 #endif
 
   /* Check whether it is really time for a new domain decomposition */
   if(All.NumForcesSinceLastDomainDecomp > All.TotNumPart * All.TreeDomainUpdateFrequency)
-    {
-      t0 = second();
+  {
+    t0 = second();
 
 #ifdef PERIODIC
-      do_box_wrapping();	/* map the particles back onto the box */
+    do_box_wrapping();	/* map the particles back onto the box */
 #endif
-      All.NumForcesSinceLastDomainDecomp = 0;
-      TreeReconstructFlag = 1;	/* ensures that new tree will be constructed */
+    All.NumForcesSinceLastDomainDecomp = 0;
+    TreeReconstructFlag = 1;	/* ensures that new tree will be constructed */
 
-      if(ThisTask == 0)
-	{
-	  printf("domain decomposition... \n");
-	  fflush(stdout);
-	}
+    if(ThisTask == 0)
+	  {
+	    printf("domain decomposition... \n");
+	    fflush(stdout);
+	  }
 
-      Key = malloc(sizeof(peanokey) * All.MaxPart);
-      KeySorted = malloc(sizeof(peanokey) * All.MaxPart);
+    Key = malloc(sizeof(peanokey) * All.MaxPart);
+    KeySorted = malloc(sizeof(peanokey) * All.MaxPart);
 
-      toGo = malloc(sizeof(int) * NTask * NTask);
-      toGoSph = malloc(sizeof(int) * NTask * NTask);
-      local_toGo = malloc(sizeof(int) * NTask);
-      local_toGoSph = malloc(sizeof(int) * NTask);
-      list_NumPart = malloc(sizeof(int) * NTask);
-      list_N_gas = malloc(sizeof(int) * NTask);
-      list_load = malloc(sizeof(int) * NTask);
-      list_loadsph = malloc(sizeof(int) * NTask);
-      list_work = malloc(sizeof(double) * NTask);
+    toGo = malloc(sizeof(int) * NTask * NTask);
+    toGoSph = malloc(sizeof(int) * NTask * NTask);
+    local_toGo = malloc(sizeof(int) * NTask);
+    local_toGoSph = malloc(sizeof(int) * NTask);
+    list_NumPart = malloc(sizeof(int) * NTask);
+    list_N_gas = malloc(sizeof(int) * NTask);
+    list_load = malloc(sizeof(int) * NTask);
+    list_loadsph = malloc(sizeof(int) * NTask);
+    list_work = malloc(sizeof(double) * NTask);
 
-      MPI_Allgather(&NumPart, 1, MPI_INT, list_NumPart, 1, MPI_INT, MPI_COMM_WORLD);
-      MPI_Allgather(&N_gas, 1, MPI_INT, list_N_gas, 1, MPI_INT, MPI_COMM_WORLD);
+    MPI_Allgather(&NumPart, 1, MPI_INT, list_NumPart, 1, MPI_INT, MPI_COMM_WORLD);
+    MPI_Allgather(&N_gas, 1, MPI_INT, list_N_gas, 1, MPI_INT, MPI_COMM_WORLD);
 
-      maxload = All.MaxPart * REDUC_FAC;
-      maxloadsph = All.MaxPartSph * REDUC_FAC;
+    maxload = All.MaxPart * REDUC_FAC;
+    maxloadsph = All.MaxPartSph * REDUC_FAC;
 
-      domain_decompose();
+    domain_decompose();
 
-      free(list_work);
-      free(list_loadsph);
-      free(list_load);
-      free(list_N_gas);
-      free(list_NumPart);
-      free(local_toGoSph);
-      free(local_toGo);
-      free(toGoSph);
-      free(toGo);
+    free(list_work);
+    free(list_loadsph);
+    free(list_load);
+    free(list_N_gas);
+    free(list_NumPart);
+    free(local_toGoSph);
+    free(local_toGo);
+    free(toGoSph);
+    free(toGo);
 
 
-      if(ThisTask == 0)
-	{
-	  printf("domain decomposition done. \n");
-	  fflush(stdout);
-	}
+    if(ThisTask == 0)
+	  {
+	    printf("domain decomposition done. \n");
+	    fflush(stdout);
+	  }
 
-      t1 = second();
-      All.CPU_Domain += timediff(t0, t1);
+    t1 = second();
+    All.CPU_Domain += timediff(t0, t1);
 
 #ifdef PEANOHILBERT
-      t0 = second();
-      peano_hilbert_order();
-      t1 = second();
-      All.CPU_Peano += timediff(t0, t1);
+    t0 = second();
+    peano_hilbert_order();
+    t1 = second();
+    All.CPU_Peano += timediff(t0, t1);
 #endif
 
-      free(KeySorted);
-      free(Key);
-    }
+    free(KeySorted);
+    free(Key);
+  }
 
 }
 
@@ -171,11 +171,11 @@ void domain_decompose(void)
   temp = malloc(NTask * 6 * sizeof(int));
   MPI_Allgather(NtypeLocal, 6, MPI_INT, temp, 6, MPI_INT, MPI_COMM_WORLD);
   for(i = 0; i < 6; i++)
-    {
-      Ntype[i] = 0;
-      for(j = 0; j < NTask; j++)
-	Ntype[i] += temp[j * 6 + i];
-    }
+  {
+    Ntype[i] = 0;
+    for(j = 0; j < NTask; j++)
+	    Ntype[i] += temp[j * 6 + i];
+  }
   free(temp);
 
 #ifndef UNEQUALSOFTENINGS
@@ -184,19 +184,19 @@ void domain_decompose(void)
       break;
 
   for(ngrp = i + 1; ngrp < 6; ngrp++)
-    {
-      if(Ntype[ngrp] > 0)
-	if(All.SofteningTable[ngrp] != All.SofteningTable[i])
-	  {
-	    if(ThisTask == 0)
+  {
+    if(Ntype[ngrp] > 0)
+	    if(All.SofteningTable[ngrp] != All.SofteningTable[i])
+	    {
+	      if(ThisTask == 0)
 	      {
-		fprintf(stdout, "Code was not compiled with UNEQUALSOFTENINGS, but some of the\n");
-		fprintf(stdout, "softening lengths are unequal nevertheless.\n");
-		fprintf(stdout, "This is not allowed.\n");
+		      fprintf(stdout, "Code was not compiled with UNEQUALSOFTENINGS, but some of the\n");
+		      fprintf(stdout, "softening lengths are unequal nevertheless.\n");
+		      fprintf(stdout, "This is not allowed.\n");
 	      }
-	    endrun(0);
-	  }
-    }
+	      endrun(0);
+	    }
+  }
 #endif
 
 
@@ -211,11 +211,11 @@ void domain_decompose(void)
   /* find the split of the domain grid recursively */
   status = domain_findSplit(0, NTask, 0, NTopleaves - 1);
   if(status != 0)
-    {
-      if(ThisTask == 0)
-	printf("\nNo domain decomposition that stays within memory bounds is possible.\n");
-      endrun(0);
-    }
+  {
+    if(ThisTask == 0)
+	    printf("\nNo domain decomposition that stays within memory bounds is possible.\n");
+    endrun(0);
+  }
 
   /* now try to improve the work-load balance of the split */
   domain_shiftSplit();
@@ -224,24 +224,24 @@ void domain_decompose(void)
   DomainMyLast = DomainEndList[ThisTask];
 
   if(ThisTask == 0)
-    {
-      sumload = maxload = 0;
-      sumwork = maxwork = 0;
-      for(i = 0; i < NTask; i++)
-	{
-	  sumload += list_load[i];
-	  sumwork += list_work[i];
+  {
+    sumload = maxload = 0;
+    sumwork = maxwork = 0;
+    for(i = 0; i < NTask; i++)
+	  {
+	    sumload += list_load[i];
+	    sumwork += list_work[i];
 
-	  if(list_load[i] > maxload)
-	    maxload = list_load[i];
+	    if(list_load[i] > maxload)
+	      maxload = list_load[i];
 
-	  if(list_work[i] > maxwork)
-	    maxwork = list_work[i];
-	}
+	    if(list_work[i] > maxwork)
+	      maxwork = list_work[i];
+	  }
 
       printf("work-load balance=%g   memory-balance=%g\n",
-	     maxwork / (sumwork / NTask), maxload / (((double) sumload) / NTask));
-    }
+	      maxwork / (sumwork / NTask), maxload / (((double) sumload) / NTask));
+  }
 
 
   /* determine for each cpu how many particles have to be shifted to other cpus */
@@ -251,62 +251,61 @@ void domain_decompose(void)
     sumtogo += toGo[i];
 
   while(sumtogo > 0)
-    {
-      if(ThisTask == 0)
-	{
-	  printf("exchange of %d%09d particles\n", (int) (sumtogo / 1000000000),
-		 (int) (sumtogo % 1000000000));
-	  fflush(stdout);
-	}
+  {
+    if(ThisTask == 0)
+	  {
+	    printf("exchange of %d%09d particles\n", (int) (sumtogo / 1000000000), (int) (sumtogo % 1000000000));
+	    fflush(stdout);
+	  }
 
-      for(ngrp = 1; ngrp < (1 << PTask); ngrp++)
-	{
-	  for(task = 0; task < NTask; task++)
+    for(ngrp = 1; ngrp < (1 << PTask); ngrp++)
+	  {
+	    for(task = 0; task < NTask; task++)
 	    {
 	      partner = task ^ ngrp;
 
 	      if(partner < NTask && task < partner)
-		{
-		  /* treat SPH separately */
-		  if(All.TotN_gas > 0)
 		    {
-		      domain_findExchangeNumbers(task, partner, 1, &sendcount, &recvcount);
+		      /* treat SPH separately */
+		      if(All.TotN_gas > 0)
+		      {
+		        domain_findExchangeNumbers(task, partner, 1, &sendcount, &recvcount);
+
+		        list_NumPart[task] += recvcount - sendcount;
+		        list_NumPart[partner] -= recvcount - sendcount;
+		        list_N_gas[task] += recvcount - sendcount;
+		        list_N_gas[partner] -= recvcount - sendcount;
+
+		        toGo[task * NTask + partner] -= sendcount;
+		        toGo[partner * NTask + task] -= recvcount;
+		        toGoSph[task * NTask + partner] -= sendcount;
+		        toGoSph[partner * NTask + task] -= recvcount;
+
+		        if(task == ThisTask)	/* actually carry out the exchange */
+			        domain_exchangeParticles(partner, 1, sendcount, recvcount);
+		        if(partner == ThisTask)
+			        domain_exchangeParticles(task, 1, recvcount, sendcount);
+		      }
+
+		      domain_findExchangeNumbers(task, partner, 0, &sendcount, &recvcount);
 
 		      list_NumPart[task] += recvcount - sendcount;
 		      list_NumPart[partner] -= recvcount - sendcount;
-		      list_N_gas[task] += recvcount - sendcount;
-		      list_N_gas[partner] -= recvcount - sendcount;
 
 		      toGo[task * NTask + partner] -= sendcount;
 		      toGo[partner * NTask + task] -= recvcount;
-		      toGoSph[task * NTask + partner] -= sendcount;
-		      toGoSph[partner * NTask + task] -= recvcount;
 
 		      if(task == ThisTask)	/* actually carry out the exchange */
-			domain_exchangeParticles(partner, 1, sendcount, recvcount);
+		        domain_exchangeParticles(partner, 0, sendcount, recvcount);
 		      if(partner == ThisTask)
-			domain_exchangeParticles(task, 1, recvcount, sendcount);
+		        domain_exchangeParticles(task, 0, recvcount, sendcount);
 		    }
-
-		  domain_findExchangeNumbers(task, partner, 0, &sendcount, &recvcount);
-
-		  list_NumPart[task] += recvcount - sendcount;
-		  list_NumPart[partner] -= recvcount - sendcount;
-
-		  toGo[task * NTask + partner] -= sendcount;
-		  toGo[partner * NTask + task] -= recvcount;
-
-		  if(task == ThisTask)	/* actually carry out the exchange */
-		    domain_exchangeParticles(partner, 0, sendcount, recvcount);
-		  if(partner == ThisTask)
-		    domain_exchangeParticles(task, 0, recvcount, sendcount);
-		}
 	    }
-	}
+	  }
 
-      for(i = 0, sumtogo = 0; i < NTask * NTask; i++)
-	sumtogo += toGo[i];
-    }
+    for(i = 0, sumtogo = 0; i < NTask * NTask; i++)
+	    sumtogo += toGo[i];
+  }
 }
 
 /*! This function tries to find a split point in a range of cells in the
@@ -335,62 +334,60 @@ int domain_findSplit(int cpustart, int ncpu, int first, int last)
   ncpu_leftOfSplit = ncpu / 2;
 
   for(i = first, load = 0, sphload = 0; i <= last; i++)
-    {
-      load += DomainCount[i];
-      sphload += DomainCountSph[i];
-    }
+  {
+    load += DomainCount[i];
+    sphload += DomainCountSph[i];
+  }
 
   split = first + ncpu_leftOfSplit;
 
   for(i = first, load_leftOfSplit = sphload_leftOfSplit = 0; i < split; i++)
-    {
-      load_leftOfSplit += DomainCount[i];
-      sphload_leftOfSplit += DomainCountSph[i];
-    }
+  {
+    load_leftOfSplit += DomainCount[i];
+    sphload_leftOfSplit += DomainCountSph[i];
+  }
 
   /* find the best split point in terms of work-load balance */
 
   while(split < last - (ncpu - ncpu_leftOfSplit - 1) && split > 0)
-    {
-      maxAvgLoad_CurrentSplit =
-	dmax(load_leftOfSplit / ncpu_leftOfSplit, (load - load_leftOfSplit) / (ncpu - ncpu_leftOfSplit));
+  {
+    maxAvgLoad_CurrentSplit = dmax(load_leftOfSplit / ncpu_leftOfSplit, (load - load_leftOfSplit) / (ncpu - ncpu_leftOfSplit));
 
-      maxAvgLoad_NewSplit =
-	dmax((load_leftOfSplit + DomainCount[split]) / ncpu_leftOfSplit,
+    maxAvgLoad_NewSplit = dmax((load_leftOfSplit + DomainCount[split]) / ncpu_leftOfSplit,
 	     (load - load_leftOfSplit - DomainCount[split]) / (ncpu - ncpu_leftOfSplit));
 
-      if(maxAvgLoad_NewSplit <= maxAvgLoad_CurrentSplit)
-	{
-	  load_leftOfSplit += DomainCount[split];
-	  sphload_leftOfSplit += DomainCountSph[split];
-	  split++;
-	}
-      else
-	break;
-    }
+    if(maxAvgLoad_NewSplit <= maxAvgLoad_CurrentSplit)
+	  {
+	    load_leftOfSplit += DomainCount[split];
+	    sphload_leftOfSplit += DomainCountSph[split];
+	    split++;
+	  }
+    else
+	    break;
+  }
 
 
   /* we will now have to check whether this solution is possible given the restrictions on the maximum load */
 
   for(i = first, load_leftOfSplit = 0, sphload_leftOfSplit = 0; i < split; i++)
-    {
-      load_leftOfSplit += DomainCount[i];
-      sphload_leftOfSplit += DomainCountSph[i];
-    }
+  {
+    load_leftOfSplit += DomainCount[i];
+    sphload_leftOfSplit += DomainCountSph[i];
+  }
 
-  if(load_leftOfSplit > maxload * ncpu_leftOfSplit ||
-     (load - load_leftOfSplit) > maxload * (ncpu - ncpu_leftOfSplit))
-    {
-      /* we did not find a viable split */
-      return -1;
-    }
+  if(load_leftOfSplit > maxload * ncpu_leftOfSplit || 
+    (load - load_leftOfSplit) > maxload * (ncpu - ncpu_leftOfSplit))
+  {
+    /* we did not find a viable split */
+    return -1;
+  }
 
   if(sphload_leftOfSplit > maxloadsph * ncpu_leftOfSplit ||
-     (sphload - sphload_leftOfSplit) > maxloadsph * (ncpu - ncpu_leftOfSplit))
-    {
-      /* we did not find a viable split */
-      return -1;
-    }
+    (sphload - sphload_leftOfSplit) > maxloadsph * (ncpu - ncpu_leftOfSplit))
+  {
+    /* we did not find a viable split */
+    return -1;
+  }
 
   if(ncpu_leftOfSplit >= 2)
     ok_left = domain_findSplit(cpustart, ncpu_leftOfSplit, first, split - 1);
@@ -403,33 +400,33 @@ int domain_findSplit(int cpustart, int ncpu, int first, int last)
     ok_right = 0;
 
   if(ok_left == 0 && ok_right == 0)
-    {
-      /* found a viable split */
+  {
+    /* found a viable split */
 
-      if(ncpu_leftOfSplit == 1)
-	{
-	  for(i = first; i < split; i++)
-	    DomainTask[i] = cpustart;
+    if(ncpu_leftOfSplit == 1)
+	  {
+	    for(i = first; i < split; i++)
+	      DomainTask[i] = cpustart;
 
-	  list_load[cpustart] = load_leftOfSplit;
-	  list_loadsph[cpustart] = sphload_leftOfSplit;
-	  DomainStartList[cpustart] = first;
-	  DomainEndList[cpustart] = split - 1;
-	}
+	    list_load[cpustart] = load_leftOfSplit;
+	    list_loadsph[cpustart] = sphload_leftOfSplit;
+	    DomainStartList[cpustart] = first;
+	    DomainEndList[cpustart] = split - 1;
+	  }
 
-      if((ncpu - ncpu_leftOfSplit) == 1)
-	{
-	  for(i = split; i <= last; i++)
-	    DomainTask[i] = cpustart + ncpu_leftOfSplit;
+    if((ncpu - ncpu_leftOfSplit) == 1)
+	  {
+	    for(i = split; i <= last; i++)
+	      DomainTask[i] = cpustart + ncpu_leftOfSplit;
 
-	  list_load[cpustart + ncpu_leftOfSplit] = load - load_leftOfSplit;
-	  list_loadsph[cpustart + ncpu_leftOfSplit] = sphload - sphload_leftOfSplit;
-	  DomainStartList[cpustart + ncpu_leftOfSplit] = split;
-	  DomainEndList[cpustart + ncpu_leftOfSplit] = last;
-	}
+	    list_load[cpustart + ncpu_leftOfSplit] = load - load_leftOfSplit;
+	    list_loadsph[cpustart + ncpu_leftOfSplit] = sphload - sphload_leftOfSplit;
+	    DomainStartList[cpustart + ncpu_leftOfSplit] = split;
+	    DomainEndList[cpustart + ncpu_leftOfSplit] = last;
+	  }
 
-      return 0;
-    }
+    return 0;
+  }
 
   /* we did not find a viable split */
   return -1;
@@ -456,70 +453,68 @@ void domain_shiftSplit(void)
     list_work[DomainTask[i]] += DomainWork[i];
 
   do
-    {
-      for(task = 0, moved = 0; task < NTask - 1; task++)
-	{
-	  maxw = dmax(list_work[task], list_work[task + 1]);
+  {
+    for(task = 0, moved = 0; task < NTask - 1; task++)
+	  {
+	    maxw = dmax(list_work[task], list_work[task + 1]);
 
-	  if(list_work[task] < list_work[task + 1])
+	    if(list_work[task] < list_work[task + 1])
 	    {
 	      newmaxw = dmax(list_work[task] + DomainWork[DomainStartList[task + 1]],
 			     list_work[task + 1] - DomainWork[DomainStartList[task + 1]]);
 	      if(newmaxw <= maxw)
-		{
-		  if(list_load[task] + DomainCount[DomainStartList[task + 1]] <= maxload)
 		    {
-		      if(list_loadsph[task] + DomainCountSph[DomainStartList[task + 1]] > maxloadsph)
-			continue;
+		      if(list_load[task] + DomainCount[DomainStartList[task + 1]] <= maxload)
+		      {
+		        if(list_loadsph[task] + DomainCountSph[DomainStartList[task + 1]] > maxloadsph)
+			        continue;
 
-		      /* ok, we can move one domain cell from right to left */
-		      list_work[task] += DomainWork[DomainStartList[task + 1]];
-		      list_load[task] += DomainCount[DomainStartList[task + 1]];
-		      list_loadsph[task] += DomainCountSph[DomainStartList[task + 1]];
-		      list_work[task + 1] -= DomainWork[DomainStartList[task + 1]];
-		      list_load[task + 1] -= DomainCount[DomainStartList[task + 1]];
-		      list_loadsph[task + 1] -= DomainCountSph[DomainStartList[task + 1]];
+		        /* ok, we can move one domain cell from right to left */
+		        list_work[task] += DomainWork[DomainStartList[task + 1]];
+		        list_load[task] += DomainCount[DomainStartList[task + 1]];
+		        list_loadsph[task] += DomainCountSph[DomainStartList[task + 1]];
+		        list_work[task + 1] -= DomainWork[DomainStartList[task + 1]];
+		        list_load[task + 1] -= DomainCount[DomainStartList[task + 1]];
+		        list_loadsph[task + 1] -= DomainCountSph[DomainStartList[task + 1]];
 
-		      DomainTask[DomainStartList[task + 1]] = task;
-		      DomainStartList[task + 1] += 1;
-		      DomainEndList[task] += 1;
+		        DomainTask[DomainStartList[task + 1]] = task;
+		        DomainStartList[task + 1] += 1;
+		        DomainEndList[task] += 1;
 
-		      moved++;
+		        moved++;
+		      }
 		    }
-		}
 	    }
-	  else
+	    else
 	    {
 	      newmaxw = dmax(list_work[task] - DomainWork[DomainEndList[task]],
 			     list_work[task + 1] + DomainWork[DomainEndList[task]]);
 	      if(newmaxw <= maxw)
-		{
-		  if(list_load[task + 1] + DomainCount[DomainEndList[task]] <= maxload)
 		    {
-		      if(list_loadsph[task + 1] + DomainCountSph[DomainEndList[task]] > maxloadsph)
-			continue;
+		      if(list_load[task + 1] + DomainCount[DomainEndList[task]] <= maxload)
+		      {
+		        if(list_loadsph[task + 1] + DomainCountSph[DomainEndList[task]] > maxloadsph)
+			        continue;
 
-		      /* ok, we can move one domain cell from left to right */
-		      list_work[task] -= DomainWork[DomainEndList[task]];
-		      list_load[task] -= DomainCount[DomainEndList[task]];
-		      list_loadsph[task] -= DomainCountSph[DomainEndList[task]];
-		      list_work[task + 1] += DomainWork[DomainEndList[task]];
-		      list_load[task + 1] += DomainCount[DomainEndList[task]];
-		      list_loadsph[task + 1] += DomainCountSph[DomainEndList[task]];
+		        /* ok, we can move one domain cell from left to right */
+		        list_work[task] -= DomainWork[DomainEndList[task]];
+		        list_load[task] -= DomainCount[DomainEndList[task]];
+		        list_loadsph[task] -= DomainCountSph[DomainEndList[task]];
+		        list_work[task + 1] += DomainWork[DomainEndList[task]];
+		        list_load[task + 1] += DomainCount[DomainEndList[task]];
+		        list_loadsph[task + 1] += DomainCountSph[DomainEndList[task]];
 
-		      DomainTask[DomainEndList[task]] = task + 1;
-		      DomainEndList[task] -= 1;
-		      DomainStartList[task + 1] -= 1;
+		        DomainTask[DomainEndList[task]] = task + 1;
+		        DomainEndList[task] -= 1;
+		        DomainStartList[task + 1] -= 1;
 
-		      moved++;
+		        moved++;
+		      }
 		    }
-		}
-
 	    }
-	}
-
-      iter++;
-    }
+	  }
+    iter++;
+  }
   while(moved > 0 && iter < 10 * NTopleaves);
 }
 
@@ -543,43 +538,43 @@ void domain_findExchangeNumbers(int task, int partner, int sphflag, int *send, i
   numpartsphB = list_N_gas[partner];
 
   if(sphflag == 1)
-    {
-      ntobesentA = toGoSph[task * NTask + partner];
-      ntobesentB = toGoSph[partner * NTask + task];
-    }
+  {
+    ntobesentA = toGoSph[task * NTask + partner];
+    ntobesentB = toGoSph[partner * NTask + task];
+  }
   else
-    {
-      ntobesentA = toGo[task * NTask + partner] - toGoSph[task * NTask + partner];
-      ntobesentB = toGo[partner * NTask + task] - toGoSph[partner * NTask + task];
-    }
+  {
+    ntobesentA = toGo[task * NTask + partner] - toGoSph[task * NTask + partner];
+    ntobesentB = toGo[partner * NTask + task] - toGoSph[partner * NTask + task];
+  }
 
   maxsendA = imin(ntobesentA, All.BunchSizeDomain);
   maxsendB = imin(ntobesentB, All.BunchSizeDomain);
 
   do
-    {
-      maxsendA_old = maxsendA;
-      maxsendB_old = maxsendB;
+  {
+    maxsendA_old = maxsendA;
+    maxsendB_old = maxsendB;
 
-      maxsendA = imin(All.MaxPart - numpartB + maxsendB, maxsendA);
-      maxsendB = imin(All.MaxPart - numpartA + maxsendA, maxsendB);
-    }
+    maxsendA = imin(All.MaxPart - numpartB + maxsendB, maxsendA);
+    maxsendB = imin(All.MaxPart - numpartA + maxsendA, maxsendB);
+  }
   while((maxsendA != maxsendA_old) || (maxsendB != maxsendB_old));
 
 
   /* now make also sure that there is enough space for SPH particeles */
   if(sphflag == 1)
-    {
-      do
-	{
-	  maxsendA_old = maxsendA;
-	  maxsendB_old = maxsendB;
+  {
+    do
+	  {
+	    maxsendA_old = maxsendA;
+	    maxsendB_old = maxsendB;
 
-	  maxsendA = imin(All.MaxPartSph - numpartsphB + maxsendB, maxsendA);
-	  maxsendB = imin(All.MaxPartSph - numpartsphA + maxsendA, maxsendB);
-	}
-      while((maxsendA != maxsendA_old) || (maxsendB != maxsendB_old));
-    }
+	    maxsendA = imin(All.MaxPartSph - numpartsphB + maxsendB, maxsendA);
+	    maxsendB = imin(All.MaxPartSph - numpartsphA + maxsendA, maxsendB);
+	  }
+    while((maxsendA != maxsendA_old) || (maxsendB != maxsendB_old));
+  }
 
   *send = maxsendA;
   *recv = maxsendB;
@@ -737,21 +732,21 @@ void domain_countToGo(void)
     }
 
   for(n = 0; n < NumPart; n++)
-    {
-      no = 0;
+  {
+    no = 0;
 
-      while(TopNodes[no].Daughter >= 0)
-	no = TopNodes[no].Daughter + (Key[n] - TopNodes[no].StartKey) / (TopNodes[no].Size / 8);
+    while(TopNodes[no].Daughter >= 0)
+	    no = TopNodes[no].Daughter + (Key[n] - TopNodes[no].StartKey) / (TopNodes[no].Size / 8);
 
-      no = TopNodes[no].Leaf;
+    no = TopNodes[no].Leaf;
 
-      if(DomainTask[no] != ThisTask)
-	{
-	  local_toGo[DomainTask[no]] += 1;
-	  if(P[n].Type == 0)
-	    local_toGoSph[DomainTask[no]] += 1;
-	}
-    }
+    if(DomainTask[no] != ThisTask)
+	  {
+	    local_toGo[DomainTask[no]] += 1;
+	    if(P[n].Type == 0)
+	      local_toGoSph[DomainTask[no]] += 1;
+	  }
+  }
 
   MPI_Allgather(local_toGo, NTask, MPI_INT, toGo, NTask, MPI_INT, MPI_COMM_WORLD);
   MPI_Allgather(local_toGoSph, NTask, MPI_INT, toGoSph, NTask, MPI_INT, MPI_COMM_WORLD);
@@ -801,33 +796,33 @@ void domain_sumCost(void)
   domain_walktoptree(0);
 
   for(i = 0; i < NTopleaves; i++)
-    {
-      local_DomainWork[i] = 0;
-      local_DomainCount[i] = 0;
-      local_DomainCountSph[i] = 0;
-    }
+  {
+    local_DomainWork[i] = 0;
+    local_DomainCount[i] = 0;
+    local_DomainCountSph[i] = 0;
+  }
 
   if(ThisTask == 0)
     printf("NTopleaves= %d\n", NTopleaves);
 
   for(n = 0; n < NumPart; n++)
-    {
-      no = 0;
+  {
+    no = 0;
 
-      while(TopNodes[no].Daughter >= 0)
-	no = TopNodes[no].Daughter + (Key[n] - TopNodes[no].StartKey) / (TopNodes[no].Size / 8);
+    while(TopNodes[no].Daughter >= 0)
+	    no = TopNodes[no].Daughter + (Key[n] - TopNodes[no].StartKey) / (TopNodes[no].Size / 8);
 
-      no = TopNodes[no].Leaf;
+    no = TopNodes[no].Leaf;
 
-      if(P[n].Ti_endstep > P[n].Ti_begstep)
-	local_DomainWork[no] += (1.0 + P[n].GravCost) / (P[n].Ti_endstep - P[n].Ti_begstep);
-      else
-	local_DomainWork[no] += (1.0 + P[n].GravCost);
+    if(P[n].Ti_endstep > P[n].Ti_begstep)
+	    local_DomainWork[no] += (1.0 + P[n].GravCost) / (P[n].Ti_endstep - P[n].Ti_begstep);
+    else
+	    local_DomainWork[no] += (1.0 + P[n].GravCost);
 
-      local_DomainCount[no] += 1;
-      if(P[n].Type == 0)
-	local_DomainCountSph[no] += 1;
-    }
+    local_DomainCount[no] += 1;
+    if(P[n].Type == 0)
+	    local_DomainCountSph[no] += 1;
+  }
 
   MPI_Allreduce(local_DomainWork, DomainWork, NTopleaves, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
   MPI_Allreduce(local_DomainCount, DomainCount, NTopleaves, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
@@ -849,22 +844,22 @@ void domain_findExtent(void)
 
   /* determine local extension */
   for(j = 0; j < 3; j++)
-    {
-      xmin[j] = MAX_REAL_NUMBER;
-      xmax[j] = -MAX_REAL_NUMBER;
-    }
+  {
+    xmin[j] = MAX_REAL_NUMBER;
+    xmax[j] = -MAX_REAL_NUMBER;
+  }
 
   for(i = 0; i < NumPart; i++)
-    {
-      for(j = 0; j < 3; j++)
-	{
-	  if(xmin[j] > P[i].Pos[j])
-	    xmin[j] = P[i].Pos[j];
+  {
+    for(j = 0; j < 3; j++)
+	  {
+	    if(xmin[j] > P[i].Pos[j])
+	      xmin[j] = P[i].Pos[j];
 
-	  if(xmax[j] < P[i].Pos[j])
-	    xmax[j] = P[i].Pos[j];
-	}
-    }
+	    if(xmax[j] < P[i].Pos[j])
+	      xmax[j] = P[i].Pos[j];
+	  }
+  }
 
   MPI_Allreduce(xmin, xmin_glob, 3, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
   MPI_Allreduce(xmax, xmax_glob, 3, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
@@ -877,10 +872,10 @@ void domain_findExtent(void)
   len *= 1.001;
 
   for(j = 0; j < 3; j++)
-    {
-      DomainCenter[j] = 0.5 * (xmin_glob[j] + xmax_glob[j]);
-      DomainCorner[j] = 0.5 * (xmin_glob[j] + xmax_glob[j]) - 0.5 * len;
-    }
+  {
+    DomainCenter[j] = 0.5 * (xmin_glob[j] + xmax_glob[j]);
+    DomainCorner[j] = 0.5 * (xmin_glob[j] + xmax_glob[j]) - 0.5 * len;
+  }
 
   DomainLen = len;
   DomainFac = 1.0 / len * (((peanokey) 1) << (BITS_PER_DIMENSION));
@@ -899,12 +894,12 @@ void domain_determineTopTree(void)
   int *ntopnodelist, *ntopoffset;
 
   for(i = 0; i < NumPart; i++)
-    {
-      KeySorted[i] = Key[i] = peano_hilbert_key((P[i].Pos[0] - DomainCorner[0]) * DomainFac,
+  {
+    KeySorted[i] = Key[i] = peano_hilbert_key((P[i].Pos[0] - DomainCorner[0]) * DomainFac,
 						(P[i].Pos[1] - DomainCorner[1]) * DomainFac,
 						(P[i].Pos[2] - DomainCorner[2]) * DomainFac,
 						BITS_PER_DIMENSION);
-    }
+  }
 
   qsort(KeySorted, NumPart, sizeof(peanokey), domain_compare_key);
 
@@ -920,14 +915,14 @@ void domain_determineTopTree(void)
   toplist_local = malloc(NTopnodes * sizeof(struct topnode_exchange));
 
   for(i = 0, ntop_local = 0; i < NTopnodes; i++)
-    {
-      if(TopNodes[i].Daughter == -1)	/* only use leaves */
-	{
-	  toplist_local[ntop_local].Startkey = TopNodes[i].StartKey;
-	  toplist_local[ntop_local].Count = TopNodes[i].Count;
-	  ntop_local++;
-	}
-    }
+  {
+    if(TopNodes[i].Daughter == -1)	/* only use leaves */
+	  {
+	    toplist_local[ntop_local].Startkey = TopNodes[i].StartKey;
+	    toplist_local[ntop_local].Count = TopNodes[i].Count;
+	    ntop_local++;
+	  }
+  }
 
   ntopnodelist = malloc(sizeof(int) * NTask);
   ntopoffset = malloc(sizeof(int) * NTask);
@@ -935,20 +930,20 @@ void domain_determineTopTree(void)
   MPI_Allgather(&ntop_local, 1, MPI_INT, ntopnodelist, 1, MPI_INT, MPI_COMM_WORLD);
 
   for(i = 0, ntop = 0, ntopoffset[0] = 0; i < NTask; i++)
-    {
-      ntop += ntopnodelist[i];
-      if(i > 0)
-	ntopoffset[i] = ntopoffset[i - 1] + ntopnodelist[i - 1];
-    }
+  {
+    ntop += ntopnodelist[i];
+    if(i > 0)
+	    ntopoffset[i] = ntopoffset[i - 1] + ntopnodelist[i - 1];
+  }
 
 
   toplist = malloc(ntop * sizeof(struct topnode_exchange));
 
   for(i = 0; i < NTask; i++)
-    {
-      ntopnodelist[i] *= sizeof(struct topnode_exchange);
-      ntopoffset[i] *= sizeof(struct topnode_exchange);
-    }
+  {
+    ntopnodelist[i] *= sizeof(struct topnode_exchange);
+    ntopoffset[i] *= sizeof(struct topnode_exchange);
+  }
 
   MPI_Allgatherv(toplist_local, ntop_local * sizeof(struct topnode_exchange), MPI_BYTE,
 		 toplist, ntopnodelist, ntopoffset, MPI_BYTE, MPI_COMM_WORLD);
@@ -1051,12 +1046,12 @@ void domain_topsplit(int node, peanokey startkey)
   int i, p, sub, bin;
 
   if(TopNodes[node].Size >= 8)
-    {
-      TopNodes[node].Daughter = NTopnodes;
+  {
+    TopNodes[node].Daughter = NTopnodes;
 
-      for(i = 0; i < 8; i++)
-	{
-	  if(NTopnodes < MAXTOPNODES)
+    for(i = 0; i < 8; i++)
+	  {
+	    if(NTopnodes < MAXTOPNODES)
 	    {
 	      sub = TopNodes[node].Daughter + i;
 	      TopNodes[sub].Size = TopNodes[node].Size / 8;
@@ -1067,37 +1062,37 @@ void domain_topsplit(int node, peanokey startkey)
 	      TopNodes[sub].Pstart = TopNodes[node].Pstart;
 	      NTopnodes++;
 	    }
-	  else
+	    else
 	    {
 	      printf("Task=%d: We are out of Topnodes. Increasing the constant MAXTOPNODES might help.\n",
 		     ThisTask);
 	      fflush(stdout);
 	      endrun(137213);
 	    }
-	}
+	  }
 
-      for(p = TopNodes[node].Pstart; p < TopNodes[node].Pstart + TopNodes[node].Blocks; p++)
-	{
-	  bin = (toplist[p].Startkey - startkey) / (TopNodes[node].Size / 8);
-	  sub = TopNodes[node].Daughter + bin;
+    for(p = TopNodes[node].Pstart; p < TopNodes[node].Pstart + TopNodes[node].Blocks; p++)
+	  {
+	    bin = (toplist[p].Startkey - startkey) / (TopNodes[node].Size / 8);
+	    sub = TopNodes[node].Daughter + bin;
 
-	  if(bin < 0 || bin > 7)
-	    endrun(77);
+	    if(bin < 0 || bin > 7)
+	      endrun(77);
 
-	  if(TopNodes[sub].Blocks == 0)
-	    TopNodes[sub].Pstart = p;
+	    if(TopNodes[sub].Blocks == 0)
+	      TopNodes[sub].Pstart = p;
 
-	  TopNodes[sub].Count += toplist[p].Count;
-	  TopNodes[sub].Blocks++;
-	}
+	    TopNodes[sub].Count += toplist[p].Count;
+	    TopNodes[sub].Blocks++;
+	  }
 
-      for(i = 0; i < 8; i++)
-	{
-	  sub = TopNodes[node].Daughter + i;
-	  if(TopNodes[sub].Count > All.TotNumPart / (TOPNODEFACTOR * NTask))
-	    domain_topsplit(sub, TopNodes[sub].StartKey);
-	}
-    }
+    for(i = 0; i < 8; i++)
+	  {
+	    sub = TopNodes[node].Daughter + i;
+	    if(TopNodes[sub].Count > All.TotNumPart / (TOPNODEFACTOR * NTask))
+	      domain_topsplit(sub, TopNodes[sub].StartKey);
+	  }
+  }
 }
 
 

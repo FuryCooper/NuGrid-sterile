@@ -41,12 +41,10 @@ void allocate_commbuffers(void)
       endrun(2);
     }
 
-  All.BunchSizeForce =
-    (All.BufferSize * 1024 * 1024) / (sizeof(struct gravdata_index) + 2 * sizeof(struct gravdata_in));
+  All.BunchSizeForce = (All.BufferSize * 1024 * 1024) / (sizeof(struct gravdata_index) + 2 * sizeof(struct gravdata_in));
 
   if(All.BunchSizeForce & 1)
-    All.BunchSizeForce -= 1;	/* make sure that All.BunchSizeForce is an even number 
-				   --> 8-byte alignment for 64bit processors */
+    All.BunchSizeForce -= 1;	/* make sure that All.BunchSizeForce is an even number --> 8-byte alignment for 64bit processors */
 
   GravDataIndexTable = (struct gravdata_index *) CommBuffer;
   GravDataIn = (struct gravdata_in *) (GravDataIndexTable + All.BunchSizeForce);
@@ -55,29 +53,24 @@ void allocate_commbuffers(void)
   GravDataResult = GravDataGet;	/* this will overwrite the GravDataGet-Table */
 
 
-  All.BunchSizeDensity =
-    (All.BufferSize * 1024 * 1024) / (2 * sizeof(struct densdata_in) + 2 * sizeof(struct densdata_out));
+  All.BunchSizeDensity = (All.BufferSize * 1024 * 1024) / (2 * sizeof(struct densdata_in) + 2 * sizeof(struct densdata_out));
 
   DensDataIn = (struct densdata_in *) CommBuffer;
   DensDataGet = DensDataIn + All.BunchSizeDensity;
   DensDataResult = (struct densdata_out *) (DensDataGet + All.BunchSizeDensity);
   DensDataPartialResult = DensDataResult + All.BunchSizeDensity;
 
-  All.BunchSizeHydro =
-    (All.BufferSize * 1024 * 1024) / (2 * sizeof(struct hydrodata_in) + 2 * sizeof(struct hydrodata_out));
+  All.BunchSizeHydro = (All.BufferSize * 1024 * 1024) / (2 * sizeof(struct hydrodata_in) + 2 * sizeof(struct hydrodata_out));
 
   HydroDataIn = (struct hydrodata_in *) CommBuffer;
   HydroDataGet = HydroDataIn + All.BunchSizeHydro;
   HydroDataResult = (struct hydrodata_out *) (HydroDataGet + All.BunchSizeHydro);
   HydroDataPartialResult = HydroDataResult + All.BunchSizeHydro;
 
-  All.BunchSizeDomain =
-    (All.BufferSize * 1024 * 1024) / (sizeof(struct particle_data) + sizeof(struct sph_particle_data) +
-				      sizeof(peanokey));
+  All.BunchSizeDomain = (All.BufferSize * 1024 * 1024) / (sizeof(struct particle_data) + sizeof(struct sph_particle_data) + sizeof(peanokey));
 
   if(All.BunchSizeDomain & 1)
-    All.BunchSizeDomain -= 1;	/* make sure that All.BunchSizeDomain is even 
-				   --> 8-byte alignment of DomainKeyBuf for 64bit processors */
+    All.BunchSizeDomain -= 1;	/* make sure that All.BunchSizeDomain is even --> 8-byte alignment of DomainKeyBuf for 64bit processors */
 
   DomainPartBuf = (struct particle_data *) CommBuffer;
   DomainSphBuf = (struct sph_particle_data *) (DomainPartBuf + All.BunchSizeDomain);
@@ -85,14 +78,14 @@ void allocate_commbuffers(void)
 
 
   if(ThisTask == 0)
-    {
-      printf("\nAllocated %d MByte communication buffer per processor.\n\n", All.BufferSize);
-      printf("Communication buffer has room for %d particles in gravity computation\n", All.BunchSizeForce);
-      printf("Communication buffer has room for %d particles in density computation\n", All.BunchSizeDensity);
-      printf("Communication buffer has room for %d particles in hydro computation\n", All.BunchSizeHydro);
-      printf("Communication buffer has room for %d particles in domain decomposition\n", All.BunchSizeDomain);
-      printf("\n");
-    }
+  {
+    printf("\nAllocated %d MByte communication buffer per processor.\n\n", All.BufferSize);
+    printf("Communication buffer has room for %d particles in gravity computation\n", All.BunchSizeForce);
+    printf("Communication buffer has room for %d particles in density computation\n", All.BunchSizeDensity);
+    printf("Communication buffer has room for %d particles in hydro computation\n", All.BunchSizeHydro);
+    printf("Communication buffer has room for %d particles in domain decomposition\n", All.BunchSizeDomain);
+    printf("\n");
+  }
 }
 
 

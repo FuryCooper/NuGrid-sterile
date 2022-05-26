@@ -48,24 +48,24 @@ void savepositions(int num)
 #endif
 
   if(NTask < All.NumFilesPerSnapshot)
-    {
-      if(ThisTask == 0)
-	printf("Fatal error.\nNumber of processors must be larger or equal than All.NumFilesPerSnapshot.\n");
-      endrun(0);
-    }
+  {
+    if(ThisTask == 0)
+	    printf("Fatal error.\nNumber of processors must be larger or equal than All.NumFilesPerSnapshot.\n");
+    endrun(0);
+  }
   if(All.SnapFormat < 1 || All.SnapFormat > 3)
-    {
-      if(ThisTask == 0)
-	printf("Unsupported File-Format\n");
-      endrun(0);
-    }
+  {
+    if(ThisTask == 0)
+	    printf("Unsupported File-Format\n");
+    endrun(0);
+  }
 #ifndef  HAVE_HDF5
   if(All.SnapFormat == 3)
-    {
-      if(ThisTask == 0)
-	printf("Code wasn't compiled with HDF5 support enabled!\n");
-      endrun(0);
-    }
+  {
+    if(ThisTask == 0)
+	    printf("Code wasn't compiled with HDF5 support enabled!\n");
+    endrun(0);
+  }
 #endif
 
 
@@ -82,11 +82,11 @@ void savepositions(int num)
   temp = malloc(NTask * 6 * sizeof(int));
   MPI_Allgather(n_type, 6, MPI_INT, temp, 6, MPI_INT, MPI_COMM_WORLD);
   for(i = 0; i < 6; i++)
-    {
-      ntot_type_all[i] = 0;
-      for(j = 0; j < NTask; j++)
-	ntot_type_all[i] += temp[j * 6 + i];
-    }
+  {
+    ntot_type_all[i] = 0;
+    for(j = 0; j < NTask; j++)
+	    ntot_type_all[i] += temp[j * 6 + i];
+  }
   free(temp);
 
 
@@ -105,11 +105,11 @@ void savepositions(int num)
     ngroups++;
 
   for(gr = 0; gr < ngroups; gr++)
-    {
-      if((filenr / All.NumFilesWrittenInParallel) == gr)	/* ok, it's this processor's turn */
-	write_file(buf, masterTask, lastTask);
-      MPI_Barrier(MPI_COMM_WORLD);
-    }
+  {
+    if((filenr / All.NumFilesWrittenInParallel) == gr)	/* ok, it's this processor's turn */
+	    write_file(buf, masterTask, lastTask);
+    MPI_Barrier(MPI_COMM_WORLD);
+  }
 
 
   if(ThisTask == 0)

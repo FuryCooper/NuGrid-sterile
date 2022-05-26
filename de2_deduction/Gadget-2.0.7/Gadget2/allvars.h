@@ -479,37 +479,41 @@ extern struct global_data_all_processes
   double OutputListTimes[MAXLEN_OUTPUTLIST];   /*!< table with desired output times */
   int OutputListLength;                        /*!< number of output times stored in the table of desired output times */
 
-    double H0;
-    double rocr;                                //critical density at z=0
-    double Omega_nu0_expan;
-    double Omega_nu0_frstr;
-    double unittrans;
-    //double mass_nu_frstr;
-    //double mass_nu_expan;
-    //double xi_expan;
-    //double xi_frstr;
-    double mass_1;
-    double mass_2;
-    double mass_3;
-    double xi_1;
-    double xi_2;
-    double xi_3;
-    int expan_on;
-    int mass_hierarchy;
-    int lepton_asymmetry;
-    double Tneu0;
-    int time_of_step;
-    int frstr_interval;
-    int phi_param;
-    double neutrino_scheme;
-    int deductfromDE;
-    double a_last_pm_step;
-    double numdens0;
-    double numdens1;
-    double numdens2;
-    double numdens3;
-    char ratio_nu_cdm_txt[MAXLEN_FILENAME];
-    char nu_pk_txt[MAXLEN_FILENAME];
+  double H0;
+  double rocr;                                //critical density at z=0
+  double Omega_nu0_expan;
+  double Omega_nu0_frstr;
+  double unittrans;
+  //double mass_nu_frstr;
+  //double mass_nu_expan;
+  //double xi_expan;
+  //double xi_frstr;
+  double Mass[5];
+  double Xi[5];
+  double mass_1;
+  double mass_2;
+  double mass_3;
+  double xi_1;
+  double xi_2;
+  double xi_3;
+  int NNeutrino;
+  int expan_on;
+  int mass_hierarchy;
+  int lepton_asymmetry;
+  double Tneu0;
+  int time_of_step;
+  int frstr_interval;
+  int phi_param;
+  double neutrino_scheme;
+  int deductfromDE;
+  double a_last_pm_step;
+  double numdens0;
+  double NumDens[5];
+  double numdens1;
+  double numdens2;
+  double numdens3;
+  char ratio_nu_cdm_txt[MAXLEN_FILENAME];
+  char nu_pk_txt[MAXLEN_FILENAME];
     
 }
  All;                                          /*!< a container variable for global variables that are equal on all processors */

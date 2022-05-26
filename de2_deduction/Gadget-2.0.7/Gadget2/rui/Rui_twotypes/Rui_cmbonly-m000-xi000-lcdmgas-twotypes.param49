@@ -123,19 +123,19 @@ SofteningBulgeMaxPhys     0
 SofteningStarsMaxPhys     0
 SofteningBndryMaxPhys     0
 
-%zzc parameter for neutrino
-Tneu0		  1.945		%CNB temperature at redshift 0
+%zzc parameter for neutrino modified by Rui Hu, set the abitrary neutrino types, you can set the mass and xi abitrary
+Tneu0		        1.945		%CNB temperature at redshift 0
 neutrino_scheme 	4.0
 frstr_interval		10
-xi_3	  		0
+xi_3	  		    0
 mass_1         		0
 time_of_step 		1
-phi_param		2
+phi_param		    2
 deductfromDE		1
-expan_on 		3
-mass_hierarchy		4
-lepton_asymmetry	3
-
+expan_on 		    3
+mass_hierarchy		4           % if set the mass abitrary, set it > 3
+lepton_asymmetry	3           % if set the xi abitrary, set it > 3
+Number_Neutrino     4           % determine the number of neutrino types
 
 
 
