@@ -26,7 +26,7 @@ OPT   +=  -DCORRECT_CIC  # only switch this on if particles start from a glass (
 OPTIONS =  $(OPT)
 
 CC       =  mpicc   
-OPTIMIZE =  -O3 -Wall
+OPTIMIZE =  -O3 -Wall -std=c99
 GSL_INCL = -I/home/rui/library/gsl/include
 GSL_LIBS = -L/home/rui/library/gsl/lib
 FFTW_INCL = -I/home/rui/library/fftw2/include

@@ -110,7 +110,7 @@ int main(int argc, char **argv)
 	if (expan_on == 1)
 	{
 		Omega_nu0_expan = 0.0;
-		for (size_t i = 0; i < count; i++)
+		for (int i = 0; i < NNeutrino; i++)
 		{
 			Omega_nu0_expan += neutrino_integration(1.0, Mass[i], Xi[i]);
 		}
@@ -688,7 +688,7 @@ void displacement_fields(void)
 			  	cdisp2[axes][coord].re = cdisp2[axes][coord].im = 0.0;
 #ifdef CORRECT_CIC
 		  	cdisp[axes][coord].re *= smth;   cdisp[axes][coord].im *= smth;
-		  	disp2[axes][coord].re *= smth;  cdisp2[axes][coord].im *= smth;
+		  	cdisp2[axes][coord].re *= smth;  cdisp2[axes][coord].im *= smth;
 #endif
 		}
 	}
