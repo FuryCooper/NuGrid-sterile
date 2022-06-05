@@ -488,12 +488,9 @@ extern struct global_data_all_processes
     //double mass_nu_expan;
     //double xi_expan;
     //double xi_frstr;
-    double mass_1;
-    double mass_2;
-    double mass_3;
-    double xi_1;
-    double xi_2;
-    double xi_3;
+    double mass[5];
+    double xi[5];
+    int NNeutrino;
     int expan_on;
     int mass_hierarchy;
     int lepton_asymmetry;
@@ -505,9 +502,7 @@ extern struct global_data_all_processes
     int deductfromDE;
     double a_last_pm_step;
     double numdens0;
-    double numdens1;
-    double numdens2;
-    double numdens3;
+    double numdens[5];
     char ratio_nu_cdm_txt[MAXLEN_FILENAME];
     char nu_pk_txt[MAXLEN_FILENAME];
     

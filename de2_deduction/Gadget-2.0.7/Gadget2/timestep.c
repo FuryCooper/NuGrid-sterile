@@ -58,11 +58,14 @@ void advance_and_find_timesteps(void)
       //hubble_a = All.Omega0 / (All.Time * All.Time * All.Time)
 	//+ (1 - All.Omega0 - All.OmegaLambda) / (All.Time * All.Time) + All.OmegaLambda;
   		    if(All.expan_on == 1){
-                roneu = neutrino_integration(All.Time, All.mass_1, All.xi_1) + neutrino_integration(All.Time, All.mass_2, All.xi_2) + neutrino_integration(All.Time, All.mass_3, All.xi_3);
+                roneu = 0.0;
+		for(i = 0; i < All.NNeutrino; i++){
+		    roneu += neutrino_integration(All.Time, All.mass[i], All.xi[i]);
+		}
             }
         
         if(All.expan_on == 0){
-            roneu = neutrino_integration(All.Time, 0., 0.) * 3;
+            roneu = neutrino_integration(All.Time, 0., 0.) * All.NNeutrino;
         }
 	
 		hubble_a = All.Omega2 / (All.Time * All.Time * All.Time)

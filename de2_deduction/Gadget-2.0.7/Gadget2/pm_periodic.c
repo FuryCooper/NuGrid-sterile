@@ -50,7 +50,7 @@ static double k_interval = 1.005;
 static fftw_real *rhogrid, *forcegrid, *workspace;
 static fftw_complex *fft_of_rhogrid;
 
-static double *old_pk_b, *old_pk_nu_b1, *old_pk_nu_b2, *old_pk_nu_b3;
+static double *old_pk_b, *old_pk_nu_b;
 static double *rd_array_k, *rd_array_pk;
 static double *output_time_array;
 
@@ -131,6 +131,7 @@ void pm_init_periodic_allocate(int dimprod)
   int dimprodmax;
   double bytes_tot = 0;
   size_t bytes;
+  int i;
 
   MPI_Allreduce(&dimprod, &dimprodmax, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 
@@ -172,10 +173,7 @@ void pm_init_periodic_allocate(int dimprod)
     if(All.NumCurrentTiStep == 0){
         
         old_pk_b = (double*) malloc((num_kbins) * sizeof(double));
-        old_pk_nu_b1 = (double*) malloc((num_kbins) * sizeof(double));
-        old_pk_nu_b2 = (double*) malloc((num_kbins) * sizeof(double));
-        old_pk_nu_b3 = (double*) malloc((num_kbins) * sizeof(double));
-        
+        old_pk_nu_b = (double*) malloc((num_kbins * All.NNeutrino) * sizeof(double));
         count_b = (double*) malloc((num_kbins) * sizeof(double));
         k_array0 = (double*) malloc((num_kbins+1) * sizeof(double));
         k_array = (double*) malloc(num_kbins * sizeof(double));
@@ -293,9 +291,9 @@ void pm_init_periodic_allocate(int dimprod)
         
         for(ii=0;ii<num_kbins;ii++){
             old_pk_b[ii] = 0.;
-            old_pk_nu_b1[ii] = 0.;
-            old_pk_nu_b2[ii] = 0.;
-            old_pk_nu_b3[ii] = 0.;
+            for(i = 0; i < All.NNeutrino; i++){
+		old_pk_nu_b[ii * All.NNeutrino + i] = 0.0;
+	    }
         }
         
     }
@@ -579,7 +577,7 @@ void pmforce_periodic(void)
 	}
 
     
-    	printf("fftw = %f %f \n", fft_of_rhogrid[0].re, fft_of_rhogrid[0].im);
+    
         if(All.neutrino_scheme == 4.0){
                    
             int b;
@@ -589,12 +587,10 @@ void pmforce_periodic(void)
             //num_kbins = (int) (log(sqrt(3.) * 128. / 0.95) / log(k_interval));
             //printf("num_kbins %d step %d\n", num_kbins, All.NumCurrentTiStep);
             
-            double *pk_b, *pk_nub1, *pk_nub2, *pk_nub3;
+            double *pk_b, *pk_nub;
             
             pk_b = (double*) malloc((num_kbins) * sizeof(double));
-            pk_nub1 = (double*) malloc((num_kbins) * sizeof(double));
-            pk_nub2 = (double*) malloc((num_kbins) * sizeof(double));
-            pk_nub3 = (double*) malloc((num_kbins) * sizeof(double));
+            pk_nub = (double*) malloc((num_kbins * All.NNeutrino) * sizeof(double));
 
             //initialize b arrays
             k_array0[0] = start_k;
@@ -604,9 +600,9 @@ void pmforce_periodic(void)
             
             for(b=0;b<num_kbins;b++){
                 pk_b[b] = 0.;
-                pk_nub1[b] = 0.;
-                pk_nub2[b] = 0.;
-                pk_nub3[b] = 0.;
+                for(i=0;i<All.NNeutrino;i++){
+		   pk_nub[b*All.NNeutrino+i] = 0.;
+		}
                 count_b[b] = 0.;
                 
                 k_array[b] = sqrt(k_array0[b] * k_array0[b+1]);
@@ -629,8 +625,11 @@ void pmforce_periodic(void)
                         
                         for(nj=0;nj<num_kbins;nj++) {
                             if(old_pk_b[nj] > 1e-7){
-                                
-                                nu_temp = (old_pk_nu_b1[nj]*old_pk_nu_b1[nj] + old_pk_nu_b2[nj]*old_pk_nu_b2[nj] + old_pk_nu_b3[nj]*old_pk_nu_b3[nj]) / 3.;
+				nu_temp = 0.;
+                                for(j=0;j<All.NNeutrino;j++){
+				    nu_temp +=old_pk_nu_b[nj*All.NNeutrino+j]*old_pk_nu_b[nj*All.NNeutrino+j];
+				}
+				nu_temp /= (double)All.NNeutrino;
                                 
                                 fprintf(fp,"%f\t %.20f\n", k_array[nj], nu_temp / (old_pk_b[nj]*old_pk_b[nj]));
                             }
@@ -691,30 +690,28 @@ void pmforce_periodic(void)
                             ratio_temp = (rd_array_pk[rd] + rd_array_pk[rd+1]) / 2.;
                         }
                     }
-
-                    old_pk_nu_b1[b] = old_pk_b[b] * sqrt(ratio_temp);
-                    old_pk_nu_b2[b] = old_pk_b[b] * sqrt(ratio_temp);
-                    old_pk_nu_b3[b] = old_pk_b[b] * sqrt(ratio_temp);
+		    for(i=0;i<All.NNeutrino;i++){
+		 	old_pk_nu_b[b*All.NNeutrino+i] = old_pk_b[b] * sqrt(ratio_temp);			}
 
                 }
             }
             All.a_last_pm_step = All.Time;
         }
                     
-            double fnu;
-            double fnu1, roneu_temp1;
-            double fnu2, roneu_temp2;
-            double fnu3, roneu_temp3;
-            
-            roneu_temp1 = neutrino_integration(All.Time, All.mass_1, All.xi_1);
-            roneu_temp2 = neutrino_integration(All.Time, All.mass_2, All.xi_2);
-            roneu_temp3 = neutrino_integration(All.Time, All.mass_3, All.xi_3);
-            
-            fnu1 = roneu_temp1 / (roneu_temp1 + roneu_temp2 + roneu_temp3 + (All.Omega0 - All.Omega_nu0_frstr)/ pow(All.Time, 3));
-            fnu2 = roneu_temp2 / (roneu_temp1 + roneu_temp2 + roneu_temp3 + (All.Omega0 - All.Omega_nu0_frstr)/ pow(All.Time, 3));
-            fnu3 = roneu_temp3 / (roneu_temp1 + roneu_temp2 + roneu_temp3 + (All.Omega0 - All.Omega_nu0_frstr)/ pow(All.Time, 3));
-            
-            fnu = fnu1 + fnu2 + fnu3;
+            double fnu_total, roneu_temp_total;
+            double *fnu, *roneu_temp;
+	    fnu = (double*) malloc((All.NNeutrino)*sizeof(double));
+	    roneu_temp = (double*) malloc((All.NNeutrino)*sizeof(double));
+            roneu_temp_total = 0.0;
+	    for(i=0;i<All.NNeutrino;i++){
+		roneu_temp[i] = neutrino_integration(All.Time, All.mass[i], All.xi[i]);
+		roneu_temp_total += roneu_temp[i];
+	    }
+	    fnu_total = 0.0;
+	    for(i=0;i<All.NNeutrino;i++){
+	 	fnu[i] = roneu_temp[i] / (roneu_temp_total + (All.Omega0 - All.Omega_nu0_frstr) / pow(All.Time, 3));
+        	fnu_total += fnu[i];
+	    }
             
             
         if(All.NumCurrentTiStep > 0){
@@ -740,12 +737,9 @@ void pmforce_periodic(void)
             for(b=0;b<num_kbins;b++){
                 if(count_b[b] > 0){
                 pk_b[b] = sqrt(pk_b[b] / count_b[b]);
-                pk_nub1[b] = frstr(k_array[b], old_pk_nu_b1[b], old_pk_b[b], pk_b[b], a_inte_series, s_inte_series, All.a_last_pm_step, All.Time, All.mass_1, All.xi_1);
-                
-                pk_nub2[b] = frstr(k_array[b], old_pk_nu_b2[b], old_pk_b[b], pk_b[b], a_inte_series, s_inte_series, All.a_last_pm_step, All.Time, All.mass_2, All.xi_2);
-                
-                pk_nub3[b] = frstr(k_array[b], old_pk_nu_b3[b], old_pk_b[b], pk_b[b], a_inte_series, s_inte_series, All.a_last_pm_step, All.Time, All.mass_3, All.xi_3);
-                    
+		for(i=0;i<All.NNeutrino;i++){
+		    pk_nub[b*All.NNeutrino+i] = frstr(k_array[b], old_pk_nu_b[b*All.NNeutrino+i], old_pk_b[b], pk_b[b], a_inte_series, s_inte_series, All.a_last_pm_step, All.Time, All.mass[i], All.xi[i]);
+                }   
                 }
                 
             }
@@ -782,8 +776,12 @@ void pmforce_periodic(void)
                         int b0 = 0;
                         for(b=0;b<num_kbins;b++){
                             if(kk>=k_array0[b] && kk<k_array0[b+1]){
-                                fft_of_rhogrid[ip].re = fft_of_rhogrid[ip].re * (1. - fnu) + fft_of_rhogrid[ip].re * fabs((pk_nub1[b] * fnu1 + pk_nub2[b] * fnu2 + pk_nub3[b] * fnu3) / pk_b[b]);
-                                fft_of_rhogrid[ip].im = fft_of_rhogrid[ip].im * (1. - fnu) + fft_of_rhogrid[ip].im * fabs((pk_nub1[b] * fnu1 + pk_nub2[b] * fnu2 + pk_nub3[b] * fnu3) / pk_b[b]);
+				double sum=0.;
+				for(i=0;i<All.NNeutrino;i++){
+				   sum += fnu[i]*pk_nub[b*All.NNeutrino+i];
+				}
+                                fft_of_rhogrid[ip].re = fft_of_rhogrid[ip].re * (1. - fnu_total) + fft_of_rhogrid[ip].re * fabs(sum / pk_b[b]);
+                                fft_of_rhogrid[ip].im = fft_of_rhogrid[ip].im * (1. - fnu_total) + fft_of_rhogrid[ip].im * fabs(sum / pk_b[b]);
                                 b0 = b;
                             }
                         }
@@ -792,11 +790,12 @@ void pmforce_periodic(void)
                       printf("fft after %f k %f pkb %f pknub1 %f pknub3 %f\n", fft_of_rhogrid[ip].re, kk, pk_b[b0], pk_nub1[b0], pk_nub3[b0]);
                         }*/
                 }
-              
+            
+            
             for(b=0;b<num_kbins;b++){
-                old_pk_nu_b1[b] = pk_nub1[b];
-                old_pk_nu_b2[b] = pk_nub2[b];
-                old_pk_nu_b3[b] = pk_nub3[b];
+		for(i=0;i<All.NNeutrino;i++){
+		   old_pk_nu_b[b*All.NNeutrino+i] = pk_nub[b*All.NNeutrino+i];
+                }
                 old_pk_b[b] = pk_b[b];
                 }
             
@@ -821,8 +820,11 @@ void pmforce_periodic(void)
                     
                     for(nj=0;nj<num_kbins;nj++) {
                         if(old_pk_b[nj] > 1e-7){
-                            
-                            nu_temp = (old_pk_nu_b1[nj]*old_pk_nu_b1[nj] + old_pk_nu_b2[nj]*old_pk_nu_b2[nj] + old_pk_nu_b3[nj]*old_pk_nu_b3[nj]) / 3.;
+                            nu_temp =0.;
+			    for(i=0;i<All.NNeutrino;i++){
+				nu_temp += old_pk_nu_b[nj*All.NNeutrino+i]*old_pk_nu_b[nj*All.NNeutrino+i];
+                            }
+			    nu_temp /= (double)All.NNeutrino;
                             
                             fprintf(fp,"%f\t %.20f\n", k_array[nj], nu_temp / (old_pk_b[nj]*old_pk_b[nj]));
                         }
@@ -842,7 +844,7 @@ void pmforce_periodic(void)
         if(All.neutrino_scheme > 1.5 && All.Time > All.TimeBegin && ThisTask == 0){
             printf("here done the %.1f correction step %d\n", All.neutrino_scheme, All.NumCurrentTiStep);
         }
-  printf("fft = %f %f \n", fft_of_rhogrid[0].re, fft_of_rhogrid[0].im);
+
   /* Do the FFT to get the potential */
 
   rfftwnd_mpi(fft_inverse_plan, 1, rhogrid, workspace, FFTW_TRANSPOSED_ORDER);

@@ -29,7 +29,7 @@
 void begrun(void)
 {
   struct global_data_all_processes all;
-
+  int i;
   if(ThisTask == 0)
     {
       printf("\nThis is Gadget, version `%s'.\n", GADGETVERSION);
@@ -43,48 +43,58 @@ void begrun(void)
     All.unittrans = pow(kb, 4)/((pow(hbar, 3))*(pow(c, 3))*2*M_PI*M_PI);
     
     if(All.lepton_asymmetry == 1){
-    All.xi_2 = cal_xi2(All.xi_3);
-    All.xi_1 = cal_xi1(All.xi_2, All.xi_3);
+    All.xi[1] = cal_xi2(All.xi[2]);
+    All.xi[0] = cal_xi1(All.xi[1], All.xi[2]);
     }
     
     if(All.lepton_asymmetry == 0){
-        All.xi_2 = All.xi_3;
-        All.xi_1 = All.xi_3;
+        All.xi[1] = All.xi[2];
+        All.xi[0] = All.xi[2];
     }
     
     if(All.mass_hierarchy == 0){
         //normal
-        All.mass_2 = sqrt(All.mass_1*All.mass_1 + 7.59e-5);
-        All.mass_3 = sqrt(All.mass_2*All.mass_2 + 2.32e-3);
+        All.mass[1] = sqrt(All.mass[0]*All.mass[0] + 7.59e-5);
+        All.mass[2] = sqrt(All.mass[1]*All.mass[1] + 2.32e-3);
     }
     
     if(All.mass_hierarchy == 1){
         //inverted
-        All.mass_2 = sqrt(All.mass_1*All.mass_1 + 2.32e-3);
-        All.mass_3 = sqrt(All.mass_2*All.mass_2 + 7.59e-5);
+        All.mass[1] = sqrt(All.mass[0]*All.mass[0] + 2.32e-3);
+        All.mass[2] = sqrt(All.mass[1]*All.mass[1] + 7.59e-5);
     }
 
     if(All.mass_hierarchy == 2){
         //identical
-        All.mass_2 = All.mass_1;
-        All.mass_3 = All.mass_1;
+        All.mass[1] = All.mass[0];
+        All.mass[2] = All.mass[0];
     }
 
     
-    printf("m1 %f m2 %f m3 %f xi1 %f xi2 %f xi3 %f\n", All.mass_1, All.mass_2, All.mass_3, All.xi_1, All.xi_2, All.xi_3);
+    for(i = 0; i < All.NNeutrino; i++){
+        printf("m%d=%f ", i, All.mass[i]);
+    }
+    
+    for(i = 0; i < All.NNeutrino; i++){
+	printf("xi%d=%f ", i, All.xi[i]);
+    }
+    printf("\n");
     
     if(All.expan_on == 1){
-        All.Omega_nu0_expan = neutrino_integration(1.0, All.mass_1, All.xi_1) + neutrino_integration(1.0, All.mass_2, All.xi_2) + neutrino_integration(1.0, All.mass_3, All.xi_3);
+        All.Omega_nu0_expan = 0.0;
+	for(i = 0; i < All.NNeutrino; i++){
+	   All.Omega_nu0_expan += neutrino_integration(1.0, All.mass[i], All.xi[i]);
+	}
     }
     
     if(All.expan_on == 0){
-        All.Omega_nu0_expan = neutrino_integration(1.0, 0., 0.) * 3;
+        All.Omega_nu0_expan = neutrino_integration(1.0, 0., 0.) * All.NNeutrino;
     }
     
     
     //All.Omega_nu0_frstr = neutrino_integration(1.0, All.mass_1, All.xi_1) + neutrino_integration(1.0, All.mass_2, All.xi_2) + neutrino_integration(1.0, All.mass_3, All.xi_3);
     
-    All.Omega_nu0_frstr = neutrino_integration(1.0, 0., 0.) * 3;
+    All.Omega_nu0_frstr = neutrino_integration(1.0, 0., 0.) * All.NNeutrino;
 
     
     if(All.deductfromDE == 0){
@@ -102,11 +112,15 @@ void begrun(void)
   printf("Omega_lambda = %f\n", All.OmegaLambda);
     
     All.numdens0 = numdens(0.);
-    All.numdens1 = numdens(All.xi_1);
-    All.numdens2 = numdens(All.xi_2);
-    All.numdens3 = numdens(All.xi_3);
+    for(i = 0; i < All.NNeutrino; i++){
+	All.numdens[i] = numdens(All.xi[i]);
+    }
     
-    printf("numdens %f %f %f %f\n", All.numdens0, All.numdens1, All.numdens2, All.numdens3);
+    printf("numdens %f ", All.numdens0);
+    for(i = 0; i < All.NNeutrino; i++){
+	printf("%f ", All.numdens[i]);
+    }
+    printf("\n");
     //step_index = 1;
 
   allocate_commbuffers();	/* ... allocate buffer-memory for particle 
@@ -711,14 +725,26 @@ void read_parameter_file(char *fname)
         addr[nt] = &All.lepton_asymmetry;
         id[nt++] = INT;
         
-        strcpy(tag[nt], "xi_3");
-        addr[nt] = &All.xi_3;
-        id[nt++] = DOUBLE;
-        
-        strcpy(tag[nt], "mass_1");
-        addr[nt] = &All.mass_1;
-        id[nt++] = DOUBLE;
-        
+        for(i = 0; i < 5; i++){
+	  strcpy(tag[nt], "xi_");
+	  tag[nt][3] = i + '0';
+	  tag[nt][4] = '\0';
+	  addr[nt] = &All.xi[i];
+	  id[nt++] = DOUBLE;
+	}
+
+	for(i = 0; i < 5; i++){
+	  strcpy(tag[nt], "mass_");
+	  tag[nt][5] = i + '0';
+	  tag[nt][6] = '\0';
+	  addr[nt] = &All.mass[i];
+	  id[nt++] = DOUBLE;
+	}
+
+	strcpy(tag[nt], "Number_Neutrino");
+	addr[nt] = &All.NNeutrino;
+	id[nt++] = INT;
+
         strcpy(tag[nt], "ratio_nu_cdm_txt");
         addr[nt] = All.ratio_nu_cdm_txt;
         id[nt++] = STRING;

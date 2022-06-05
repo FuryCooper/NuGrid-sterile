@@ -137,15 +137,18 @@ double neutrino_integration(double a, double m, double xi)
 double hubble(double a)
 {
   double hub, rrp, rom, ror, rolambda, roneu, rototal;
-
+  int i;
   rom = All.Omega2 * All.rocr / (a * a * a);
   rolambda = All.OmegaLambda * All.rocr;
     if(All.expan_on == 1){
-        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
+        roneu = 0.0;
+	for(i = 0; i < All.NNeutrino; i++){
+	   roneu += neutrino_integration(a, All.mass[i], All.xi[i]);
+	}
     }
     
     if(All.expan_on == 0){
-        roneu = neutrino_integration(a, 0., 0.) * 3;
+        roneu = neutrino_integration(a, 0., 0.) * All.NNeutrino;
     }
     
   roneu *= All.rocr;
@@ -530,16 +533,10 @@ double phi_expansion(double q, double mass, double xi, double a){
         
         double temp_dens;
         
-        if(xi == All.xi_1){
-            temp_dens = All.numdens1;
-        }
-        if(xi == All.xi_2){
-            temp_dens = All.numdens2;
-        }
-        if(xi == All.xi_3){
-            temp_dens = All.numdens3;
-        }
-        
+        for(i = 0; i < All.NNeutrino; i++){
+	    if(xi == All.xi[i])
+		temp_dens = All.numdens[i];
+	}        
         xi = abs(xi);
         double c1, a1, a2, a3, a4, sum, a5, temp1, temp2, err;
         a1 = 0.;

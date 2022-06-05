@@ -180,14 +180,18 @@ double get_hydrokick_factor(int time0, int time1)
  */
 double drift_integ(double a, void *param)
 {
+  int i;
   double h;
     double roneu;
     if(All.expan_on == 1){
-        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
+        roneu = 0.0;
+	for(i = 0; i < All.NNeutrino; i++){
+	   roneu += neutrino_integration(a, All.mass[i], All.xi[i]);
+    	}
     }
     
     if(All.expan_on == 0){
-        roneu = neutrino_integration(a, 0., 0.) * 3;
+        roneu = neutrino_integration(a, 0., 0.) * All.NNeutrino;
     }
  
   h = All.Omega2 / (a * a * a) + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
@@ -202,14 +206,18 @@ double drift_integ(double a, void *param)
  */
 double gravkick_integ(double a, void *param)
 {
+  int i;
   double h;
    double roneu;
     if(All.expan_on == 1){
-        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
+        roneu = 0.0;
+	for(i = 0; i < All.NNeutrino; i++){
+	   roneu += neutrino_integration(a, All.mass[i], All.xi[i]);
+	}
     }
     
     if(All.expan_on == 0){
-        roneu = neutrino_integration(a, 0., 0.) * 3;
+        roneu = neutrino_integration(a, 0., 0.) * All.NNeutrino;
     }
   
   h = All.Omega2 / (a * a * a) + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
@@ -224,15 +232,19 @@ double gravkick_integ(double a, void *param)
  */
 double hydrokick_integ(double a, void *param)
 {
+  int i;
   double h;
   double roneu;
     
     if(All.expan_on == 1){
-        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
+        roneu = 0.0;
+	for(i = 0; i < All.NNeutrino; i++){
+	   roneu += neutrino_integration(a, All.mass[i], All.xi[i]);
+	}
     }
     
     if(All.expan_on == 0){
-        roneu = neutrino_integration(a, 0., 0.) * 3;
+        roneu = neutrino_integration(a, 0., 0.) * All.NNeutrino;
     }
   h = All.Omega2 / (a * a * a) + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
   //h = All.Omega0 / (a * a * a) + (1 - All.Omega0 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
@@ -243,14 +255,18 @@ double hydrokick_integ(double a, void *param)
 
 double growthfactor_integ(double a, void *param)
 {
+  int i;
   double s;
   double roneu;
     if(All.expan_on == 1){
-        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
+        roneu = 0.0;
+	for(i = 0; i < All.NNeutrino; i++){
+	   roneu += neutrino_integration(a, All.mass[i], All.xi[i]);
+	}
     }
     
     if(All.expan_on == 0){
-        roneu = neutrino_integration(a, 0., 0.) * 3;
+        roneu = neutrino_integration(a, 0., 0.) * All.NNeutrino;
     }
   
   s = All.Omega2 + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) * a + All.OmegaLambda * a * a * a + roneu * a * a * a;
