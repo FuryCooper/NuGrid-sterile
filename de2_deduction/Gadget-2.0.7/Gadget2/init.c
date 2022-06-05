@@ -25,37 +25,37 @@ void init(void)
   All.Time = All.TimeBegin;
 
   switch (All.ICFormat)
-  {
-  case 1:
+    {
+    case 1:
 #if (MAKEGLASS > 1)
-    seed_glass();
+      seed_glass();
 #else
-    read_ic(All.InitCondFile);
+      read_ic(All.InitCondFile);
 #endif
-    break;
-  case 2:
-  case 3:
-    read_ic(All.InitCondFile);
-    break;
-  default:
-    if(ThisTask == 0)
-	    printf("ICFormat=%d not supported.\n", All.ICFormat);
-    endrun(0);
-  }
+      break;
+    case 2:
+    case 3:
+      read_ic(All.InitCondFile);
+      break;
+    default:
+      if(ThisTask == 0)
+	printf("ICFormat=%d not supported.\n", All.ICFormat);
+      endrun(0);
+    }
 
   All.Time = All.TimeBegin;
   All.Ti_Current = 0;
 
   if(All.ComovingIntegrationOn)
-  {
-    All.Timebase_interval = (log(All.TimeMax) - log(All.TimeBegin)) / TIMEBASE;
-    a3 = All.Time * All.Time * All.Time;
-  }
+    {
+      All.Timebase_interval = (log(All.TimeMax) - log(All.TimeBegin)) / TIMEBASE;
+      a3 = All.Time * All.Time * All.Time;
+    }
   else
-  {
-    All.Timebase_interval = (All.TimeMax - All.TimeBegin) / TIMEBASE;
-    a3 = 1;
-  }
+    {
+      All.Timebase_interval = (All.TimeMax - All.TimeBegin) / TIMEBASE;
+      a3 = 1;
+    }
 
   set_softenings();
 
@@ -74,27 +74,27 @@ void init(void)
   All.TimeLastStatistics = All.TimeBegin - All.TimeBetStatistics;
 
   if(All.ComovingIntegrationOn)	/*  change to new velocity variable */
-  {
-    for(i = 0; i < NumPart; i++)
-	    for(j = 0; j < 3; j++)
-	      P[i].Vel[j] *= sqrt(All.Time) * All.Time;
-  }
+    {
+      for(i = 0; i < NumPart; i++)
+	for(j = 0; j < 3; j++)
+	  P[i].Vel[j] *= sqrt(All.Time) * All.Time;
+    }
 
   for(i = 0; i < NumPart; i++)	/*  start-up initialization */
-  {
-    for(j = 0; j < 3; j++)
-	    P[i].GravAccel[j] = 0;
+    {
+      for(j = 0; j < 3; j++)
+	P[i].GravAccel[j] = 0;
 #ifdef PMGRID
-    for(j = 0; j < 3; j++)
-	    P[i].GravPM[j] = 0;
+      for(j = 0; j < 3; j++)
+	P[i].GravPM[j] = 0;
 #endif
-    P[i].Ti_endstep = 0;
-    P[i].Ti_begstep = 0;
+      P[i].Ti_endstep = 0;
+      P[i].Ti_begstep = 0;
 
-    P[i].OldAcc = 0;
-    P[i].GravCost = 1;
-    P[i].Potential = 0;
-  }
+      P[i].OldAcc = 0;
+      P[i].GravCost = 1;
+      P[i].Potential = 0;
+    }
 
 #ifdef PMGRID
   All.PM_Ti_endstep = All.PM_Ti_begstep = 0;
@@ -103,28 +103,28 @@ void init(void)
 #ifdef FLEXSTEPS
   All.PresentMinStep = TIMEBASE;
   for(i = 0; i < NumPart; i++)	/*  start-up initialization */
-  {
-    P[i].FlexStepGrp = (int) (TIMEBASE * get_random_number(P[i].ID));
-  }
+    {
+      P[i].FlexStepGrp = (int) (TIMEBASE * get_random_number(P[i].ID));
+    }
 #endif
 
 
   for(i = 0; i < N_gas; i++)	/* initialize sph_properties */
-  {
-    for(j = 0; j < 3; j++)
-	  {
-	    SphP[i].VelPred[j] = P[i].Vel[j];
-	    SphP[i].HydroAccel[j] = 0;
-	  }
+    {
+      for(j = 0; j < 3; j++)
+	{
+	  SphP[i].VelPred[j] = P[i].Vel[j];
+	  SphP[i].HydroAccel[j] = 0;
+	}
 
-    SphP[i].DtEntropy = 0;
+      SphP[i].DtEntropy = 0;
 
-    if(RestartFlag == 0)
-	  {
-	    SphP[i].Hsml = 0;
-	    SphP[i].Density = -1;
-	  }
-  }
+      if(RestartFlag == 0)
+	{
+	  SphP[i].Hsml = 0;
+	  SphP[i].Density = -1;
+	}
+    }
 
   ngb_treeallocate(MAX_NGB);
 
@@ -136,7 +136,7 @@ void init(void)
 
   domain_Decomposition();	/* do initial domain decomposition (gives equal numbers of particles) */
 
-  ngb_treebuild();		/* will build tree */ 
+  ngb_treebuild();		/* will build tree */
 
   setup_smoothinglengths();
 
@@ -200,33 +200,32 @@ void setup_smoothinglengths(void)
   int i, no, p;
 
   if(RestartFlag == 0)
-  {
+    {
 
-    for(i = 0; i < N_gas; i++)
-	  {
-	    no = Father[i];
+      for(i = 0; i < N_gas; i++)
+	{
+	  no = Father[i];
 
-	    while(10 * All.DesNumNgb * P[i].Mass > Nodes[no].u.d.mass)
+	  while(10 * All.DesNumNgb * P[i].Mass > Nodes[no].u.d.mass)
 	    {
 	      p = Nodes[no].u.d.father;
 
 	      if(p < 0)
-		      break;
+		break;
 
 	      no = p;
 	    }
 #ifndef TWODIMS
-	    SphP[i].Hsml =
-	      pow(3.0 / (4 * M_PI) * All.DesNumNgb * P[i].Mass / Nodes[no].u.d.mass, 1.0 / 3) * Nodes[no].len;
+	  SphP[i].Hsml =
+	    pow(3.0 / (4 * M_PI) * All.DesNumNgb * P[i].Mass / Nodes[no].u.d.mass, 1.0 / 3) * Nodes[no].len;
 #else
-	    SphP[i].Hsml =
-	      pow(1.0 / (M_PI) * All.DesNumNgb * P[i].Mass / Nodes[no].u.d.mass, 1.0 / 2) * Nodes[no].len;
+	  SphP[i].Hsml =
+	    pow(1.0 / (M_PI) * All.DesNumNgb * P[i].Mass / Nodes[no].u.d.mass, 1.0 / 2) * Nodes[no].len;
 #endif
-	  }
-  }
-  printf("checkpoint2");
+	}
+    }
+
   density();
-  printf("checkpoint3");
 }
 
 

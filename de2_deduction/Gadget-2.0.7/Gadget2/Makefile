@@ -99,8 +99,8 @@ SYSTYPE="zzc"
 ifeq ($(SYSTYPE),"zzc")
 CC       =  mpicc
 OPTIMIZE =  -O3 -Wall
-GSL_INCL =  -I/home/rui/library/gsl/include
-GSL_LIBS =  -L/home/rui/library/gsl/lib
+GSL_INCL =  -I/usr/include/
+GSL_LIBS =  -L/usr/
 FFTW_INCL = -I/home/rui/library/fftw2/include
 FFTW_LIBS = -L/home/rui/library/fftw2/lib
 #FFTW3_INCL = -I/home/zzc/fftw3/include

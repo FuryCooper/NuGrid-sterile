@@ -38,54 +38,54 @@ void move_particles(int time0, int time1)
   t0 = second();
 
   if(All.ComovingIntegrationOn)
-  {
-    dt_drift = get_drift_factor(time0, time1);
-    dt_gravkick = get_gravkick_factor(time0, time1);
-    dt_hydrokick = get_hydrokick_factor(time0, time1);
-  }
+    {
+      dt_drift = get_drift_factor(time0, time1);
+      dt_gravkick = get_gravkick_factor(time0, time1);
+      dt_hydrokick = get_hydrokick_factor(time0, time1);
+    }
   else
-  {
-    dt_drift = dt_gravkick = dt_hydrokick = (time1 - time0) * All.Timebase_interval;
-  }
+    {
+      dt_drift = dt_gravkick = dt_hydrokick = (time1 - time0) * All.Timebase_interval;
+    }
 
   for(i = 0; i < NumPart; i++)
-  {
-    for(j = 0; j < 3; j++)
-	  P[i].Pos[j] += P[i].Vel[j] * dt_drift;
+    {
+      for(j = 0; j < 3; j++)
+	P[i].Pos[j] += P[i].Vel[j] * dt_drift;
 
-    if(P[i].Type == 0)
-	  {
+      if(P[i].Type == 0)
+	{
 #ifdef PMGRID
-	    for(j = 0; j < 3; j++)
-	      SphP[i].VelPred[j] +=
-	        (P[i].GravAccel[j] + P[i].GravPM[j]) * dt_gravkick + SphP[i].HydroAccel[j] * dt_hydrokick;
+	  for(j = 0; j < 3; j++)
+	    SphP[i].VelPred[j] +=
+	      (P[i].GravAccel[j] + P[i].GravPM[j]) * dt_gravkick + SphP[i].HydroAccel[j] * dt_hydrokick;
 #else
-	    for(j = 0; j < 3; j++)
-	      SphP[i].VelPred[j] += P[i].GravAccel[j] * dt_gravkick + SphP[i].HydroAccel[j] * dt_hydrokick;
+	  for(j = 0; j < 3; j++)
+	    SphP[i].VelPred[j] += P[i].GravAccel[j] * dt_gravkick + SphP[i].HydroAccel[j] * dt_hydrokick;
 #endif
-	    SphP[i].Density *= exp(-SphP[i].DivVel * dt_drift);
-	    SphP[i].Hsml *= exp(0.333333333333 * SphP[i].DivVel * dt_drift);
+	  SphP[i].Density *= exp(-SphP[i].DivVel * dt_drift);
+	  SphP[i].Hsml *= exp(0.333333333333 * SphP[i].DivVel * dt_drift);
 
-	    if(SphP[i].Hsml < All.MinGasHsml)
-	      SphP[i].Hsml = All.MinGasHsml;
+	  if(SphP[i].Hsml < All.MinGasHsml)
+	    SphP[i].Hsml = All.MinGasHsml;
 
-	    dt_entr = (time1 - (P[i].Ti_begstep + P[i].Ti_endstep) / 2) * All.Timebase_interval;
+	  dt_entr = (time1 - (P[i].Ti_begstep + P[i].Ti_endstep) / 2) * All.Timebase_interval;
 
-	    SphP[i].Pressure = (SphP[i].Entropy + SphP[i].DtEntropy * dt_entr) * pow(SphP[i].Density, GAMMA);
-	  }
-  }
+	  SphP[i].Pressure = (SphP[i].Entropy + SphP[i].DtEntropy * dt_entr) * pow(SphP[i].Density, GAMMA);
+	}
+    }
 
   /* if domain-decomp and tree are not going to be reconstructed, update dynamically.  */
   if(All.NumForcesSinceLastDomainDecomp < All.TotNumPart * All.TreeDomainUpdateFrequency)
-  {
-    for(i = 0; i < Numnodestree; i++)
-	    for(j = 0; j < 3; j++)
-	      Nodes[All.MaxPart + i].u.d.s[j] += Extnodes[All.MaxPart + i].vs[j] * dt_drift;
+    {
+      for(i = 0; i < Numnodestree; i++)
+	for(j = 0; j < 3; j++)
+	  Nodes[All.MaxPart + i].u.d.s[j] += Extnodes[All.MaxPart + i].vs[j] * dt_drift;
 
-    force_update_len();
+      force_update_len();
 
-    force_update_pseudoparticles();
-  }
+      force_update_pseudoparticles();
+    }
 
   t1 = second();
 
@@ -120,12 +120,12 @@ void do_box_wrapping(void)
 
   for(i = 0; i < NumPart; i++)
     for(j = 0; j < 3; j++)
-    {
-	    while(P[i].Pos[j] < 0)
-	      P[i].Pos[j] += boxsize[j];
+      {
+	while(P[i].Pos[j] < 0)
+	  P[i].Pos[j] += boxsize[j];
 
-	    while(P[i].Pos[j] >= boxsize[j])
-	      P[i].Pos[j] -= boxsize[j];
-    }
+	while(P[i].Pos[j] >= boxsize[j])
+	  P[i].Pos[j] -= boxsize[j];
+      }
 }
 #endif

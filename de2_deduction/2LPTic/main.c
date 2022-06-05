@@ -98,7 +98,7 @@ int main(int argc, char **argv)
 	printf("Here are the masses: Hierarchy %d ", mass_hierarchy);
 	for (int i = 0; i < NNeutrino; i++)
 	{
-		printf("m%d %f ", i, Xi[i]);
+		printf("m%d %f ", i, Mass[i]);
 	}
 	printf("\n");
 	
@@ -113,6 +113,7 @@ int main(int argc, char **argv)
 		for (int i = 0; i < NNeutrino; i++)
 		{
 			Omega_nu0_expan += neutrino_integration(1.0, Mass[i], Xi[i]);
+			printf("%d %f \n", i, Omega_nu0_expan);
 		}
 		
 	}

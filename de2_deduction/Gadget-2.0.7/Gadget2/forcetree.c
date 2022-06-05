@@ -60,15 +60,15 @@ static double fac_intp;
  */
 int force_treebuild(int npart)
 {
-  	Numnodestree = force_treebuild_single(npart);
+  Numnodestree = force_treebuild_single(npart);
 
-  	force_update_pseudoparticles();
+  force_update_pseudoparticles();
 
-  	force_flag_localnodes();
+  force_flag_localnodes();
 
-  	TimeOfLastTreeConstruction = All.Time;
+  TimeOfLastTreeConstruction = All.Time;
 
-  	return Numnodestree;
+  return Numnodestree;
 }
 
 
@@ -92,192 +92,192 @@ int force_treebuild(int npart)
  */
 int force_treebuild_single(int npart)
 {
-  	int i, j, subnode = 0, parent, numnodes;
-  	int nfree, th, nn, no;
-  	struct NODE *nfreep;
-  	double lenhalf, epsilon;
-  	peanokey key;
+  int i, j, subnode = 0, parent, numnodes;
+  int nfree, th, nn, no;
+  struct NODE *nfreep;
+  double lenhalf, epsilon;
+  peanokey key;
 
 
-  	/* create an empty root node  */
-  	nfree = All.MaxPart;		/* index of first free node */
-  	nfreep = &Nodes[nfree];	/* select first node */
+  /* create an empty root node  */
+  nfree = All.MaxPart;		/* index of first free node */
+  nfreep = &Nodes[nfree];	/* select first node */
 
-  	nfreep->len = DomainLen;
-  	for(j = 0; j < 3; j++)
-    	nfreep->center[j] = DomainCenter[j];
-  	for(j = 0; j < 8; j++)
-    	nfreep->u.suns[j] = -1;
-
-
-  	numnodes = 1;
-  	nfreep++;
-  	nfree++;
-
-  	/* create a set of empty nodes corresponding to the top-level domain
-   	* grid. We need to generate these nodes first to make sure that we have a
-   	* complete top-level tree which allows the easy insertion of the
-	* pseudo-particles at the right place 
-   	*/
-
-  	force_create_empty_nodes(All.MaxPart, 0, 1, 0, 0, 0, &numnodes, &nfree);
+  nfreep->len = DomainLen;
+  for(j = 0; j < 3; j++)
+    nfreep->center[j] = DomainCenter[j];
+  for(j = 0; j < 8; j++)
+    nfreep->u.suns[j] = -1;
 
 
-  	/* if a high-resolution region in a global tree is used, we need to generate
-   	* an additional set empty nodes to make sure that we have a complete
-   	* top-level tree for the high-resolution inset
-   	*/
+  numnodes = 1;
+  nfreep++;
+  nfree++;
 
-  	nfreep = &Nodes[nfree];
-  	parent = -1;			/* note: will not be used below before it is changed */
+  /* create a set of empty nodes corresponding to the top-level domain
+   * grid. We need to generate these nodes first to make sure that we have a
+   * complete top-level tree which allows the easy insertion of the
+   * pseudo-particles at the right place 
+   */
+
+  force_create_empty_nodes(All.MaxPart, 0, 1, 0, 0, 0, &numnodes, &nfree);
 
 
-  	/* now we insert all particles */
-  	for(i = 0; i < npart; i++)
+  /* if a high-resolution region in a global tree is used, we need to generate
+   * an additional set empty nodes to make sure that we have a complete
+   * top-level tree for the high-resolution inset
+   */
+
+  nfreep = &Nodes[nfree];
+  parent = -1;			/* note: will not be used below before it is changed */
+
+
+  /* now we insert all particles */
+  for(i = 0; i < npart; i++)
     {
 
-      	/* the softening is only used to check whether particles are so close
-       	* that the tree needs not to be refined further
-       	*/
-      	epsilon = All.ForceSoftening[P[i].Type];
+      /* the softening is only used to check whether particles are so close
+       * that the tree needs not to be refined further
+       */
+      epsilon = All.ForceSoftening[P[i].Type];
 
-      	key = peano_hilbert_key((P[i].Pos[0] - DomainCorner[0]) * DomainFac,
+      key = peano_hilbert_key((P[i].Pos[0] - DomainCorner[0]) * DomainFac,
 			      (P[i].Pos[1] - DomainCorner[1]) * DomainFac,
 			      (P[i].Pos[2] - DomainCorner[2]) * DomainFac, BITS_PER_DIMENSION);
 
-      	no = 0;
-      	while(TopNodes[no].Daughter >= 0)
-			no = TopNodes[no].Daughter + (key - TopNodes[no].StartKey) / (TopNodes[no].Size / 8);
+      no = 0;
+      while(TopNodes[no].Daughter >= 0)
+	no = TopNodes[no].Daughter + (key - TopNodes[no].StartKey) / (TopNodes[no].Size / 8);
 
-      	no = TopNodes[no].Leaf;
-      	th = DomainNodeIndex[no];
+      no = TopNodes[no].Leaf;
+      th = DomainNodeIndex[no];
 
-      	while(1)
+      while(1)
+	{
+	  if(th >= All.MaxPart)	/* we are dealing with an internal node */
+	    {
+	      subnode = 0;
+	      if(P[i].Pos[0] > Nodes[th].center[0])
+		subnode += 1;
+	      if(P[i].Pos[1] > Nodes[th].center[1])
+		subnode += 2;
+	      if(P[i].Pos[2] > Nodes[th].center[2])
+		subnode += 4;
+
+	      nn = Nodes[th].u.suns[subnode];
+
+	      if(nn >= 0)	/* ok, something is in the daughter slot already, need to continue */
 		{
-	  		if(th >= All.MaxPart)	/* we are dealing with an internal node */
-	    	{
-	      			subnode = 0;
-	      		if(P[i].Pos[0] > Nodes[th].center[0])
-					subnode += 1;
-	      		if(P[i].Pos[1] > Nodes[th].center[1])
-					subnode += 2;
-	      		if(P[i].Pos[2] > Nodes[th].center[2])
-					subnode += 4;
-
-	      		nn = Nodes[th].u.suns[subnode];
-
-	      		if(nn >= 0)	/* ok, something is in the daughter slot already, need to continue */
-				{
-		  			parent = th;
-		  			th = nn;
-				}
-	      		else
-				{
-		  			/* here we have found an empty slot where we can attach
-		   			* the new particle as a leaf.
-		   			*/
-		  			Nodes[th].u.suns[subnode] = i;
-		  			break;	/* done for this particle */
-				}
-	    	}
-	  		else
-	    	{
-	      		/* We try to insert into a leaf with a single particle.  Need
-	       		* to generate a new internal node at this point.
-	       		*/
-	      		Nodes[parent].u.suns[subnode] = nfree;
-
-	      		nfreep->len = 0.5 * Nodes[parent].len;
-	      		lenhalf = 0.25 * Nodes[parent].len;
-
-	      		if(subnode & 1)
-					nfreep->center[0] = Nodes[parent].center[0] + lenhalf;
-	      		else
-					nfreep->center[0] = Nodes[parent].center[0] - lenhalf;
-
-	      		if(subnode & 2)
-					nfreep->center[1] = Nodes[parent].center[1] + lenhalf;
-	      		else
-					nfreep->center[1] = Nodes[parent].center[1] - lenhalf;
-
-	      		if(subnode & 4)
-					nfreep->center[2] = Nodes[parent].center[2] + lenhalf;
-	      		else
-					nfreep->center[2] = Nodes[parent].center[2] - lenhalf;
-
-	      		nfreep->u.suns[0] = -1;
-	      		nfreep->u.suns[1] = -1;
-	      		nfreep->u.suns[2] = -1;
-	      		nfreep->u.suns[3] = -1;
-	      		nfreep->u.suns[4] = -1;
-	      		nfreep->u.suns[5] = -1;
-	      		nfreep->u.suns[6] = -1;
-	      		nfreep->u.suns[7] = -1;
-
-
-	      		subnode = 0;
-	      		if(P[th].Pos[0] > nfreep->center[0])
-					subnode += 1;
-	      		if(P[th].Pos[1] > nfreep->center[1])
-					subnode += 2;
-	      		if(P[th].Pos[2] > nfreep->center[2])
-					subnode += 4;
-#ifndef NOTREERND
-	      		if(nfreep->len < 1.0e-3 * epsilon)
-				{
-		  			/* seems like we're dealing with particles at identical (or extremely close)
-		   			* locations. Randomize subnode index to allow tree construction. Note: Multipole moments
-		   			* of tree are still correct, but this will only happen well below gravitational softening
-		   			* length-scale anyway.
-		   			*/
-		  			subnode = (int) (8.0 * get_random_number((0xffff & P[i].ID) + P[i].GravCost));
-		  			P[i].GravCost += 1;
-		  			if(subnode >= 8)
-		    			subnode = 7;
-				}
-#endif
-	      		nfreep->u.suns[subnode] = th;
-
-	      		th = nfree;	/* resume trying to insert the new particle at
-				 			* the newly created internal node
-							 */
-
-	      		numnodes++;
-	      		nfree++;
-	      		nfreep++;
-
-	      		if((numnodes) >= MaxNodes)
-				{
-		  			printf("task %d: maximum number %d of tree-nodes reached.\n", ThisTask, MaxNodes);
-		  			printf("for particle %d\n", i);
-		  			dump_particles();
-		  			endrun(1);
-				}
-	    	}
+		  parent = th;
+		  th = nn;
 		}
+	      else
+		{
+		  /* here we have found an empty slot where we can attach
+		   * the new particle as a leaf.
+		   */
+		  Nodes[th].u.suns[subnode] = i;
+		  break;	/* done for this particle */
+		}
+	    }
+	  else
+	    {
+	      /* We try to insert into a leaf with a single particle.  Need
+	       * to generate a new internal node at this point.
+	       */
+	      Nodes[parent].u.suns[subnode] = nfree;
+
+	      nfreep->len = 0.5 * Nodes[parent].len;
+	      lenhalf = 0.25 * Nodes[parent].len;
+
+	      if(subnode & 1)
+		nfreep->center[0] = Nodes[parent].center[0] + lenhalf;
+	      else
+		nfreep->center[0] = Nodes[parent].center[0] - lenhalf;
+
+	      if(subnode & 2)
+		nfreep->center[1] = Nodes[parent].center[1] + lenhalf;
+	      else
+		nfreep->center[1] = Nodes[parent].center[1] - lenhalf;
+
+	      if(subnode & 4)
+		nfreep->center[2] = Nodes[parent].center[2] + lenhalf;
+	      else
+		nfreep->center[2] = Nodes[parent].center[2] - lenhalf;
+
+	      nfreep->u.suns[0] = -1;
+	      nfreep->u.suns[1] = -1;
+	      nfreep->u.suns[2] = -1;
+	      nfreep->u.suns[3] = -1;
+	      nfreep->u.suns[4] = -1;
+	      nfreep->u.suns[5] = -1;
+	      nfreep->u.suns[6] = -1;
+	      nfreep->u.suns[7] = -1;
+
+
+	      subnode = 0;
+	      if(P[th].Pos[0] > nfreep->center[0])
+		subnode += 1;
+	      if(P[th].Pos[1] > nfreep->center[1])
+		subnode += 2;
+	      if(P[th].Pos[2] > nfreep->center[2])
+		subnode += 4;
+#ifndef NOTREERND
+	      if(nfreep->len < 1.0e-3 * epsilon)
+		{
+		  /* seems like we're dealing with particles at identical (or extremely close)
+		   * locations. Randomize subnode index to allow tree construction. Note: Multipole moments
+		   * of tree are still correct, but this will only happen well below gravitational softening
+		   * length-scale anyway.
+		   */
+		  subnode = (int) (8.0 * get_random_number((0xffff & P[i].ID) + P[i].GravCost));
+		  P[i].GravCost += 1;
+		  if(subnode >= 8)
+		    subnode = 7;
+		}
+#endif
+	      nfreep->u.suns[subnode] = th;
+
+	      th = nfree;	/* resume trying to insert the new particle at
+				 * the newly created internal node
+				 */
+
+	      numnodes++;
+	      nfree++;
+	      nfreep++;
+
+	      if((numnodes) >= MaxNodes)
+		{
+		  printf("task %d: maximum number %d of tree-nodes reached.\n", ThisTask, MaxNodes);
+		  printf("for particle %d\n", i);
+		  dump_particles();
+		  endrun(1);
+		}
+	    }
+	}
     }
 
 
-  	/* insert the pseudo particles that represent the mass distribution of other domains */
-  	force_insert_pseudo_particles();
+  /* insert the pseudo particles that represent the mass distribution of other domains */
+  force_insert_pseudo_particles();
 
 
-  	/* now compute the multipole moments recursively */
-  	last = -1;
+  /* now compute the multipole moments recursively */
+  last = -1;
 
-  	force_update_node_recursive(All.MaxPart, -1, -1);
+  force_update_node_recursive(All.MaxPart, -1, -1);
 
-  	if(last >= All.MaxPart)
+  if(last >= All.MaxPart)
     {
-      	if(last >= All.MaxPart + MaxNodes)	/* a pseudo-particle */
-			Nextnode[last - MaxNodes] = -1;
-      	else
-			Nodes[last].u.d.nextnode = -1;
+      if(last >= All.MaxPart + MaxNodes)	/* a pseudo-particle */
+	Nextnode[last - MaxNodes] = -1;
+      else
+	Nodes[last].u.d.nextnode = -1;
     }
-  	else
-    	Nextnode[last] = -1;
+  else
+    Nextnode[last] = -1;
 
-  	return numnodes;
+  return numnodes;
 }
 
 
@@ -292,44 +292,44 @@ int force_treebuild_single(int npart)
 void force_create_empty_nodes(int no, int topnode, int bits, int x, int y, int z, int *nodecount,
 			      int *nextfree)
 {
-  	int i, j, k, n, sub, count;
+  int i, j, k, n, sub, count;
 
-  	if(TopNodes[topnode].Daughter >= 0)
+  if(TopNodes[topnode].Daughter >= 0)
     {
-      	for(i = 0; i < 2; i++)
-		for(j = 0; j < 2; j++)
-	  	for(k = 0; k < 2; k++)
-	    	{
-	      	sub = 7 & peano_hilbert_key((x << 1) + i, (y << 1) + j, (z << 1) + k, bits);
+      for(i = 0; i < 2; i++)
+	for(j = 0; j < 2; j++)
+	  for(k = 0; k < 2; k++)
+	    {
+	      sub = 7 & peano_hilbert_key((x << 1) + i, (y << 1) + j, (z << 1) + k, bits);
 
-	      	count = i + 2 * j + 4 * k;
+	      count = i + 2 * j + 4 * k;
 
-	      	Nodes[no].u.suns[count] = *nextfree;
+	      Nodes[no].u.suns[count] = *nextfree;
 
 
-	      	Nodes[*nextfree].len = 0.5 * Nodes[no].len;
-	      	Nodes[*nextfree].center[0] = Nodes[no].center[0] + (2 * i - 1) * 0.25 * Nodes[no].len;
-	     	Nodes[*nextfree].center[1] = Nodes[no].center[1] + (2 * j - 1) * 0.25 * Nodes[no].len;
-	      	Nodes[*nextfree].center[2] = Nodes[no].center[2] + (2 * k - 1) * 0.25 * Nodes[no].len;
+	      Nodes[*nextfree].len = 0.5 * Nodes[no].len;
+	      Nodes[*nextfree].center[0] = Nodes[no].center[0] + (2 * i - 1) * 0.25 * Nodes[no].len;
+	      Nodes[*nextfree].center[1] = Nodes[no].center[1] + (2 * j - 1) * 0.25 * Nodes[no].len;
+	      Nodes[*nextfree].center[2] = Nodes[no].center[2] + (2 * k - 1) * 0.25 * Nodes[no].len;
 
-	      	for(n = 0; n < 8; n++)
-				Nodes[*nextfree].u.suns[n] = -1;
+	      for(n = 0; n < 8; n++)
+		Nodes[*nextfree].u.suns[n] = -1;
 
-	      	if(TopNodes[TopNodes[topnode].Daughter + sub].Daughter == -1)
-				DomainNodeIndex[TopNodes[TopNodes[topnode].Daughter + sub].Leaf] = *nextfree;
+	      if(TopNodes[TopNodes[topnode].Daughter + sub].Daughter == -1)
+		DomainNodeIndex[TopNodes[TopNodes[topnode].Daughter + sub].Leaf] = *nextfree;
 
-	      	*nextfree = *nextfree + 1;
-	      	*nodecount = *nodecount + 1;
+	      *nextfree = *nextfree + 1;
+	      *nodecount = *nodecount + 1;
 
-	      	if((*nodecount) >= MaxNodes)
-			{
-		 	 	printf("task %d: maximum number %d of tree-nodes reached.\n", ThisTask, MaxNodes);
-		  		printf("in create empty nodes\n");
-		 		dump_particles();
-		  		endrun(11);
-			}
+	      if((*nodecount) >= MaxNodes)
+		{
+		  printf("task %d: maximum number %d of tree-nodes reached.\n", ThisTask, MaxNodes);
+		  printf("in create empty nodes\n");
+		  dump_particles();
+		  endrun(11);
+		}
 
-	      	force_create_empty_nodes(*nextfree - 1, TopNodes[topnode].Daughter + sub,
+	      force_create_empty_nodes(*nextfree - 1, TopNodes[topnode].Daughter + sub,
 				       bits + 1, 2 * x + i, 2 * y + j, 2 * z + k, nodecount, nextfree);
 	    }
     }
@@ -345,61 +345,61 @@ void force_create_empty_nodes(int no, int topnode, int bits, int x, int y, int z
  */
 void force_insert_pseudo_particles(void)
 {
-  	int i, index, subnode, nn, th;
+  int i, index, subnode, nn, th;
 
-  	for(i = 0; i < NTopleaves; i++)
+  for(i = 0; i < NTopleaves; i++)
     {
-      	index = DomainNodeIndex[i];
+      index = DomainNodeIndex[i];
 
-      	DomainMoment[i].mass = 0;
-      	DomainMoment[i].s[0] = Nodes[index].center[0];
-      	DomainMoment[i].s[1] = Nodes[index].center[1];
-      	DomainMoment[i].s[2] = Nodes[index].center[2];
+      DomainMoment[i].mass = 0;
+      DomainMoment[i].s[0] = Nodes[index].center[0];
+      DomainMoment[i].s[1] = Nodes[index].center[1];
+      DomainMoment[i].s[2] = Nodes[index].center[2];
     }
 
-  	for(i = 0; i < NTopleaves; i++)
+  for(i = 0; i < NTopleaves; i++)
     {
-      	if(i < DomainMyStart || i > DomainMyLast)
+      if(i < DomainMyStart || i > DomainMyLast)
+	{
+	  th = All.MaxPart;	/* select index of first node in tree */
+
+	  while(1)
+	    {
+	      if(th >= All.MaxPart)	/* we are dealing with an internal node */
 		{
-	  		th = All.MaxPart;	/* select index of first node in tree */
+		  if(th >= All.MaxPart + MaxNodes)
+		    endrun(888);	/* this can't be */
 
-	  		while(1)
-	    	{
-	      		if(th >= All.MaxPart)	/* we are dealing with an internal node */
-				{
-		  			if(th >= All.MaxPart + MaxNodes)
-		    			endrun(888);	/* this can't be */
+		  subnode = 0;
+		  if(DomainMoment[i].s[0] > Nodes[th].center[0])
+		    subnode += 1;
+		  if(DomainMoment[i].s[1] > Nodes[th].center[1])
+		    subnode += 2;
+		  if(DomainMoment[i].s[2] > Nodes[th].center[2])
+		    subnode += 4;
 
-		  			subnode = 0;
-		  			if(DomainMoment[i].s[0] > Nodes[th].center[0])
-		    			subnode += 1;
-		  			if(DomainMoment[i].s[1] > Nodes[th].center[1])
-		    			subnode += 2;
-		  			if(DomainMoment[i].s[2] > Nodes[th].center[2])
-		    			subnode += 4;
+		  nn = Nodes[th].u.suns[subnode];
 
-		  			nn = Nodes[th].u.suns[subnode];
+		  if(nn >= 0)	/* ok, something is in the daughter slot already, need to continue */
+		    {
+		      th = nn;
+		    }
+		  else
+		    {
+		      /* here we have found an empty slot where we can 
+		       * attach the pseudo particle as a leaf 
+		       */
+		      Nodes[th].u.suns[subnode] = All.MaxPart + MaxNodes + i;
 
-		  			if(nn >= 0)	/* ok, something is in the daughter slot already, need to continue */
-		    		{
-		      			th = nn;
-		    		}
-		  			else
-		    		{
-		      			/* here we have found an empty slot where we can 
-		       			* attach the pseudo particle as a leaf 
-		       			*/
-		      			Nodes[th].u.suns[subnode] = All.MaxPart + MaxNodes + i;
-
-		      			break;	/* done for this pseudo particle */
-		    		}
-				}
-	      		else
-				{
-		  			endrun(889);	/* this can't be */
-				}
-	    	}
+		      break;	/* done for this pseudo particle */
+		    }
 		}
+	      else
+		{
+		  endrun(889);	/* this can't be */
+		}
+	    }
+	}
     }
 }
 
@@ -683,45 +683,45 @@ void force_update_pseudoparticles(void)
  */
 void force_exchange_pseudodata(void)
 {
-  	int i, no;
-  	MPI_Status status;
-  	int level, sendTask, recvTask;
+  int i, no;
+  MPI_Status status;
+  int level, sendTask, recvTask;
 
-  	for(i = DomainMyStart; i <= DomainMyLast; i++)
+  for(i = DomainMyStart; i <= DomainMyLast; i++)
     {
-      	no = DomainNodeIndex[i];
+      no = DomainNodeIndex[i];
 
-      	/* read out the multipole moments from the local base cells */
-      	DomainMoment[i].s[0] = Nodes[no].u.d.s[0];
-      	DomainMoment[i].s[1] = Nodes[no].u.d.s[1];
-      	DomainMoment[i].s[2] = Nodes[no].u.d.s[2];
-      	DomainMoment[i].vs[0] = Extnodes[no].vs[0];
-      	DomainMoment[i].vs[1] = Extnodes[no].vs[1];
-      	DomainMoment[i].vs[2] = Extnodes[no].vs[2];
-      	DomainMoment[i].mass = Nodes[no].u.d.mass;
+      /* read out the multipole moments from the local base cells */
+      DomainMoment[i].s[0] = Nodes[no].u.d.s[0];
+      DomainMoment[i].s[1] = Nodes[no].u.d.s[1];
+      DomainMoment[i].s[2] = Nodes[no].u.d.s[2];
+      DomainMoment[i].vs[0] = Extnodes[no].vs[0];
+      DomainMoment[i].vs[1] = Extnodes[no].vs[1];
+      DomainMoment[i].vs[2] = Extnodes[no].vs[2];
+      DomainMoment[i].mass = Nodes[no].u.d.mass;
 #ifdef UNEQUALSOFTENINGS
 #ifndef ADAPTIVE_GRAVSOFT_FORGAS
-      	DomainMoment[i].bitflags = Nodes[no].u.d.bitflags;
+      DomainMoment[i].bitflags = Nodes[no].u.d.bitflags;
 #else
-      	DomainMoment[i].maxsoft = Nodes[no].maxsoft;
+      DomainMoment[i].maxsoft = Nodes[no].maxsoft;
 #endif
 #endif
     }
 
-  	/* share the pseudo-particle data accross CPUs */
+  /* share the pseudo-particle data accross CPUs */
 
- 	for(level = 1; level < (1 << PTask); level++)
+  for(level = 1; level < (1 << PTask); level++)
     {
-      	sendTask = ThisTask;
-      	recvTask = ThisTask ^ level;
+      sendTask = ThisTask;
+      recvTask = ThisTask ^ level;
 
-      	if(recvTask < NTask)
-			MPI_Sendrecv(&DomainMoment[DomainStartList[sendTask]],
-		     	(DomainEndList[sendTask] - DomainStartList[sendTask] + 1) * sizeof(struct DomainNODE),
-		     	MPI_BYTE, recvTask, TAG_DMOM,
-		     	&DomainMoment[DomainStartList[recvTask]],
-		     	(DomainEndList[recvTask] - DomainStartList[recvTask] + 1) * sizeof(struct DomainNODE),
-		     	MPI_BYTE, recvTask, TAG_DMOM, MPI_COMM_WORLD, &status);
+      if(recvTask < NTask)
+	MPI_Sendrecv(&DomainMoment[DomainStartList[sendTask]],
+		     (DomainEndList[sendTask] - DomainStartList[sendTask] + 1) * sizeof(struct DomainNODE),
+		     MPI_BYTE, recvTask, TAG_DMOM,
+		     &DomainMoment[DomainStartList[recvTask]],
+		     (DomainEndList[recvTask] - DomainStartList[recvTask] + 1) * sizeof(struct DomainNODE),
+		     MPI_BYTE, recvTask, TAG_DMOM, MPI_COMM_WORLD, &status);
     }
 
 }
@@ -731,99 +731,99 @@ void force_exchange_pseudodata(void)
  */
 void force_treeupdate_pseudos(void)
 {
-  	int i, k, no;
-  	FLOAT sold[3], vsold[3], snew[3], vsnew[3], massold, massnew, mm;
+  int i, k, no;
+  FLOAT sold[3], vsold[3], snew[3], vsnew[3], massold, massnew, mm;
 
 #ifdef UNEQUALSOFTENINGS
 #ifndef ADAPTIVE_GRAVSOFT_FORGAS
-  	int maxsofttype, diffsoftflag;
+  int maxsofttype, diffsoftflag;
 #else
-  	FLOAT maxsoft;
+  FLOAT maxsoft;
 #endif
 #endif
 
-  	for(i = 0; i < NTopleaves; i++)
-    	if(i < DomainMyStart || i > DomainMyLast)
-      	{
-			no = DomainNodeIndex[i];
+  for(i = 0; i < NTopleaves; i++)
+    if(i < DomainMyStart || i > DomainMyLast)
+      {
+	no = DomainNodeIndex[i];
 
-			for(k = 0; k < 3; k++)
-	  		{
-	    		sold[k] = Nodes[no].u.d.s[k];
-	    		vsold[k] = Extnodes[no].vs[k];
-	  		}
-			massold = Nodes[no].u.d.mass;
+	for(k = 0; k < 3; k++)
+	  {
+	    sold[k] = Nodes[no].u.d.s[k];
+	    vsold[k] = Extnodes[no].vs[k];
+	  }
+	massold = Nodes[no].u.d.mass;
 
-			for(k = 0; k < 3; k++)
-	  		{
-	    		snew[k] = DomainMoment[i].s[k];
-	    		vsnew[k] = DomainMoment[i].vs[k];
-	  		}
-			massnew = DomainMoment[i].mass;
-
-
-#ifdef UNEQUALSOFTENINGS
-#ifndef ADAPTIVE_GRAVSOFT_FORGAS
-			maxsofttype = (DomainMoment[i].bitflags >> 2) & 7;
-			diffsoftflag = (DomainMoment[i].bitflags >> 5) & 1;
-#else
-			maxsoft = DomainMoment[i].maxsoft;
-#endif
-#endif
-			do
-	  		{
-	    		mm = Nodes[no].u.d.mass + massnew - massold;
-	    		for(k = 0; k < 3; k++)
-	      		{
-					if(mm > 0)
-		  			{
-		    			Nodes[no].u.d.s[k] =
-		      				(Nodes[no].u.d.mass * Nodes[no].u.d.s[k] + massnew * snew[k] - massold * sold[k]) / mm;
-		    			Extnodes[no].vs[k] =
-		      				(Nodes[no].u.d.mass * Extnodes[no].vs[k] + massnew * vsnew[k] -
-		       				massold * vsold[k]) / mm;
-		  			}
-	      		}
-	    		Nodes[no].u.d.mass = mm;
+	for(k = 0; k < 3; k++)
+	  {
+	    snew[k] = DomainMoment[i].s[k];
+	    vsnew[k] = DomainMoment[i].vs[k];
+	  }
+	massnew = DomainMoment[i].mass;
 
 
 #ifdef UNEQUALSOFTENINGS
 #ifndef ADAPTIVE_GRAVSOFT_FORGAS
-	    		diffsoftflag |= (Nodes[no].u.d.bitflags >> 5) & 1;
-
-	   		 	if(maxsofttype == 7)
-	      			maxsofttype = (Nodes[no].u.d.bitflags >> 2) & 7;
-	    		else
-	      		{
-					if(((Nodes[no].u.d.bitflags >> 2) & 7) != 7)
-		  			{
-		    			if(All.ForceSoftening[((Nodes[no].u.d.bitflags >> 2) & 7)] >
-		       				All.ForceSoftening[maxsofttype])
-		      			{
-							maxsofttype = ((Nodes[no].u.d.bitflags >> 2) & 7);
-							diffsoftflag = 1;
-		      			}
-		    			else
-		      			{
-						if(All.ForceSoftening[((Nodes[no].u.d.bitflags >> 2) & 7)] <
-			   				All.ForceSoftening[maxsofttype])
-			  				diffsoftflag = 1;
-		      			}
-		  			}
-	     		}
-
-	    		Nodes[no].u.d.bitflags = (Nodes[no].u.d.bitflags & 3) + 4 * maxsofttype + 32 * diffsoftflag;
+	maxsofttype = (DomainMoment[i].bitflags >> 2) & 7;
+	diffsoftflag = (DomainMoment[i].bitflags >> 5) & 1;
 #else
-	    		if(Nodes[no].maxsoft < maxsoft)
-	      			Nodes[no].maxsoft = maxsoft;
-	    		maxsoft = Nodes[no].maxsoft;
+	maxsoft = DomainMoment[i].maxsoft;
 #endif
 #endif
-	    		no = Nodes[no].u.d.father;
+	do
+	  {
+	    mm = Nodes[no].u.d.mass + massnew - massold;
+	    for(k = 0; k < 3; k++)
+	      {
+		if(mm > 0)
+		  {
+		    Nodes[no].u.d.s[k] =
+		      (Nodes[no].u.d.mass * Nodes[no].u.d.s[k] + massnew * snew[k] - massold * sold[k]) / mm;
+		    Extnodes[no].vs[k] =
+		      (Nodes[no].u.d.mass * Extnodes[no].vs[k] + massnew * vsnew[k] -
+		       massold * vsold[k]) / mm;
+		  }
+	      }
+	    Nodes[no].u.d.mass = mm;
 
-	  		}
-			while(no >= 0);
-      	}
+
+#ifdef UNEQUALSOFTENINGS
+#ifndef ADAPTIVE_GRAVSOFT_FORGAS
+	    diffsoftflag |= (Nodes[no].u.d.bitflags >> 5) & 1;
+
+	    if(maxsofttype == 7)
+	      maxsofttype = (Nodes[no].u.d.bitflags >> 2) & 7;
+	    else
+	      {
+		if(((Nodes[no].u.d.bitflags >> 2) & 7) != 7)
+		  {
+		    if(All.ForceSoftening[((Nodes[no].u.d.bitflags >> 2) & 7)] >
+		       All.ForceSoftening[maxsofttype])
+		      {
+			maxsofttype = ((Nodes[no].u.d.bitflags >> 2) & 7);
+			diffsoftflag = 1;
+		      }
+		    else
+		      {
+			if(All.ForceSoftening[((Nodes[no].u.d.bitflags >> 2) & 7)] <
+			   All.ForceSoftening[maxsofttype])
+			  diffsoftflag = 1;
+		      }
+		  }
+	      }
+
+	    Nodes[no].u.d.bitflags = (Nodes[no].u.d.bitflags & 3) + 4 * maxsofttype + 32 * diffsoftflag;
+#else
+	    if(Nodes[no].maxsoft < maxsoft)
+	      Nodes[no].maxsoft = maxsoft;
+	    maxsoft = Nodes[no].maxsoft;
+#endif
+#endif
+	    no = Nodes[no].u.d.father;
+
+	  }
+	while(no >= 0);
+      }
 }
 
 
@@ -833,45 +833,45 @@ void force_treeupdate_pseudos(void)
  */
 void force_flag_localnodes(void)
 {
-  	int no, i;
+  int no, i;
 
-  	/* mark all top-level nodes */
+  /* mark all top-level nodes */
 
-  	for(i = 0; i < NTopleaves; i++)
+  for(i = 0; i < NTopleaves; i++)
     {
-      	no = DomainNodeIndex[i];
+      no = DomainNodeIndex[i];
 
-      	while(no >= 0)
-		{
-	  		if((Nodes[no].u.d.bitflags & 1))
-	    		break;
+      while(no >= 0)
+	{
+	  if((Nodes[no].u.d.bitflags & 1))
+	    break;
 
-	  		Nodes[no].u.d.bitflags |= 1;
+	  Nodes[no].u.d.bitflags |= 1;
 
-	  		no = Nodes[no].u.d.father;
-		}
+	  no = Nodes[no].u.d.father;
+	}
     }
 
-  	/* mark top-level nodes that contain local particles */
+  /* mark top-level nodes that contain local particles */
 
-  	for(i = DomainMyStart; i <= DomainMyLast; i++)
+  for(i = DomainMyStart; i <= DomainMyLast; i++)
     {
-      	/*
-         	if(DomainMoment[i].mass > 0)
-       	*/
-     	{
-			no = DomainNodeIndex[i];
+      /*
+         if(DomainMoment[i].mass > 0)
+       */
+      {
+	no = DomainNodeIndex[i];
 
-			while(no >= 0)
-	  		{
-	    		if((Nodes[no].u.d.bitflags & 2))
-	      			break;
+	while(no >= 0)
+	  {
+	    if((Nodes[no].u.d.bitflags & 2))
+	      break;
 
-	    		Nodes[no].u.d.bitflags |= 2;
+	    Nodes[no].u.d.bitflags |= 2;
 
-	    		no = Nodes[no].u.d.father;
-	  		}
-      	}
+	    no = Nodes[no].u.d.father;
+	  }
+      }
     }
 }
 
@@ -884,36 +884,36 @@ void force_flag_localnodes(void)
  */
 void force_update_len(void)
 {
-  	int i, no;
-  	MPI_Status status;
-  	int level, sendTask, recvTask;
+  int i, no;
+  MPI_Status status;
+  int level, sendTask, recvTask;
 
-  	force_update_node_len_local();
+  force_update_node_len_local();
 
-  	/* first update the side-lengths of all local nodes */
-  	for(i = DomainMyStart; i <= DomainMyLast; i++)
+  /* first update the side-lengths of all local nodes */
+  for(i = DomainMyStart; i <= DomainMyLast; i++)
     {
-      	no = DomainNodeIndex[i];
+      no = DomainNodeIndex[i];
 
-      	DomainTreeNodeLen[i] = Nodes[no].len;
+      DomainTreeNodeLen[i] = Nodes[no].len;
     }
 
-  	for(level = 1; level < (1 << PTask); level++)
+  for(level = 1; level < (1 << PTask); level++)
     {
-      	sendTask = ThisTask;
-      	recvTask = ThisTask ^ level;
+      sendTask = ThisTask;
+      recvTask = ThisTask ^ level;
 
-      	if(recvTask < NTask)
-			MPI_Sendrecv(&DomainTreeNodeLen[DomainStartList[sendTask]],
-		     	(DomainEndList[sendTask] - DomainStartList[sendTask] + 1) * sizeof(FLOAT),
-		     	MPI_BYTE, recvTask, TAG_NODELEN,
-		     	&DomainTreeNodeLen[DomainStartList[recvTask]],
-		     	(DomainEndList[recvTask] - DomainStartList[recvTask] + 1) * sizeof(FLOAT),
-		     	MPI_BYTE, recvTask, TAG_NODELEN, MPI_COMM_WORLD, &status);
+      if(recvTask < NTask)
+	MPI_Sendrecv(&DomainTreeNodeLen[DomainStartList[sendTask]],
+		     (DomainEndList[sendTask] - DomainStartList[sendTask] + 1) * sizeof(FLOAT),
+		     MPI_BYTE, recvTask, TAG_NODELEN,
+		     &DomainTreeNodeLen[DomainStartList[recvTask]],
+		     (DomainEndList[recvTask] - DomainStartList[recvTask] + 1) * sizeof(FLOAT),
+		     MPI_BYTE, recvTask, TAG_NODELEN, MPI_COMM_WORLD, &status);
     }
 
-  	/* Finally, we update the top-level tree. */
-  	force_update_node_len_toptree();
+  /* Finally, we update the top-level tree. */
+  force_update_node_len_toptree();
 }
 
 
@@ -922,44 +922,44 @@ void force_update_len(void)
  */
 void force_update_node_len_local(void)
 {
-  	int i, p, k, no;
-  	FLOAT dist, distmax;
+  int i, p, k, no;
+  FLOAT dist, distmax;
 
-  	for(i = 0; i < NumPart; i++)
+  for(i = 0; i < NumPart; i++)
     {
-      	no = Father[i];
+      no = Father[i];
 
-      	for(k = 0, distmax = 0; k < 3; k++)
+      for(k = 0, distmax = 0; k < 3; k++)
+	{
+	  dist = P[i].Pos[k] - Nodes[no].center[k];
+	  if(dist < 0)
+	    dist = -dist;
+	  if(dist > distmax)
+	    distmax = dist;
+	}
+
+      if(distmax + distmax > Nodes[no].len)
+	{
+	  Nodes[no].len = distmax + distmax;
+	  p = Nodes[no].u.d.father;
+
+	  while(p >= 0)
+	    {
+	      distmax = Nodes[p].center[0] - Nodes[no].center[0];
+	      if(distmax < 0)
+		distmax = -distmax;
+	      distmax = distmax + distmax + Nodes[no].len;
+
+	      if(0.999999 * distmax > Nodes[p].len)
 		{
-	  		dist = P[i].Pos[k] - Nodes[no].center[k];
-	  		if(dist < 0)
-	   	 		dist = -dist;
-	  		if(dist > distmax)
-	    		distmax = dist;
+		  Nodes[p].len = distmax;
+		  no = p;
+		  p = Nodes[p].u.d.father;
 		}
-
-      	if(distmax + distmax > Nodes[no].len)
-		{
-	  		Nodes[no].len = distmax + distmax;
-	  		p = Nodes[no].u.d.father;
-
-	  		while(p >= 0)
-	    	{
-	      		distmax = Nodes[p].center[0] - Nodes[no].center[0];
-	      		if(distmax < 0)
-					distmax = -distmax;
-	      		distmax = distmax + distmax + Nodes[no].len;
-
-	      		if(0.999999 * distmax > Nodes[p].len)
-				{
-		  			Nodes[p].len = distmax;
-		  			no = p;
-		  			p = Nodes[p].u.d.father;
-				}
-	      		else
-					break;
-	   		}
-		}
+	      else
+		break;
+	    }
+	}
     }
 }
 
@@ -969,36 +969,36 @@ void force_update_node_len_local(void)
  */
 void force_update_node_len_toptree(void)
 {
-  	int i, no, p;
-  	FLOAT distmax;
+  int i, no, p;
+  FLOAT distmax;
 
-  	for(i = 0; i < NTopleaves; i++)
-    	if(i < DomainMyStart || i > DomainMyLast)
-      	{
-			no = DomainNodeIndex[i];
+  for(i = 0; i < NTopleaves; i++)
+    if(i < DomainMyStart || i > DomainMyLast)
+      {
+	no = DomainNodeIndex[i];
 
-			if(Nodes[no].len < DomainTreeNodeLen[i])
-	  			Nodes[no].len = DomainTreeNodeLen[i];
+	if(Nodes[no].len < DomainTreeNodeLen[i])
+	  Nodes[no].len = DomainTreeNodeLen[i];
 
-			p = Nodes[no].u.d.father;
+	p = Nodes[no].u.d.father;
 
-			while(p >= 0)
-	  		{
-	    		distmax = Nodes[p].center[0] - Nodes[no].center[0];
-	    		if(distmax < 0)
-	      			distmax = -distmax;
-	    		distmax = distmax + distmax + Nodes[no].len;
+	while(p >= 0)
+	  {
+	    distmax = Nodes[p].center[0] - Nodes[no].center[0];
+	    if(distmax < 0)
+	      distmax = -distmax;
+	    distmax = distmax + distmax + Nodes[no].len;
 
-	    		if(0.999999 * distmax > Nodes[p].len)
-	      		{
-					Nodes[p].len = distmax;
-					no = p;
-					p = Nodes[p].u.d.father;
-	      		}
-	    		else
-	      			break;
-	  		}
-      	}
+	    if(0.999999 * distmax > Nodes[p].len)
+	      {
+		Nodes[p].len = distmax;
+		no = p;
+		p = Nodes[p].u.d.father;
+	      }
+	    else
+	      break;
+	  }
+      }
 }
 
 
@@ -1013,37 +1013,37 @@ void force_update_node_len_toptree(void)
  */
 void force_update_hmax(void)
 {
-  	int i, no;
-  	MPI_Status status;
-  	int level, sendTask, recvTask;
+  int i, no;
+  MPI_Status status;
+  int level, sendTask, recvTask;
 
-  	force_update_node_hmax_local();
+  force_update_node_hmax_local();
 
-  	for(i = DomainMyStart; i <= DomainMyLast; i++)
+  for(i = DomainMyStart; i <= DomainMyLast; i++)
     {
-      	no = DomainNodeIndex[i];
+      no = DomainNodeIndex[i];
 
-      	DomainHmax[i] = Extnodes[no].hmax;
+      DomainHmax[i] = Extnodes[no].hmax;
     }
 
-  	/* share the hmax-data of the pseudo-particles accross CPUs */
+  /* share the hmax-data of the pseudo-particles accross CPUs */
 
-  	for(level = 1; level < (1 << PTask); level++)
+  for(level = 1; level < (1 << PTask); level++)
     {
-      	sendTask = ThisTask;
-      	recvTask = ThisTask ^ level;
+      sendTask = ThisTask;
+      recvTask = ThisTask ^ level;
 
-      	if(recvTask < NTask)
-			MPI_Sendrecv(&DomainHmax[DomainStartList[sendTask]],
-		     	(DomainEndList[sendTask] - DomainStartList[sendTask] + 1) * sizeof(FLOAT),
-		     	MPI_BYTE, recvTask, TAG_HMAX,
-		     	&DomainHmax[DomainStartList[recvTask]],
-		     	(DomainEndList[recvTask] - DomainStartList[recvTask] + 1) * sizeof(FLOAT),
-		     	MPI_BYTE, recvTask, TAG_HMAX, MPI_COMM_WORLD, &status);
+      if(recvTask < NTask)
+	MPI_Sendrecv(&DomainHmax[DomainStartList[sendTask]],
+		     (DomainEndList[sendTask] - DomainStartList[sendTask] + 1) * sizeof(FLOAT),
+		     MPI_BYTE, recvTask, TAG_HMAX,
+		     &DomainHmax[DomainStartList[recvTask]],
+		     (DomainEndList[recvTask] - DomainStartList[recvTask] + 1) * sizeof(FLOAT),
+		     MPI_BYTE, recvTask, TAG_HMAX, MPI_COMM_WORLD, &status);
     }
 
 
-  	force_update_node_hmax_toptree();
+  force_update_node_hmax_toptree();
 }
 
 /*! This routine updates the hmax-values of local tree nodes.
@@ -1087,31 +1087,31 @@ void force_update_node_hmax_local(void)
 void force_update_node_hmax_toptree(void)
 {
 
-  	int i, no, p;
+  int i, no, p;
 
 
-  	for(i = 0; i < NTopleaves; i++)
-    	if(i < DomainMyStart || i > DomainMyLast)
-      	{
-			no = DomainNodeIndex[i];
+  for(i = 0; i < NTopleaves; i++)
+    if(i < DomainMyStart || i > DomainMyLast)
+      {
+	no = DomainNodeIndex[i];
 
-			if(Extnodes[no].hmax < DomainHmax[i])
-	  			Extnodes[no].hmax = DomainHmax[i];
+	if(Extnodes[no].hmax < DomainHmax[i])
+	  Extnodes[no].hmax = DomainHmax[i];
 
-			p = Nodes[no].u.d.father;
+	p = Nodes[no].u.d.father;
 
-			while(p >= 0)
-	  		{
-	    		if(Extnodes[no].hmax > Extnodes[p].hmax)
-	      		{
-					Extnodes[p].hmax = Extnodes[no].hmax;
-					no = p;
-					p = Nodes[p].u.d.father;
-	      		}
-	    		else
-	      			break;
-	  		}
-      	}
+	while(p >= 0)
+	  {
+	    if(Extnodes[no].hmax > Extnodes[p].hmax)
+	      {
+		Extnodes[p].hmax = Extnodes[no].hmax;
+		no = p;
+		p = Nodes[p].u.d.father;
+	      }
+	    else
+	      break;
+	  }
+      }
 }
 
 
@@ -1775,256 +1775,256 @@ int force_treeevaluate_shortrange(int target, int mode)
 int force_treeevaluate_ewald_correction(int target, int mode, double pos_x, double pos_y, double pos_z,
 					double aold)
 {
-  	struct NODE *nop = 0;
-  	int no, cost;
- 	double dx, dy, dz, mass, r2;
-  	int signx, signy, signz;
-  	int i, j, k, openflag;
-  	double u, v, w;
-	double f1, f2, f3, f4, f5, f6, f7, f8;
-  	double acc_x, acc_y, acc_z;
-  	double boxsize, boxhalf;
+  struct NODE *nop = 0;
+  int no, cost;
+  double dx, dy, dz, mass, r2;
+  int signx, signy, signz;
+  int i, j, k, openflag;
+  double u, v, w;
+  double f1, f2, f3, f4, f5, f6, f7, f8;
+  double acc_x, acc_y, acc_z;
+  double boxsize, boxhalf;
 
-  	boxsize = All.BoxSize;
-  	boxhalf = 0.5 * All.BoxSize;
+  boxsize = All.BoxSize;
+  boxhalf = 0.5 * All.BoxSize;
 
-  	acc_x = 0;
-  	acc_y = 0;
-  	acc_z = 0;
-  	cost = 0;
+  acc_x = 0;
+  acc_y = 0;
+  acc_z = 0;
+  cost = 0;
 
-  	no = All.MaxPart;
+  no = All.MaxPart;
 
-  	while(no >= 0)
+  while(no >= 0)
     {
-      	if(no < All.MaxPart)	/* single particle */
+      if(no < All.MaxPart)	/* single particle */
+	{
+	  /* the index of the node is the index of the particle */
+	  /* observe the sign */
+
+	  dx = P[no].Pos[0] - pos_x;
+	  dy = P[no].Pos[1] - pos_y;
+	  dz = P[no].Pos[2] - pos_z;
+	  mass = P[no].Mass;
+	}
+      else
+	{
+	  if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
+	    {
+	      if(mode == 0)
 		{
-	  		/* the index of the node is the index of the particle */
-	  		/* observe the sign */
-
-	 		dx = P[no].Pos[0] - pos_x;
-	  		dy = P[no].Pos[1] - pos_y;
-	  		dz = P[no].Pos[2] - pos_z;
-	  		mass = P[no].Mass;
-		}
-      	else
-		{
-	  		if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
-	    	{
-	      		if(mode == 0)
-				{
-		  			Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
-				}
-
-	      		no = Nextnode[no - MaxNodes];
-	      		continue;
-	   		}
-
-	  		nop = &Nodes[no];
-	  		dx = nop->u.d.s[0] - pos_x;
-	  		dy = nop->u.d.s[1] - pos_y;
-	  		dz = nop->u.d.s[2] - pos_z;
-	  		mass = nop->u.d.mass;
+		  Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
 		}
 
-      	dx = NEAREST(dx);
-      	dy = NEAREST(dy);
-      	dz = NEAREST(dz);
+	      no = Nextnode[no - MaxNodes];
+	      continue;
+	    }
 
-      	if(no < All.MaxPart)
-			no = Nextnode[no];
-      	else			/* we have an  internal node. Need to check opening criterion */
-		{
-	  		openflag = 0;
-
-	  		r2 = dx * dx + dy * dy + dz * dz;
-
-	  		if(All.ErrTolTheta)	/* check Barnes-Hut opening criterion */
-	    	{
-	      		if(nop->len * nop->len > r2 * All.ErrTolTheta * All.ErrTolTheta)
-				{
-		  			openflag = 1;
-				}
-	    	}
-	  		else			/* check relative opening criterion */
-	    	{
-	      		if(mass * nop->len * nop->len > r2 * r2 * aold)
-				{
-		  			openflag = 1;
-				}
-	      		else
-				{
-		  			if(fabs(nop->center[0] - pos_x) < 0.60 * nop->len)
-		    		{
-		     	 		if(fabs(nop->center[1] - pos_y) < 0.60 * nop->len)
-						{	
-			  				if(fabs(nop->center[2] - pos_z) < 0.60 * nop->len)
-			    			{
-			      				openflag = 1;
-			    			}
-						}
-		    		}
-				}
-	    	}
-
-	  		if(openflag)
-	    	{
-	      		/* now we check if we can avoid opening the cell */
-
-	      		u = nop->center[0] - pos_x;
-	      		if(u > boxhalf)
-					u -= boxsize;
-	      		if(u < -boxhalf)
-					u += boxsize;
-
-	      		if(fabs(u) > 0.5 * (boxsize - nop->len))
-				{
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
-
-	      		u = nop->center[1] - pos_y;
-	      		if(u > boxhalf)
-					u -= boxsize;
-	      		if(u < -boxhalf)
-					u += boxsize;
-
-	      		if(fabs(u) > 0.5 * (boxsize - nop->len))
-				{
-		 	 		no = nop->u.d.nextnode;
-		  			continue;
-				}
-
-	      		u = nop->center[2] - pos_z;
-	      		if(u > boxhalf)
-					u -= boxsize;
-	      		if(u < -boxhalf)
-					u += boxsize;
-
-	      		if(fabs(u) > 0.5 * (boxsize - nop->len))
-				{
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
-
-	      		/* if the cell is too large, we need to refine
-	       		* it further 
-	       		*/
-	      		if(nop->len > 0.20 * boxsize)
-				{
-		  			/* cell is too large */
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
-	    	}
-
-	  		no = nop->u.d.sibling;	/* ok, node can be used */
-
-	  		if(mode == 1)
-	    	{
-	      		if((nop->u.d.bitflags & 1))	/* Bit 0 signals that this node belongs to top-level tree */
-					continue;
-	    	}
-		}
-
-		/* compute the Ewald correction force */
-
-		if(dx < 0)
-		{
-	  		dx = -dx;
-	  		signx = +1;
-		}
-		else
-			signx = -1;
-
-		if(dy < 0)
-		{
-		  	dy = -dy;
-		  	signy = +1;
-		}
-		else
-			signy = -1;
-
-		if(dz < 0)
-		{
-		  	dz = -dz;
-		  	signz = +1;
-		}
-		else
-			signz = -1;
-
-		u = dx * fac_intp;
-		i = (int) u;
-		if(i >= EN)
-			i = EN - 1;
-		u -= i;
-		v = dy * fac_intp;
-		j = (int) v;
-		if(j >= EN)
-			j = EN - 1;
-		v -= j;
-		w = dz * fac_intp;
-		k = (int) w;
-		if(k >= EN)
-			k = EN - 1;
-		w -= k;
-
-		/* compute factors for trilinear interpolation */
-
-    	f1 = (1 - u) * (1 - v) * (1 - w);
-    	f2 = (1 - u) * (1 - v) * (w);
-    	f3 = (1 - u) * (v) * (1 - w);
-    	f4 = (1 - u) * (v) * (w);
-    	f5 = (u) * (1 - v) * (1 - w);
-    	f6 = (u) * (1 - v) * (w);
-    	f7 = (u) * (v) * (1 - w);
-    	f8 = (u) * (v) * (w);
-
-    	acc_x += mass * signx * (fcorrx[i][j][k] * f1 +
-			fcorrx[i][j][k + 1] * f2 +
-			fcorrx[i][j + 1][k] * f3 +
-			fcorrx[i][j + 1][k + 1] * f4 +
-			fcorrx[i + 1][j][k] * f5 +
-			fcorrx[i + 1][j][k + 1] * f6 +
-			fcorrx[i + 1][j + 1][k] * f7 + fcorrx[i + 1][j + 1][k + 1] * f8);
-
-   	 	acc_y += mass * signy * (fcorry[i][j][k] * f1 +
-			fcorry[i][j][k + 1] * f2 +
-			fcorry[i][j + 1][k] * f3 +
-			fcorry[i][j + 1][k + 1] * f4 +
-			fcorry[i + 1][j][k] * f5 +
-			fcorry[i + 1][j][k + 1] * f6 +
-			fcorry[i + 1][j + 1][k] * f7 + fcorry[i + 1][j + 1][k + 1] * f8);
-
-    	acc_z += mass * signz * (fcorrz[i][j][k] * f1 +
-			fcorrz[i][j][k + 1] * f2 +
-			fcorrz[i][j + 1][k] * f3 +
-			fcorrz[i][j + 1][k + 1] * f4 +
-			fcorrz[i + 1][j][k] * f5 +
-			fcorrz[i + 1][j][k + 1] * f6 +
-			fcorrz[i + 1][j + 1][k] * f7 + fcorrz[i + 1][j + 1][k + 1] * f8);
-    	  	cost++;
+	  nop = &Nodes[no];
+	  dx = nop->u.d.s[0] - pos_x;
+	  dy = nop->u.d.s[1] - pos_y;
+	  dz = nop->u.d.s[2] - pos_z;
+	  mass = nop->u.d.mass;
 	}
 
+      dx = NEAREST(dx);
+      dy = NEAREST(dy);
+      dz = NEAREST(dz);
 
-  	/* add the result at the proper place */
+      if(no < All.MaxPart)
+	no = Nextnode[no];
+      else			/* we have an  internal node. Need to check opening criterion */
+	{
+	  openflag = 0;
 
-  	if(mode == 0)
-    {
-      	P[target].GravAccel[0] += acc_x;
-      	P[target].GravAccel[1] += acc_y;
-      	P[target].GravAccel[2] += acc_z;
-      	P[target].GravCost += cost;
+	  r2 = dx * dx + dy * dy + dz * dz;
+
+	  if(All.ErrTolTheta)	/* check Barnes-Hut opening criterion */
+	    {
+	      if(nop->len * nop->len > r2 * All.ErrTolTheta * All.ErrTolTheta)
+		{
+		  openflag = 1;
+		}
+	    }
+	  else			/* check relative opening criterion */
+	    {
+	      if(mass * nop->len * nop->len > r2 * r2 * aold)
+		{
+		  openflag = 1;
+		}
+	      else
+		{
+		  if(fabs(nop->center[0] - pos_x) < 0.60 * nop->len)
+		    {
+		      if(fabs(nop->center[1] - pos_y) < 0.60 * nop->len)
+			{
+			  if(fabs(nop->center[2] - pos_z) < 0.60 * nop->len)
+			    {
+			      openflag = 1;
+			    }
+			}
+		    }
+		}
+	    }
+
+	  if(openflag)
+	    {
+	      /* now we check if we can avoid opening the cell */
+
+	      u = nop->center[0] - pos_x;
+	      if(u > boxhalf)
+		u -= boxsize;
+	      if(u < -boxhalf)
+		u += boxsize;
+
+	      if(fabs(u) > 0.5 * (boxsize - nop->len))
+		{
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
+
+	      u = nop->center[1] - pos_y;
+	      if(u > boxhalf)
+		u -= boxsize;
+	      if(u < -boxhalf)
+		u += boxsize;
+
+	      if(fabs(u) > 0.5 * (boxsize - nop->len))
+		{
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
+
+	      u = nop->center[2] - pos_z;
+	      if(u > boxhalf)
+		u -= boxsize;
+	      if(u < -boxhalf)
+		u += boxsize;
+
+	      if(fabs(u) > 0.5 * (boxsize - nop->len))
+		{
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
+
+	      /* if the cell is too large, we need to refine
+	       * it further 
+	       */
+	      if(nop->len > 0.20 * boxsize)
+		{
+		  /* cell is too large */
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
+	    }
+
+	  no = nop->u.d.sibling;	/* ok, node can be used */
+
+	  if(mode == 1)
+	    {
+	      if((nop->u.d.bitflags & 1))	/* Bit 0 signals that this node belongs to top-level tree */
+		continue;
+	    }
+	}
+
+      /* compute the Ewald correction force */
+
+      if(dx < 0)
+	{
+	  dx = -dx;
+	  signx = +1;
+	}
+      else
+	signx = -1;
+
+      if(dy < 0)
+	{
+	  dy = -dy;
+	  signy = +1;
+	}
+      else
+	signy = -1;
+
+      if(dz < 0)
+	{
+	  dz = -dz;
+	  signz = +1;
+	}
+      else
+	signz = -1;
+
+      u = dx * fac_intp;
+      i = (int) u;
+      if(i >= EN)
+	i = EN - 1;
+      u -= i;
+      v = dy * fac_intp;
+      j = (int) v;
+      if(j >= EN)
+	j = EN - 1;
+      v -= j;
+      w = dz * fac_intp;
+      k = (int) w;
+      if(k >= EN)
+	k = EN - 1;
+      w -= k;
+
+      /* compute factors for trilinear interpolation */
+
+      f1 = (1 - u) * (1 - v) * (1 - w);
+      f2 = (1 - u) * (1 - v) * (w);
+      f3 = (1 - u) * (v) * (1 - w);
+      f4 = (1 - u) * (v) * (w);
+      f5 = (u) * (1 - v) * (1 - w);
+      f6 = (u) * (1 - v) * (w);
+      f7 = (u) * (v) * (1 - w);
+      f8 = (u) * (v) * (w);
+
+      acc_x += mass * signx * (fcorrx[i][j][k] * f1 +
+			       fcorrx[i][j][k + 1] * f2 +
+			       fcorrx[i][j + 1][k] * f3 +
+			       fcorrx[i][j + 1][k + 1] * f4 +
+			       fcorrx[i + 1][j][k] * f5 +
+			       fcorrx[i + 1][j][k + 1] * f6 +
+			       fcorrx[i + 1][j + 1][k] * f7 + fcorrx[i + 1][j + 1][k + 1] * f8);
+
+      acc_y += mass * signy * (fcorry[i][j][k] * f1 +
+			       fcorry[i][j][k + 1] * f2 +
+			       fcorry[i][j + 1][k] * f3 +
+			       fcorry[i][j + 1][k + 1] * f4 +
+			       fcorry[i + 1][j][k] * f5 +
+			       fcorry[i + 1][j][k + 1] * f6 +
+			       fcorry[i + 1][j + 1][k] * f7 + fcorry[i + 1][j + 1][k + 1] * f8);
+
+      acc_z += mass * signz * (fcorrz[i][j][k] * f1 +
+			       fcorrz[i][j][k + 1] * f2 +
+			       fcorrz[i][j + 1][k] * f3 +
+			       fcorrz[i][j + 1][k + 1] * f4 +
+			       fcorrz[i + 1][j][k] * f5 +
+			       fcorrz[i + 1][j][k + 1] * f6 +
+			       fcorrz[i + 1][j + 1][k] * f7 + fcorrz[i + 1][j + 1][k + 1] * f8);
+      cost++;
     }
-  	else
+
+
+  /* add the result at the proper place */
+
+  if(mode == 0)
     {
-      	GravDataResult[target].u.Acc[0] += acc_x;
-      	GravDataResult[target].u.Acc[1] += acc_y;
-      	GravDataResult[target].u.Acc[2] += acc_z;
-      	GravDataResult[target].w.Ninteractions += cost;
+      P[target].GravAccel[0] += acc_x;
+      P[target].GravAccel[1] += acc_y;
+      P[target].GravAccel[2] += acc_z;
+      P[target].GravCost += cost;
+    }
+  else
+    {
+      GravDataResult[target].u.Acc[0] += acc_x;
+      GravDataResult[target].u.Acc[1] += acc_y;
+      GravDataResult[target].u.Acc[2] += acc_z;
+      GravDataResult[target].w.Ninteractions += cost;
     }
 
-  	return cost;
+  return cost;
 }
 
 #endif
@@ -2040,255 +2040,255 @@ int force_treeevaluate_ewald_correction(int target, int mode, double pos_x, doub
  */
 void force_treeevaluate_potential(int target, int mode)
 {
-  	struct NODE *nop = 0;
-  	int no, ptype;
-  	double r2, dx, dy, dz, mass, r, u, h, h_inv, wp;
-  	double pot, pos_x, pos_y, pos_z, aold;
+  struct NODE *nop = 0;
+  int no, ptype;
+  double r2, dx, dy, dz, mass, r, u, h, h_inv, wp;
+  double pot, pos_x, pos_y, pos_z, aold;
 #if defined(UNEQUALSOFTENINGS) && !defined(ADAPTIVE_GRAVSOFT_FORGAS)
-  	int maxsofttype;
+  int maxsofttype;
 #endif
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-  	double soft = 0;
+  double soft = 0;
 #endif
 #ifdef PERIODIC
-  	double boxsize, boxhalf;
+  double boxsize, boxhalf;
 
-  	boxsize = All.BoxSize;
-  	boxhalf = 0.5 * All.BoxSize;
+  boxsize = All.BoxSize;
+  boxhalf = 0.5 * All.BoxSize;
 #endif
 
-  	pot = 0;
+  pot = 0;
 
-  	if(mode == 0)
+  if(mode == 0)
     {
-      	pos_x = P[target].Pos[0];
-      	pos_y = P[target].Pos[1];
-      	pos_z = P[target].Pos[2];
-      	ptype = P[target].Type;
-      	aold = All.ErrTolForceAcc * P[target].OldAcc;
+      pos_x = P[target].Pos[0];
+      pos_y = P[target].Pos[1];
+      pos_z = P[target].Pos[2];
+      ptype = P[target].Type;
+      aold = All.ErrTolForceAcc * P[target].OldAcc;
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-      	if(ptype == 0)
-			soft = SphP[target].Hsml;
+      if(ptype == 0)
+	soft = SphP[target].Hsml;
 #endif
     }
-  	else
+  else
     {
-      	pos_x = GravDataGet[target].u.Pos[0];
-      	pos_y = GravDataGet[target].u.Pos[1];
-      	pos_z = GravDataGet[target].u.Pos[2];
+      pos_x = GravDataGet[target].u.Pos[0];
+      pos_y = GravDataGet[target].u.Pos[1];
+      pos_z = GravDataGet[target].u.Pos[2];
 #ifdef UNEQUALSOFTENINGS
-      	ptype = GravDataGet[target].Type;
+      ptype = GravDataGet[target].Type;
 #else
-      	ptype = P[0].Type;
+      ptype = P[0].Type;
 #endif
-      	aold = All.ErrTolForceAcc * GravDataGet[target].w.OldAcc;
+      aold = All.ErrTolForceAcc * GravDataGet[target].w.OldAcc;
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-      	if(ptype == 0)
-			soft = GravDataGet[target].Soft;
+      if(ptype == 0)
+	soft = GravDataGet[target].Soft;
 #endif
     }
 
 
 #ifndef UNEQUALSOFTENINGS
-  	h = All.ForceSoftening[ptype];
-  	h_inv = 1.0 / h;
+  h = All.ForceSoftening[ptype];
+  h_inv = 1.0 / h;
 #endif
-  	no = All.MaxPart;
+  no = All.MaxPart;
 
-  	while(no >= 0)
+  while(no >= 0)
     {
-      	if(no < All.MaxPart)	/* single particle */
-		{
-	  		/* the index of the node is the index of the particle */
-	  		/* observe the sign */
+      if(no < All.MaxPart)	/* single particle */
+	{
+	  /* the index of the node is the index of the particle */
+	  /* observe the sign */
 
-	  		dx = P[no].Pos[0] - pos_x;
-	  		dy = P[no].Pos[1] - pos_y;
-	  		dz = P[no].Pos[2] - pos_z;
-	  		mass = P[no].Mass;
-		}		
-      	else
+	  dx = P[no].Pos[0] - pos_x;
+	  dy = P[no].Pos[1] - pos_y;
+	  dz = P[no].Pos[2] - pos_z;
+	  mass = P[no].Mass;
+	}
+      else
+	{
+	  if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
+	    {
+	      if(mode == 0)
 		{
-	  		if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
-	    	{
-	      		if(mode == 0)
-				{
-		  			Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
-				}
-	      		no = Nextnode[no - MaxNodes];
-	      		continue;
-	    	}
-
-	  		nop = &Nodes[no];
-	  		dx = nop->u.d.s[0] - pos_x;
-	  		dy = nop->u.d.s[1] - pos_y;
-	  		dz = nop->u.d.s[2] - pos_z;
-	  		mass = nop->u.d.mass;
+		  Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
 		}
+	      no = Nextnode[no - MaxNodes];
+	      continue;
+	    }
+
+	  nop = &Nodes[no];
+	  dx = nop->u.d.s[0] - pos_x;
+	  dy = nop->u.d.s[1] - pos_y;
+	  dz = nop->u.d.s[2] - pos_z;
+	  mass = nop->u.d.mass;
+	}
 
 #ifdef PERIODIC
-      	dx = NEAREST(dx);
-      	dy = NEAREST(dy);
-      	dz = NEAREST(dz);
+      dx = NEAREST(dx);
+      dy = NEAREST(dy);
+      dz = NEAREST(dz);
 #endif
-      	r2 = dx * dx + dy * dy + dz * dz;
+      r2 = dx * dx + dy * dy + dz * dz;
 
-      	if(no < All.MaxPart)
-		{
+      if(no < All.MaxPart)
+	{
 #ifdef UNEQUALSOFTENINGS
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-	  		if(ptype == 0)
-	    		h = soft;
-	  		else
-	   	 		h = All.ForceSoftening[ptype];
+	  if(ptype == 0)
+	    h = soft;
+	  else
+	    h = All.ForceSoftening[ptype];
 
-	  		if(P[no].Type == 0)
-	    	{
-	      		if(h < SphP[no].Hsml)
-					h = SphP[no].Hsml;
-			}
-	  		else
-	    	{
-	      		if(h < All.ForceSoftening[P[no].Type])
-					h = All.ForceSoftening[P[no].Type];
-	    	}
+	  if(P[no].Type == 0)
+	    {
+	      if(h < SphP[no].Hsml)
+		h = SphP[no].Hsml;
+	    }
+	  else
+	    {
+	      if(h < All.ForceSoftening[P[no].Type])
+		h = All.ForceSoftening[P[no].Type];
+	    }
 #else
-	  		h = All.ForceSoftening[ptype];
-	  		if(h < All.ForceSoftening[P[no].Type])
-	    		h = All.ForceSoftening[P[no].Type];
+	  h = All.ForceSoftening[ptype];
+	  if(h < All.ForceSoftening[P[no].Type])
+	    h = All.ForceSoftening[P[no].Type];
 #endif
 #endif
-	  		no = Nextnode[no];
-		}
-      	else			/* we have an internal node. Need to check opening criterion */
+	  no = Nextnode[no];
+	}
+      else			/* we have an internal node. Need to check opening criterion */
+	{
+	  if(mode == 1)
+	    {
+	      if((nop->u.d.bitflags & 3) == 1)	/* if it's a top-level node
+						 * which does not contain
+						 * local particles we can make
+						 * a short-cut 
+						 */
 		{
-	  		if(mode == 1)
-	    	{
-	      		if((nop->u.d.bitflags & 3) == 1)	/* if it's a top-level node
-						 							* which does not contain
-						 							* local particles we can make
-						 							* a short-cut 
-						 							*/
-				{
-		  			no = nop->u.d.sibling;
-		  			continue;
-				}
-	    	}
+		  no = nop->u.d.sibling;
+		  continue;
+		}
+	    }
 
-	  		if(All.ErrTolTheta)	/* check Barnes-Hut opening criterion */
-	    	{
-	      		if(nop->len * nop->len > r2 * All.ErrTolTheta * All.ErrTolTheta)
-				{
-		  			/* open cell */
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
-	    	}
-	  		else			/* check relative opening criterion */
-	    	{
-	      		if(mass * nop->len * nop->len > r2 * r2 * aold)
-				{
-		  			/* open cell */
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
+	  if(All.ErrTolTheta)	/* check Barnes-Hut opening criterion */
+	    {
+	      if(nop->len * nop->len > r2 * All.ErrTolTheta * All.ErrTolTheta)
+		{
+		  /* open cell */
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
+	    }
+	  else			/* check relative opening criterion */
+	    {
+	      if(mass * nop->len * nop->len > r2 * r2 * aold)
+		{
+		  /* open cell */
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
 
-	     		if(fabs(nop->center[0] - pos_x) < 0.60 * nop->len)
-				{
-		  			if(fabs(nop->center[1] - pos_y) < 0.60 * nop->len)
-		    		{
-		      			if(fabs(nop->center[2] - pos_z) < 0.60 * nop->len)
-						{
-			  				no = nop->u.d.nextnode;
-			  				continue;
-						}
-		    		}
-				}
-	    	}
+	      if(fabs(nop->center[0] - pos_x) < 0.60 * nop->len)
+		{
+		  if(fabs(nop->center[1] - pos_y) < 0.60 * nop->len)
+		    {
+		      if(fabs(nop->center[2] - pos_z) < 0.60 * nop->len)
+			{
+			  no = nop->u.d.nextnode;
+			  continue;
+			}
+		    }
+		}
+	    }
 #ifdef UNEQUALSOFTENINGS
 #ifndef ADAPTIVE_GRAVSOFT_FORGAS
-	  		h = All.ForceSoftening[ptype];
-          	maxsofttype = (nop->u.d.bitflags >> 2) & 7;
-          	if(maxsofttype == 7) /* may only occur for zero mass top-level nodes */
+	  h = All.ForceSoftening[ptype];
+          maxsofttype = (nop->u.d.bitflags >> 2) & 7;
+          if(maxsofttype == 7) /* may only occur for zero mass top-level nodes */
             {
-              	if(mass > 0)
-                	endrun(988);
-              	no = nop->u.d.nextnode;
-              	continue;
+              if(mass > 0)
+                endrun(988);
+              no = nop->u.d.nextnode;
+              continue;
             }
-          	else
+          else
             {
-              	if(h < All.ForceSoftening[maxsofttype])
+              if(h < All.ForceSoftening[maxsofttype])
                 {
-                  	h = All.ForceSoftening[maxsofttype];
-                  	if(r2 < h * h)
+                  h = All.ForceSoftening[maxsofttype];
+                  if(r2 < h * h)
                     {
-                      	if(((nop->u.d.bitflags >> 5) & 1))	/* bit-5 signals that there are particles of different softening in the node */
+                      if(((nop->u.d.bitflags >> 5) & 1))	/* bit-5 signals that there are particles of different softening in the node */
                         {
-                          	no = nop->u.d.nextnode;
-                          	continue;
+                          no = nop->u.d.nextnode;
+                          continue;
                         }
                     }
                 }
             }
 #else
-	  		if(ptype == 0)
-	    		h = soft;
-	  		else
-	    		h = All.ForceSoftening[ptype];
+	  if(ptype == 0)
+	    h = soft;
+	  else
+	    h = All.ForceSoftening[ptype];
 
-	  		if(h < nop->maxsoft)
-	    	{
-	      		h = nop->maxsoft;
-	      		if(r2 < h * h)
-				{
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
-	    	}
-#endif
-#endif
-
-	 		 no = nop->u.d.sibling;	/* node can be used */
-
-	  		if(mode == 1)
-	    	{
-	      		if(((nop->u.d.bitflags) & 1))	/* Bit 0 signals that this node belongs to top-level tree */
-					continue;
-	    	}
-		}
-
-      	r = sqrt(r2);
-
-      	if(r >= h)
-			pot -= mass / r;
-      	else
+	  if(h < nop->maxsoft)
+	    {
+	      h = nop->maxsoft;
+	      if(r2 < h * h)
 		{
-#ifdef UNEQUALSOFTENINGS
-	  		h_inv = 1.0 / h;
-#endif
-	  		u = r * h_inv;
-
-	  		if(u < 0.5)
-	    		wp = -2.8 + u * u * (5.333333333333 + u * u * (6.4 * u - 9.6));
-	  		else
-	    		wp =
-	      			-3.2 + 0.066666666667 / u + u * u * (10.666666666667 +
-					u * (-16.0 + u * (9.6 - 2.133333333333 * u)));
-
-	  		pot += mass * h_inv * wp;
+		  no = nop->u.d.nextnode;
+		  continue;
 		}
+	    }
+#endif
+#endif
+
+	  no = nop->u.d.sibling;	/* node can be used */
+
+	  if(mode == 1)
+	    {
+	      if(((nop->u.d.bitflags) & 1))	/* Bit 0 signals that this node belongs to top-level tree */
+		continue;
+	    }
+	}
+
+      r = sqrt(r2);
+
+      if(r >= h)
+	pot -= mass / r;
+      else
+	{
+#ifdef UNEQUALSOFTENINGS
+	  h_inv = 1.0 / h;
+#endif
+	  u = r * h_inv;
+
+	  if(u < 0.5)
+	    wp = -2.8 + u * u * (5.333333333333 + u * u * (6.4 * u - 9.6));
+	  else
+	    wp =
+	      -3.2 + 0.066666666667 / u + u * u * (10.666666666667 +
+						   u * (-16.0 + u * (9.6 - 2.133333333333 * u)));
+
+	  pot += mass * h_inv * wp;
+	}
 #ifdef PERIODIC
-      	pot += mass * ewald_pot_corr(dx, dy, dz);
+      pot += mass * ewald_pot_corr(dx, dy, dz);
 #endif
     }
 
-  	/* store result at the proper place */
+  /* store result at the proper place */
 
-  	if(mode == 0)
-    	P[target].Potential = pot;
-  	else
-    	GravDataResult[target].u.Potential = pot;
+  if(mode == 0)
+    P[target].Potential = pot;
+  else
+    GravDataResult[target].u.Potential = pot;
 }
 
 
@@ -2301,311 +2301,311 @@ void force_treeevaluate_potential(int target, int mode)
  */
 void force_treeevaluate_potential_shortrange(int target, int mode)
 {
-  	struct NODE *nop = 0;
-  	int no, ptype, tabindex;
-  	double r2, dx, dy, dz, mass, r, u, h, h_inv, wp;
-  	double pot, pos_x, pos_y, pos_z, aold;
-  	double eff_dist, fac, rcut, asmth, asmthfac;
-  	double dxx, dyy, dzz;
+  struct NODE *nop = 0;
+  int no, ptype, tabindex;
+  double r2, dx, dy, dz, mass, r, u, h, h_inv, wp;
+  double pot, pos_x, pos_y, pos_z, aold;
+  double eff_dist, fac, rcut, asmth, asmthfac;
+  double dxx, dyy, dzz;
 #if defined(UNEQUALSOFTENINGS) && !defined(ADAPTIVE_GRAVSOFT_FORGAS)
-  	int maxsofttype;
+  int maxsofttype;
 #endif
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-  	double soft = 0;
+  double soft = 0;
 #endif
 
 #ifdef PERIODIC
-  	double boxsize, boxhalf;
+  double boxsize, boxhalf;
 
-  	boxsize = All.BoxSize;
-  	boxhalf = 0.5 * All.BoxSize;
+  boxsize = All.BoxSize;
+  boxhalf = 0.5 * All.BoxSize;
 #endif
 
-  	pot = 0;
+  pot = 0;
 
-  	if(mode == 0)
+  if(mode == 0)
     {
-      	pos_x = P[target].Pos[0];
-      	pos_y = P[target].Pos[1];
-      	pos_z = P[target].Pos[2];
-      	ptype = P[target].Type;
-      	aold = All.ErrTolForceAcc * P[target].OldAcc;
+      pos_x = P[target].Pos[0];
+      pos_y = P[target].Pos[1];
+      pos_z = P[target].Pos[2];
+      ptype = P[target].Type;
+      aold = All.ErrTolForceAcc * P[target].OldAcc;
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-      	if(ptype == 0)
-			soft = SphP[target].Hsml;
+      if(ptype == 0)
+	soft = SphP[target].Hsml;
 #endif
     }
-  	else
+  else
     {
-      	pos_x = GravDataGet[target].u.Pos[0];
-      	pos_y = GravDataGet[target].u.Pos[1];
-      	pos_z = GravDataGet[target].u.Pos[2];
+      pos_x = GravDataGet[target].u.Pos[0];
+      pos_y = GravDataGet[target].u.Pos[1];
+      pos_z = GravDataGet[target].u.Pos[2];
 #ifdef UNEQUALSOFTENINGS
-    	ptype = GravDataGet[target].Type;
+      ptype = GravDataGet[target].Type;
 #else
-      	ptype = P[0].Type;
+      ptype = P[0].Type;
 #endif
-      	aold = All.ErrTolForceAcc * GravDataGet[target].w.OldAcc;
+      aold = All.ErrTolForceAcc * GravDataGet[target].w.OldAcc;
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-      	if(ptype == 0)
-			soft = GravDataGet[target].Soft;
+      if(ptype == 0)
+	soft = GravDataGet[target].Soft;
 #endif
     }
 
 
-  	rcut = All.Rcut[0];
-  	asmth = All.Asmth[0];
+  rcut = All.Rcut[0];
+  asmth = All.Asmth[0];
 #ifdef PLACEHIGHRESREGION
-  	if(((1 << ptype) & (PLACEHIGHRESREGION)))
+  if(((1 << ptype) & (PLACEHIGHRESREGION)))
     {
-      	rcut = All.Rcut[1];
-      	asmth = All.Asmth[1];
+      rcut = All.Rcut[1];
+      asmth = All.Asmth[1];
     }
 #endif
-  	asmthfac = 0.5 / asmth * (NTAB / 3.0);
+  asmthfac = 0.5 / asmth * (NTAB / 3.0);
 
 #ifndef UNEQUALSOFTENINGS
-  	h = All.ForceSoftening[ptype];
-  	h_inv = 1.0 / h;
+  h = All.ForceSoftening[ptype];
+  h_inv = 1.0 / h;
 #endif
 
-  	no = All.MaxPart;
+  no = All.MaxPart;
 
-  	while(no >= 0)
+  while(no >= 0)
     {
-      	if(no < All.MaxPart)	/* single particle */
-		{
-	  		/* the index of the node is the index of the particle */
-	  		/* observe the sign  */
+      if(no < All.MaxPart)	/* single particle */
+	{
+	  /* the index of the node is the index of the particle */
+	  /* observe the sign  */
 
-	  		dx = P[no].Pos[0] - pos_x;
-	  		dy = P[no].Pos[1] - pos_y;
-	  		dz = P[no].Pos[2] - pos_z;
-	  		mass = P[no].Mass;
-		}
-      	else
+	  dx = P[no].Pos[0] - pos_x;
+	  dy = P[no].Pos[1] - pos_y;
+	  dz = P[no].Pos[2] - pos_z;
+	  mass = P[no].Mass;
+	}
+      else
+	{
+	  if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
+	    {
+	      if(mode == 0)
 		{
-	  		if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
-	    	{
-	      		if(mode == 0)
-				{
-		  			Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
-				}
-	      		no = Nextnode[no - MaxNodes];
-	      		continue;
-	    	}
-
-	  		nop = &Nodes[no];
-	  		dx = nop->u.d.s[0] - pos_x;
-	  		dy = nop->u.d.s[1] - pos_y;
-	  		dz = nop->u.d.s[2] - pos_z;
-	  		mass = nop->u.d.mass;
+		  Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
 		}
+	      no = Nextnode[no - MaxNodes];
+	      continue;
+	    }
+
+	  nop = &Nodes[no];
+	  dx = nop->u.d.s[0] - pos_x;
+	  dy = nop->u.d.s[1] - pos_y;
+	  dz = nop->u.d.s[2] - pos_z;
+	  mass = nop->u.d.mass;
+	}
 
 #ifdef PERIODIC
-      	dx = NEAREST(dx);
-      	dy = NEAREST(dy);
-      	dz = NEAREST(dz);
+      dx = NEAREST(dx);
+      dy = NEAREST(dy);
+      dz = NEAREST(dz);
 #endif
-      	r2 = dx * dx + dy * dy + dz * dz;
+      r2 = dx * dx + dy * dy + dz * dz;
 
-      	if(no < All.MaxPart)
-		{
+      if(no < All.MaxPart)
+	{
 #ifdef UNEQUALSOFTENINGS
 #ifdef ADAPTIVE_GRAVSOFT_FORGAS
-	  		if(ptype == 0)
-	    		h = soft;
-	  		else
-	    		h = All.ForceSoftening[ptype];
+	  if(ptype == 0)
+	    h = soft;
+	  else
+	    h = All.ForceSoftening[ptype];
 
-	  		if(P[no].Type == 0)
-	    	{
-	      		if(h < SphP[no].Hsml)
-				h = SphP[no].Hsml;
-	   	 	}
-	  		else
-	    	{
-	      		if(h < All.ForceSoftening[P[no].Type])
-					h = All.ForceSoftening[P[no].Type];
-	    	}
+	  if(P[no].Type == 0)
+	    {
+	      if(h < SphP[no].Hsml)
+		h = SphP[no].Hsml;
+	    }
+	  else
+	    {
+	      if(h < All.ForceSoftening[P[no].Type])
+		h = All.ForceSoftening[P[no].Type];
+	    }
 #else
-	  		h = All.ForceSoftening[ptype];
-	  		if(h < All.ForceSoftening[P[no].Type])
-	    		h = All.ForceSoftening[P[no].Type];
+	  h = All.ForceSoftening[ptype];
+	  if(h < All.ForceSoftening[P[no].Type])
+	    h = All.ForceSoftening[P[no].Type];
 #endif
 #endif
-	  		no = Nextnode[no];
-		}
-      	else			/* we have an  internal node. Need to check opening criterion */
+	  no = Nextnode[no];
+	}
+      else			/* we have an  internal node. Need to check opening criterion */
+	{
+	  /* check whether we can stop walking along this branch */
+	  if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
+	    {
+	      if(mode == 0)
 		{
-	  		/* check whether we can stop walking along this branch */
-	  		if(no >= All.MaxPart + MaxNodes)	/* pseudo particle */
-	    	{
-	     		if(mode == 0)
-				{
-		 		 	Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
-				}
-	      		no = Nextnode[no - MaxNodes];
-	      		continue;
-	    	}
+		  Exportflag[DomainTask[no - (All.MaxPart + MaxNodes)]] = 1;
+		}
+	      no = Nextnode[no - MaxNodes];
+	      continue;
+	    }
 
-	  		if(mode == 1)
-	    	{
-	      		if((nop->u.d.bitflags & 3) == 1)	/* if it's a top-level node which does not contain local particles */
-				{
-		 	 		no = nop->u.d.sibling;
-		  			continue;
-				}
-	    	}
+	  if(mode == 1)
+	    {
+	      if((nop->u.d.bitflags & 3) == 1)	/* if it's a top-level node which does not contain local particles */
+		{
+		  no = nop->u.d.sibling;
+		  continue;
+		}
+	    }
 
-	  		eff_dist = rcut + 0.5 * nop->len;
+	  eff_dist = rcut + 0.5 * nop->len;
 
-	  		dxx = nop->center[0] - pos_x;	/* observe the sign ! */
-	  		dyy = nop->center[1] - pos_y;	/* this vector is -y in my thesis notation */
-	  		dzz = nop->center[2] - pos_z;
+	  dxx = nop->center[0] - pos_x;	/* observe the sign ! */
+	  dyy = nop->center[1] - pos_y;	/* this vector is -y in my thesis notation */
+	  dzz = nop->center[2] - pos_z;
 #ifdef PERIODIC
-	  		dxx = NEAREST(dxx);
-	  		dyy = NEAREST(dyy);
-	  		dzz = NEAREST(dzz);
+	  dxx = NEAREST(dxx);
+	  dyy = NEAREST(dyy);
+	  dzz = NEAREST(dzz);
 #endif
-	  		if(dxx < -eff_dist || dxx > eff_dist)
-	    	{
-	      		no = nop->u.d.sibling;
-	      		continue;
-	    	}
+	  if(dxx < -eff_dist || dxx > eff_dist)
+	    {
+	      no = nop->u.d.sibling;
+	      continue;
+	    }
 
-	  		if(dyy < -eff_dist || dyy > eff_dist)
-	   	 	{
-	     	 	no = nop->u.d.sibling;
-	      		continue;
-	    	}
+	  if(dyy < -eff_dist || dyy > eff_dist)
+	    {
+	      no = nop->u.d.sibling;
+	      continue;
+	    }
 
-	  		if(dzz < -eff_dist || dzz > eff_dist)
-	    	{
-	     	 	no = nop->u.d.sibling;
-	      		continue;
-	    	}
+	  if(dzz < -eff_dist || dzz > eff_dist)
+	    {
+	      no = nop->u.d.sibling;
+	      continue;
+	    }
 
-	  		if(All.ErrTolTheta)	/* check Barnes-Hut opening criterion */
-	    	{
-	      		if(nop->len * nop->len > r2 * All.ErrTolTheta * All.ErrTolTheta)
-				{
-		  			/* open cell */
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
-	    	}
-	  		else			/* check relative opening criterion */
-	    	{
-	      		if(mass * nop->len * nop->len > r2 * r2 * aold)
-				{
-		  			/* open cell */
-		  			no = nop->u.d.nextnode;
-		  			continue;
-				}
+	  if(All.ErrTolTheta)	/* check Barnes-Hut opening criterion */
+	    {
+	      if(nop->len * nop->len > r2 * All.ErrTolTheta * All.ErrTolTheta)
+		{
+		  /* open cell */
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
+	    }
+	  else			/* check relative opening criterion */
+	    {
+	      if(mass * nop->len * nop->len > r2 * r2 * aold)
+		{
+		  /* open cell */
+		  no = nop->u.d.nextnode;
+		  continue;
+		}
 
-	      		if(fabs(nop->center[0] - pos_x) < 0.60 * nop->len)
-				{
-		  			if(fabs(nop->center[1] - pos_y) < 0.60 * nop->len)
-		   			{
-		      			if(fabs(nop->center[2] - pos_z) < 0.60 * nop->len)
-						{
-			  				no = nop->u.d.nextnode;
-			  				continue;
-						}
-		    		}
-				}
-	    	}
+	      if(fabs(nop->center[0] - pos_x) < 0.60 * nop->len)
+		{
+		  if(fabs(nop->center[1] - pos_y) < 0.60 * nop->len)
+		    {
+		      if(fabs(nop->center[2] - pos_z) < 0.60 * nop->len)
+			{
+			  no = nop->u.d.nextnode;
+			  continue;
+			}
+		    }
+		}
+	    }
 
 #ifdef UNEQUALSOFTENINGS
 #ifndef ADAPTIVE_GRAVSOFT_FORGAS
-	  		h = All.ForceSoftening[ptype];
-       		maxsofttype = (nop->u.d.bitflags >> 2) & 7;
-          	if(maxsofttype == 7) /* may only occur for zero mass top-level nodes */
+	  h = All.ForceSoftening[ptype];
+          maxsofttype = (nop->u.d.bitflags >> 2) & 7;
+          if(maxsofttype == 7) /* may only occur for zero mass top-level nodes */
             {
-              	if(mass > 0)
-                	endrun(989);
-              	no = nop->u.d.nextnode;
-              	continue;
+              if(mass > 0)
+                endrun(989);
+              no = nop->u.d.nextnode;
+              continue;
             }
-          	else
+          else
             {
-              	if(h < All.ForceSoftening[maxsofttype])
+              if(h < All.ForceSoftening[maxsofttype])
                 {
-                  	h = All.ForceSoftening[maxsofttype];
-                  	if(r2 < h * h)
+                  h = All.ForceSoftening[maxsofttype];
+                  if(r2 < h * h)
                     {
-                      	/* bit-5 signals that there are particles of
-                    	* different softening in the node
-                       	*/
-                      	if(((nop->u.d.bitflags >> 5) & 1))
+                      /* bit-5 signals that there are particles of
+                       * different softening in the node
+                       */
+                      if(((nop->u.d.bitflags >> 5) & 1))
                         {
-                          	no = nop->u.d.nextnode;
-                          	continue;
+                          no = nop->u.d.nextnode;
+                          continue;
                         }
                     }
                 }
-	    	}
+	    }
 #else
-	  		if(ptype == 0)
-	    		h = soft;
-	  		else
-	    		h = All.ForceSoftening[ptype];
+	  if(ptype == 0)
+	    h = soft;
+	  else
+	    h = All.ForceSoftening[ptype];
 
-	  		if(h < nop->maxsoft)
-	    	{
-	      		h = nop->maxsoft;
-	      		if(r2 < h * h)
-				{
-		 	 		no = nop->u.d.nextnode;
-		  			continue;
-				}
-	    	}
-#endif
-#endif
-	  		no = nop->u.d.sibling;	/* node can be used */
-
-	  		if(mode == 1)
-	   	 	{
-	      		if(((nop->u.d.bitflags) & 1))	/* Bit 0 signals that this node belongs to top-level tree */
-					continue;
-	    	}
-		}
-
-      	r = sqrt(r2);
-
-      	tabindex = (int) (r * asmthfac);
-
-      	if(tabindex < NTAB)
+	  if(h < nop->maxsoft)
+	    {
+	      h = nop->maxsoft;
+	      if(r2 < h * h)
 		{
-	  		fac = shortrange_table_potential[tabindex];
-
-	  		if(r >= h)
-	    		pot -= fac * mass / r;
-	  		else
-	    	{
-#ifdef UNEQUALSOFTENINGS
-	      		h_inv = 1.0 / h;
-#endif
-	     	 	u = r * h_inv;
-
-	      		if(u < 0.5)
-					wp = -2.8 + u * u * (5.333333333333 + u * u * (6.4 * u - 9.6));
-	      		else
-					wp =
-		  				-3.2 + 0.066666666667 / u + u * u * (10.666666666667 +
-						u * (-16.0 + u * (9.6 - 2.133333333333 * u)));
-	      		pot += fac * mass * h_inv * wp;
-	    	}
+		  no = nop->u.d.nextnode;
+		  continue;
 		}
+	    }
+#endif
+#endif
+	  no = nop->u.d.sibling;	/* node can be used */
+
+	  if(mode == 1)
+	    {
+	      if(((nop->u.d.bitflags) & 1))	/* Bit 0 signals that this node belongs to top-level tree */
+		continue;
+	    }
+	}
+
+      r = sqrt(r2);
+
+      tabindex = (int) (r * asmthfac);
+
+      if(tabindex < NTAB)
+	{
+	  fac = shortrange_table_potential[tabindex];
+
+	  if(r >= h)
+	    pot -= fac * mass / r;
+	  else
+	    {
+#ifdef UNEQUALSOFTENINGS
+	      h_inv = 1.0 / h;
+#endif
+	      u = r * h_inv;
+
+	      if(u < 0.5)
+		wp = -2.8 + u * u * (5.333333333333 + u * u * (6.4 * u - 9.6));
+	      else
+		wp =
+		  -3.2 + 0.066666666667 / u + u * u * (10.666666666667 +
+						       u * (-16.0 + u * (9.6 - 2.133333333333 * u)));
+	      pot += fac * mass * h_inv * wp;
+	    }
+	}
     }
 
 
-  	/* store result at the proper place */
-  	if(mode == 0)
-    	P[target].Potential = pot;
-  	else
-    	GravDataResult[target].u.Potential = pot;
+  /* store result at the proper place */
+  if(mode == 0)
+    P[target].Potential = pot;
+  else
+    GravDataResult[target].u.Potential = pot;
 }
 
 #endif
@@ -2619,59 +2619,62 @@ void force_treeevaluate_potential_shortrange(int target, int mode)
  */
 void force_treeallocate(int maxnodes, int maxpart)
 {
-  	int i;
-  	size_t bytes;
-  	double allbytes = 0;
-  	double u;
+  int i;
+  size_t bytes;
+  double allbytes = 0;
+  double u;
 
-  	MaxNodes = maxnodes;
+  MaxNodes = maxnodes;
 
-  	if(!(Nodes_base = malloc(bytes = (MaxNodes + 1) * sizeof(struct NODE))))
+  if(!(Nodes_base = malloc(bytes = (MaxNodes + 1) * sizeof(struct NODE))))
     {
       printf("failed to allocate memory for %d tree-nodes (%g MB).\n", MaxNodes, bytes / (1024.0 * 1024.0));
       endrun(3);
     }
-  	allbytes += bytes;
+  allbytes += bytes;
 
-  	if(!(Extnodes_base = malloc(bytes = (MaxNodes + 1) * sizeof(struct extNODE))))
+  if(!(Extnodes_base = malloc(bytes = (MaxNodes + 1) * sizeof(struct extNODE))))
     {
-      	printf("failed to allocate memory for %d tree-extnodes (%g MB).\n", MaxNodes, bytes / (1024.0 * 1024.0));
-      	endrun(3);
+      printf("failed to allocate memory for %d tree-extnodes (%g MB).\n", MaxNodes,
+	     bytes / (1024.0 * 1024.0));
+      endrun(3);
     }
-  	allbytes += bytes;
+  allbytes += bytes;
 
-  	Nodes = Nodes_base - All.MaxPart;
-  	Extnodes = Extnodes_base - All.MaxPart;
+  Nodes = Nodes_base - All.MaxPart;
+  Extnodes = Extnodes_base - All.MaxPart;
 
-  	if(!(Nextnode = malloc(bytes = (maxpart + MAXTOPNODES) * sizeof(int))))
+  if(!(Nextnode = malloc(bytes = (maxpart + MAXTOPNODES) * sizeof(int))))
     {
-      	printf("Failed to allocate %d spaces for 'Nextnode' array (%g MB)\n", maxpart + MAXTOPNODES, bytes / (1024.0 * 1024.0));
-      	exit(0);
+      printf("Failed to allocate %d spaces for 'Nextnode' array (%g MB)\n", maxpart + MAXTOPNODES,
+	     bytes / (1024.0 * 1024.0));
+      exit(0);
     }
-  	allbytes += bytes;
+  allbytes += bytes;
 
-  	if(!(Father = malloc(bytes = (maxpart) * sizeof(int))))
+  if(!(Father = malloc(bytes = (maxpart) * sizeof(int))))
     {
-      	printf("Failed to allocate %d spaces for 'Father' array (%g MB)\n", maxpart, bytes / (1024.0 * 1024.0));
-      	exit(0);
+      printf("Failed to allocate %d spaces for 'Father' array (%g MB)\n", maxpart, bytes / (1024.0 * 1024.0));
+      exit(0);
     }
-  	allbytes += bytes;
+  allbytes += bytes;
 
-  	if(first_flag == 0)
+  if(first_flag == 0)
     {
-      	first_flag = 1;
+      first_flag = 1;
 
-      	if(ThisTask == 0)
-			printf("\nAllocated %g MByte for BH-tree. %d\n\n", allbytes / (1024.0 * 1024.0), sizeof(struct NODE) + sizeof(struct extNODE));
+      if(ThisTask == 0)
+	printf("\nAllocated %g MByte for BH-tree. %d\n\n", allbytes / (1024.0 * 1024.0),
+	       sizeof(struct NODE) + sizeof(struct extNODE));
 
-      	tabfac = NTAB / 3.0;
+      tabfac = NTAB / 3.0;
 
-      	for(i = 0; i < NTAB; i++)
-		{
-	  		u = 3.0 / NTAB * (i + 0.5);
-	  		shortrange_table[i] = erfc(u) + 2.0 * u / sqrt(M_PI) * exp(-u * u);
-	  		shortrange_table_potential[i] = erfc(u);
-		}
+      for(i = 0; i < NTAB; i++)
+	{
+	  u = 3.0 / NTAB * (i + 0.5);
+	  shortrange_table[i] = erfc(u) + 2.0 * u / sqrt(M_PI) * exp(-u * u);
+	  shortrange_table_potential[i] = erfc(u);
+	}
     }
 }
 
@@ -2829,24 +2832,24 @@ int force_treeevaluate_direct(int target, int mode)
  */
 void dump_particles(void)
 {
-  	FILE *fd;
-  	char buffer[200];
-  	int i;
+  FILE *fd;
+  char buffer[200];
+  int i;
 
-  	sprintf(buffer, "particles%d.dat", ThisTask);
-  	fd = fopen(buffer, "w");
-  	my_fwrite(&NumPart, 1, sizeof(int), fd);
+  sprintf(buffer, "particles%d.dat", ThisTask);
+  fd = fopen(buffer, "w");
+  my_fwrite(&NumPart, 1, sizeof(int), fd);
 
-  	for(i = 0; i < NumPart; i++)
-    	my_fwrite(&P[i].Pos[0], 3, sizeof(FLOAT), fd);
+  for(i = 0; i < NumPart; i++)
+    my_fwrite(&P[i].Pos[0], 3, sizeof(FLOAT), fd);
 
-  	for(i = 0; i < NumPart; i++)
-    	my_fwrite(&P[i].Vel[0], 3, sizeof(FLOAT), fd);
+  for(i = 0; i < NumPart; i++)
+    my_fwrite(&P[i].Vel[0], 3, sizeof(FLOAT), fd);
 
-  	for(i = 0; i < NumPart; i++)
-    	my_fwrite(&P[i].ID, 1, sizeof(int), fd);
+  for(i = 0; i < NumPart; i++)
+    my_fwrite(&P[i].ID, 1, sizeof(int), fd);
 
-  	fclose(fd);
+  fclose(fd);
 }
 
 

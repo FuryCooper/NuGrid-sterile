@@ -26,19 +26,19 @@ void compute_accelerations(int mode)
   double tstart, tend;
 
   if(ThisTask == 0)
-  {
-    printf("Start force computation...\n");
-    fflush(stdout);
-  }
+    {
+      printf("Start force computation...\n");
+      fflush(stdout);
+    }
 
 #ifdef PMGRID
   if(All.PM_Ti_endstep == All.Ti_Current)
-  {
-    tstart = second();
-    long_range_force();
-    tend = second();
-    All.CPU_PM += timediff(tstart, tend);
-  }
+    {
+      tstart = second();
+      long_range_force();
+      tend = second();
+      All.CPU_PM += timediff(tstart, tend);
+    }
 #endif
 
   tstart = second();		/* measure the time for the full force computation */
@@ -58,39 +58,39 @@ void compute_accelerations(int mode)
 #endif
 
   if(All.TotN_gas > 0)
-  {
-    if(ThisTask == 0)
-	  {
-	    printf("Start density computation...\n");
-	    fflush(stdout);
-	  }
+    {
+      if(ThisTask == 0)
+	{
+	  printf("Start density computation...\n");
+	  fflush(stdout);
+	}
 
-    tstart = second();
-    density();		/* computes density, and pressure */
-    tend = second();
-    All.CPU_Hydro += timediff(tstart, tend);
+      tstart = second();
+      density();		/* computes density, and pressure */
+      tend = second();
+      All.CPU_Hydro += timediff(tstart, tend);
 
-    tstart = second();
-    force_update_hmax();      /* tell the tree nodes the new SPH smoothing length such that they are guaranteed to hold the correct max(Hsml) */
-    tend = second();
-    All.CPU_Predict += timediff(tstart, tend);
+      tstart = second();
+      force_update_hmax();      /* tell the tree nodes the new SPH smoothing length such that they are guaranteed to hold the correct max(Hsml) */
+      tend = second();
+      All.CPU_Predict += timediff(tstart, tend);
 
 
-    if(ThisTask == 0)
-	  {
-	    printf("Start hydro-force computation...\n");
-	    fflush(stdout);
-	  }
+      if(ThisTask == 0)
+	{
+	  printf("Start hydro-force computation...\n");
+	  fflush(stdout);
+	}
 
-    tstart = second();
-    hydro_force();		/* adds hydrodynamical accelerations and computes viscous entropy injection  */
-    tend = second();
-    All.CPU_Hydro += timediff(tstart, tend);
-  }
+      tstart = second();
+      hydro_force();		/* adds hydrodynamical accelerations and computes viscous entropy injection  */
+      tend = second();
+      All.CPU_Hydro += timediff(tstart, tend);
+    }
 
   if(ThisTask == 0)
-  {
-    printf("force computation done.\n");
-    fflush(stdout);
-  }
+    {
+      printf("force computation done.\n");
+      fflush(stdout);
+    }
 }

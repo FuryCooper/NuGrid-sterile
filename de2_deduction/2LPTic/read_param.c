@@ -146,14 +146,17 @@ void read_parameterfile(char *fname)
 
   for (int i = 0; i < 5; i++)
   {
-    strcpy(tag[nt], "mass_%d", i);
+    strcpy(tag[nt], "mass_");
+    tag[nt][5] = i + '0';
+    tag[nt][6] = '\0';
     addr[nt] = &Mass[i];
     id[nt++] = FLOAT;
   }
     
   for (int i = 0; i < 5; i++)
   {
-    strcpy(tag[nt], "xi_%d", i);
+    strcpy(tag[nt], "xi_");
+    tag[nt][3] = i + '0';
     addr[nt] = &Xi[i];
     id[nt++] = FLOAT;
   }

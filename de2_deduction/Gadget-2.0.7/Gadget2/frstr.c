@@ -140,29 +140,14 @@ double hubble(double a)
 
   rom = All.Omega2 * All.rocr / (a * a * a);
   rolambda = All.OmegaLambda * All.rocr;
-  //only for one active/sterile neutrino and for one active + sterile neutrino
-  switch (All.expan_on)
-  {
-  case 3:
-    roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_3, All.xi_3);
-    break;
-
-  case 2:
-    roneu = neutrino_integration(a, All.mass_3, All.xi_3);
-    break;
-  
-  case 1:
-    roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
-    break;
-
-  case 0:
-    roneu = neutrino_integration(a, 0., 0.) * 3;
-    break;
+    if(All.expan_on == 1){
+        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
+    }
     
-  default:
-    break;
-  }
-
+    if(All.expan_on == 0){
+        roneu = neutrino_integration(a, 0., 0.) * 3;
+    }
+    
   roneu *= All.rocr;
     
   rototal = rom + roneu + rolambda;
@@ -230,7 +215,7 @@ double frstr(double k, double pk0_nu, double pk0_cdm, double pk1_cdm, double *ar
   int Volterra_iteration_num = 1;
   double a_spacing = (frstr_a1 - frstr_a0) / (double)(All.frstr_interval);
 
-  double phi0, phi1;
+    double phi0, phi1;
   phi2 = (double*) malloc((All.frstr_interval + 1) * sizeof(double));
 
   double *k1;
@@ -239,28 +224,25 @@ double frstr(double k, double pk0_nu, double pk0_cdm, double pk1_cdm, double *ar
   double *k2;
   k2 = (double*) malloc((All.frstr_interval + 1) * sizeof(double));
     
-  int integration_equation_solver = 1;
+    int integration_equation_solver = 1;
 
   for(i=0;i<All.frstr_interval;i++)
-  {
-    //printf("arr2 %lf arr1 %lf k %f array 2 %f\n", k*(array2[All.frstr_interval] - array2[i]), array1[i], k, array2[i]);
-    if(All.phi_param == 1)
-    {
-      //phi1[i] = phi(k*(array2[All.frstr_interval] - array2[i]), array1[i]) * mpc_to_m / pow(c, 3);
-      phi2[i] = phi(k*array2[i], mass, xi, array1[i]);
-    }
+ {
+     //printf("arr2 %lf arr1 %lf k %f array 2 %f\n", k*(array2[All.frstr_interval] - array2[i]), array1[i], k, array2[i]);
+     if(All.phi_param == 1){
+     //phi1[i] = phi(k*(array2[All.frstr_interval] - array2[i]), array1[i]) * mpc_to_m / pow(c, 3);
+         phi2[i] = phi(k*array2[i], mass, xi, array1[i]);
+     }
      
-    if(All.phi_param == 2)
-    {
-      //phi1[i] = phi_expansion(k*(array2[All.frstr_interval] - array2[i]), array1[i]) * mpc_to_m / pow(c, 3);
-      phi2[i] = phi_expansion(k*array2[i], mass, xi, array1[i]);
-    }
+     if(All.phi_param == 2){
+         //phi1[i] = phi_expansion(k*(array2[All.frstr_interval] - array2[i]), array1[i]) * mpc_to_m / pow(c, 3);
+         phi2[i] = phi_expansion(k*array2[i], mass, xi, array1[i]);
+     }
      
-    if(All.phi_param == 3)
-    {
-      //phi1[i] = phi_fit(k*(array2[All.frstr_interval] - array2[i]), array1[i]) * mpc_to_m / pow(c, 3);
-      phi2[i] = phi_fit(k*array2[i], mass, array1[i]);
-    }
+     if(All.phi_param == 3){
+         //phi1[i] = phi_fit(k*(array2[All.frstr_interval] - array2[i]), array1[i]) * mpc_to_m / pow(c, 3);
+         phi2[i] = phi_fit(k*array2[i], mass, array1[i]);
+     }
      
     //printf("phi2 %.10f i %d q %f phi1*Gr*All.rocr%.15f\n", phi2[i], i, array2[i], phi1[i] * Gr * All.rocr);
 

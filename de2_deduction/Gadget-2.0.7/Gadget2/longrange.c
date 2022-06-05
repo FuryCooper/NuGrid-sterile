@@ -76,38 +76,38 @@ void long_range_force(void)
 #ifdef PLACEHIGHRESREGION
   i = pmforce_nonperiodic(1);
   if(i == 1)			/* this is returned if a particle lied outside allowed range */
-  {
-    pm_init_regionsize();
-    pm_setup_nonperiodic_kernel();
-    i = pmforce_nonperiodic(1);	/* try again */
-  }
+    {
+      pm_init_regionsize();
+      pm_setup_nonperiodic_kernel();
+      i = pmforce_nonperiodic(1);	/* try again */
+    }
   if(i == 1)
     endrun(68686);
 #endif
 #else
   i = pmforce_nonperiodic(0);
   if(i == 1)			/* this is returned if a particle lied outside allowed range */
-  {
-    pm_init_regionsize();
-    pm_setup_nonperiodic_kernel();
-    i = pmforce_nonperiodic(0);	/* try again */
-  }
+    {
+      pm_init_regionsize();
+      pm_setup_nonperiodic_kernel();
+      i = pmforce_nonperiodic(0);	/* try again */
+    }
   if(i == 1)
     endrun(68687);
 #ifdef PLACEHIGHRESREGION
   i = pmforce_nonperiodic(1);
   if(i == 1)			/* this is returned if a particle lied outside allowed range */
-  {
-    pm_init_regionsize();
-    pm_setup_nonperiodic_kernel();
+    {
+      pm_init_regionsize();
+      pm_setup_nonperiodic_kernel();
 
-    /* try again */
+      /* try again */
 
-    for(i = 0; i < NumPart; i++)
-	    P[i].GravPM[0] = P[i].GravPM[1] = P[i].GravPM[2] = 0;
+      for(i = 0; i < NumPart; i++)
+	P[i].GravPM[0] = P[i].GravPM[1] = P[i].GravPM[2] = 0;
 
-    i = pmforce_nonperiodic(0) + pmforce_nonperiodic(1);
-  }
+      i = pmforce_nonperiodic(0) + pmforce_nonperiodic(1);
+    }
   if(i != 0)
     endrun(68688);
 #endif
@@ -116,26 +116,26 @@ void long_range_force(void)
 
 #ifndef PERIODIC
   if(All.ComovingIntegrationOn)
-  {
-    fac = 0.5 * All.Hubble * All.Hubble * All.Omega0;
+    {
+      fac = 0.5 * All.Hubble * All.Hubble * All.Omega0;
 
-    for(i = 0; i < NumPart; i++)
-	    for(j = 0; j < 3; j++)
-	      P[i].GravPM[j] += fac * P[i].Pos[j];
-  }
+      for(i = 0; i < NumPart; i++)
+	for(j = 0; j < 3; j++)
+	  P[i].GravPM[j] += fac * P[i].Pos[j];
+    }
 
 
   /* Finally, the following factor allows a computation of cosmological simulation 
      with vacuum energy in physical coordinates */
 
   if(All.ComovingIntegrationOn == 0)
-  {
-    fac = All.OmegaLambda * All.Hubble * All.Hubble;
+    {
+      fac = All.OmegaLambda * All.Hubble * All.Hubble;
 
-    for(i = 0; i < NumPart; i++)
-	    for(j = 0; j < 3; j++)
-	      P[i].GravPM[j] += fac * P[i].Pos[j];
-  }
+      for(i = 0; i < NumPart; i++)
+	for(j = 0; j < 3; j++)
+	  P[i].GravPM[j] += fac * P[i].Pos[j];
+    }
 #endif
 
 }

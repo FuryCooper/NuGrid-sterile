@@ -357,35 +357,35 @@ int ngb_clear_buf(FLOAT searchcenter[3], FLOAT hsml, int numngb)
  */
 void ngb_treeallocate(int npart)
 {
-  	double totbytes = 0;
-  	size_t bytes;
+  double totbytes = 0;
+  size_t bytes;
 
 #ifdef PERIODIC
-  	boxSize = All.BoxSize;
-  	boxHalf = 0.5 * All.BoxSize;
+  boxSize = All.BoxSize;
+  boxHalf = 0.5 * All.BoxSize;
 #ifdef LONG_X
-  	boxHalf_X = boxHalf * LONG_X;
-  	boxSize_X = boxSize * LONG_X;
+  boxHalf_X = boxHalf * LONG_X;
+  boxSize_X = boxSize * LONG_X;
 #endif
 #ifdef LONG_Y
-  	boxHalf_Y = boxHalf * LONG_Y;
-  	boxSize_Y = boxSize * LONG_Y;
+  boxHalf_Y = boxHalf * LONG_Y;
+  boxSize_Y = boxSize * LONG_Y;
 #endif
 #ifdef LONG_Z
-  	boxHalf_Z = boxHalf * LONG_Z;
-  	boxSize_Z = boxSize * LONG_Z;
+  boxHalf_Z = boxHalf * LONG_Z;
+  boxSize_Z = boxSize * LONG_Z;
 #endif
 #endif
 
-  	if(!(Ngblist = malloc(bytes = npart * (long) sizeof(int))))
+  if(!(Ngblist = malloc(bytes = npart * (long) sizeof(int))))
     {
       printf("Failed to allocate %g MB for ngblist array\n", bytes / (1024.0 * 1024.0));
       endrun(78);
     }
- 	totbytes += bytes;
+  totbytes += bytes;
 
-  	if(ThisTask == 0)
-    	printf("allocated %g Mbyte for ngb search.\n", totbytes / (1024.0 * 1024.0));
+  if(ThisTask == 0)
+    printf("allocated %g Mbyte for ngb search.\n", totbytes / (1024.0 * 1024.0));
 }
 
 
@@ -404,7 +404,7 @@ void ngb_treebuild(void)
 {
   if(ThisTask == 0)
     printf("Begin Ngb-tree construction.\n");
-  printf("check point1");
+
   force_treebuild(N_gas);
 
   if(ThisTask == 0)

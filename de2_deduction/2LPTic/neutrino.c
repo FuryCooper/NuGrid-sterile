@@ -1,6 +1,4 @@
 /* These amendment neutrino.c and neutrino.h add the influence
- of massive and degenerate of cosmic neutrinos into the N-body 
- simulation. A simple test of Hubble constant versus expansion 
  coefficient relation shows the influence may not be neglectable.
 */
 #include <stdio.h>
@@ -36,10 +34,10 @@ double neutrino_partition(double PT, void *Params)
     double Mass_n;
 
     Mass_n = Mass_nu / ktoev;
-    partition = pow(PT, 3) * sqrt(1 + pow(Mass_n) / (PT * Tnu), 2) / (exp(sqrt(pow(PT, 2) + pow((Mass_n / Tnu), 2)) - Xi_nu) + 1);
-    partition += pow(PT, 3) * sqrt(1 + pow(Mass_n) / (PT * Tnu), 2) / (exp(sqrt(pow(PT, 2) + pow((Mass_n / Tnu), 2)) + Xi_nu) + 1);
+    partition = pow(PT, 3) * sqrt(1 + pow(Mass_n / (PT * Tnu), 2)) / (exp(PT - Xi_nu) + 1);
+    partition += pow(PT, 3) * sqrt(1 + pow(Mass_n / (PT * Tnu), 2)) / (exp(PT + Xi_nu) + 1);
 
-    return Partition;
+    return partition;
 }
 
 double neutrino_integration(double a, double m, double xi)
@@ -58,7 +56,7 @@ double neutrino_integration(double a, double m, double xi)
     F2.function = &neutrino_partition;
     F2.params = &alpha;
 
-    gsl_integration_qagiu(&F2, 0.0, 1.0e-8, WORKSIZE2, workspace2, &integrate_result, &integrate_abserr);
+    gsl_integration_qagiu(&F2, 0.0, 0, 1.0e-8, WORKSIZE2, workspace2, &integrate_result, &integrate_abserr);
     Rho_nu = integrate_result * unittrans * pow(T_nu, 4);
     Rho_nu = Rho_nu / rocr;
     gsl_integration_workspace_free(workspace2);

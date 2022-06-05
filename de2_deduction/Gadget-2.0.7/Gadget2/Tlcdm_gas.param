@@ -1,9 +1,7 @@
 %  Relevant files
 
-InitCondFile  	   /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m000-xi000/123456-random-ics
-OutputDir          /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m000-xi000/123456
-ratio_nu_cdm_txt  /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m000-xi000/ratio_cmbonly_m000-xi000-twotypes.txt
-nu_pk_txt       /ds/rui/workspace/Gadget_output/Rui_twotypes-mnu003-xi010/m000-xi000/123456/nu_pk
+InitCondFile  	   /home/zzc/Gadget_output/16feb/noexpan/clean/123456/123456-random-ics
+OutputDir          /home/zzc/Gadget_output/16feb/noexpan/clean/123456
 
 EnergyFile         energy.txt
 InfoFile           info.txt
@@ -13,7 +11,7 @@ CpuFile            cpu.txt
 RestartFile        restart
 SnapshotFileBase   snapshot
 
-OutputListFilename outputs_rui.txt
+OutputListFilename outputs_zzc.txt
 
 % CPU time -limit
 
@@ -35,13 +33,13 @@ PeriodicBoundariesOn     1
 
 %  Caracteristics of run
 
-TimeBegin           0.02  % z=49, Begin of the simulation
+TimeBegin           0.015625  % z=63, Begin of the simulation
 TimeMax	            1.0
 
-Omega0	              0.3019
-OmegaLambda           0.6981
-OmegaBaryon           0.0481
-HubbleParam           0.6837
+Omega0	              0.3
+OmegaLambda           0.7
+OmegaBaryon           0.05
+HubbleParam           0.70
 BoxSize               200000.0
 
 % Output frequency
@@ -123,19 +121,20 @@ SofteningBulgeMaxPhys     0
 SofteningStarsMaxPhys     0
 SofteningBndryMaxPhys     0
 
-%zzc parameter for neutrino modified by Rui Hu, set the abitrary neutrino types, you can set the mass and xi abitrary
-Tneu0		        1.945		%CNB temperature at redshift 0
-neutrino_scheme 	4.0
+%zzc parameter for neutrino
+Tneu0		  1.945		%CNB temperature at redshift 0
+neutrino_scheme 	0.0
 frstr_interval		10
-xi_3	  		    0
-mass_1         		0
+mass_nu_frstr		0.0	% m of neutrino for expansion in free streaming
+xi_frstr	  	0.0       %neutrino chemical potential over T
+xi_expan		0.0
+mass_nu_expan         0.0      %m of neutrino in expansion 
 time_of_step 		1
-phi_param		    2
-deductfromDE		1
-expan_on 		    3
-mass_hierarchy		4           % if set the mass abitrary, set it > 3
-lepton_asymmetry	3           % if set the xi abitrary, set it > 3
-Number_Neutrino     4           % determine the number of neutrino types
+phi_param		2
+
+
+
+
 
 
 

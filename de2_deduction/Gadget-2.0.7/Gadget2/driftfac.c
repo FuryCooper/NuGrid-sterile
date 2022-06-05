@@ -35,31 +35,30 @@ void init_drift_table(void)
   logTimeBegin = log(All.TimeBegin);
   logTimeMax = log(All.TimeMax);
 
-  printf("real checkpoint 1 /n");
+
   workspace = gsl_integration_workspace_alloc(WORKSIZE);
 
   for(i = 0; i < DRIFT_TABLE_LENGTH; i++)
-  {
-    F.function = &drift_integ;
-    gsl_integration_qag(&F, exp(logTimeBegin), exp(logTimeBegin + ((logTimeMax - logTimeBegin) / DRIFT_TABLE_LENGTH) * (i + 1)), 0,
-			1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
-    DriftTable[i] = result;
+    {
+      F.function = &drift_integ;
+      gsl_integration_qag(&F, exp(logTimeBegin), exp(logTimeBegin + ((logTimeMax - logTimeBegin) / DRIFT_TABLE_LENGTH) * (i + 1)), 0,
+			  1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
+      DriftTable[i] = result;
 
 
-    F.function = &gravkick_integ;
-    gsl_integration_qag(&F, exp(logTimeBegin), exp(logTimeBegin + ((logTimeMax - logTimeBegin) / DRIFT_TABLE_LENGTH) * (i + 1)), 0,
-		  1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
-    GravKickTable[i] = result;
+      F.function = &gravkick_integ;
+      gsl_integration_qag(&F, exp(logTimeBegin), exp(logTimeBegin + ((logTimeMax - logTimeBegin) / DRIFT_TABLE_LENGTH) * (i + 1)), 0,
+			  1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
+      GravKickTable[i] = result;
 
 
-    F.function = &hydrokick_integ;
-    gsl_integration_qag(&F, exp(logTimeBegin), exp(logTimeBegin + ((logTimeMax - logTimeBegin) / DRIFT_TABLE_LENGTH) * (i + 1)), 0,
-		  1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
-    HydroKickTable[i] = result;
-  }
+      F.function = &hydrokick_integ;
+      gsl_integration_qag(&F, exp(logTimeBegin), exp(logTimeBegin + ((logTimeMax - logTimeBegin) / DRIFT_TABLE_LENGTH) * (i + 1)), 0,
+			  1.0e-8, WORKSIZE, GSL_INTEG_GAUSS41, workspace, &result, &abserr);
+      HydroKickTable[i] = result;
+    }
 
   gsl_integration_workspace_free(workspace);
-  printf("real checkpoint 2 /n");
 }
 
 
@@ -182,28 +181,21 @@ double get_hydrokick_factor(int time0, int time1)
 double drift_integ(double a, void *param)
 {
   double h;
-  double roneu;
-
-  /* Neutrino */
-  if (All.expan_on == 0)
-  {
-    roneu = neutrino_integration(a, 0.0, 0.0) * All.NNeutrino;
-  }
-  if (All.expan_on == 1)
-  {
-    roneu = 0.0;
-    for (int i = 0; i < All.NNeutrino; i++)
-    {
-      roneu += neutrino_integration(a, All.Mass[i], All.Xi[i]);
+    double roneu;
+    if(All.expan_on == 1){
+        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
     }
-  }
+    
+    if(All.expan_on == 0){
+        roneu = neutrino_integration(a, 0., 0.) * 3;
+    }
  
   h = All.Omega2 / (a * a * a) + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
   //h = All.Omega0 / (a * a * a) + (1 - All.Omega0 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
   h = All.Hubble * sqrt(h);
-  //printf("omega2 %f omegalam %f roneu %f\n", All.Omega2, All.OmegaLambda, roneu);
+    //printf("omega2 %f omegalam %f roneu %f\n", All.Omega2, All.OmegaLambda, roneu);
   //printf("roneu %f mass %f xi %f\n", roneu, All.mass_nu_expan, All.xi_expan);
-  return 1 / (h * a * a * a);
+    return 1 / (h * a * a * a);
 }
 
 /*! Integration kernel for gravitational kick factor computation.
@@ -211,22 +203,15 @@ double drift_integ(double a, void *param)
 double gravkick_integ(double a, void *param)
 {
   double h;
-  double roneu;.
-
-  /* Neutrino */
-  if (All.expan_on == 0)
-  {
-    roneu = neutrino_integration(a, 0.0, 0.0) * All.NNeutrino;
-  }
-  if (All.expan_on == 1)
-  {
-    roneu = 0.0;
-    for (int i = 0; i < All.NNeutrino; i++)
-    {
-      roneu += neutrino_integration(a, All.Mass[i], All.Xi[i]);
+   double roneu;
+    if(All.expan_on == 1){
+        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
     }
-  }
-
+    
+    if(All.expan_on == 0){
+        roneu = neutrino_integration(a, 0., 0.) * 3;
+    }
+  
   h = All.Omega2 / (a * a * a) + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
   //h = All.Omega0 / (a * a * a) + (1 - All.Omega0 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
   h = All.Hubble * sqrt(h);
@@ -241,21 +226,14 @@ double hydrokick_integ(double a, void *param)
 {
   double h;
   double roneu;
-
-  /* Neutrino */
-  if (All.expan_on == 0)
-  {
-    roneu = neutrino_integration(a, 0.0, 0.0) * All.NNeutrino;
-  }
-  if (All.expan_on == 1)
-  {
-    roneu = 0.0;
-    for (int i = 0; i < All.NNeutrino; i++)
-    {
-      roneu += neutrino_integration(a, All.Mass[i], All.Xi[i]);
+    
+    if(All.expan_on == 1){
+        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
     }
-  }
-
+    
+    if(All.expan_on == 0){
+        roneu = neutrino_integration(a, 0., 0.) * 3;
+    }
   h = All.Omega2 / (a * a * a) + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
   //h = All.Omega0 / (a * a * a) + (1 - All.Omega0 - All.OmegaLambda - All.Omega_nu0_expan) / (a * a) + All.OmegaLambda + roneu;
   h = All.Hubble * sqrt(h);
@@ -263,26 +241,18 @@ double hydrokick_integ(double a, void *param)
   return 1 / (h * pow(a, 3 * GAMMA_MINUS1) * a);
 }
 
-/* Comments by Rui HU: It seems not used. */
 double growthfactor_integ(double a, void *param)
 {
   double s;
   double roneu;
-
-  /* Neutrino */
-  if (All.expan_on == 0)
-  {
-    roneu = neutrino_integration(a, 0.0, 0.0) * All.NNeutrino;
-  }
-  if (All.expan_on == 1)
-  {
-    roneu = 0.0;
-    for (int i = 0; i < All.NNeutrino; i++)
-    {
-      roneu += neutrino_integration(a, All.Mass[i], All.Xi[i]);
+    if(All.expan_on == 1){
+        roneu = neutrino_integration(a, All.mass_1, All.xi_1) + neutrino_integration(a, All.mass_2, All.xi_2) + neutrino_integration(a, All.mass_3, All.xi_3);
     }
-  }
-
+    
+    if(All.expan_on == 0){
+        roneu = neutrino_integration(a, 0., 0.) * 3;
+    }
+  
   s = All.Omega2 + (1 - All.Omega2 - All.OmegaLambda - All.Omega_nu0_expan) * a + All.OmegaLambda * a * a * a + roneu * a * a * a;
   //s = All.Omega0 + (1 - All.Omega0 - All.OmegaLambda - All.Omega_nu0_expan) * a + All.OmegaLambda * a * a * a + roneu * a * a * a;
   s = sqrt(s);

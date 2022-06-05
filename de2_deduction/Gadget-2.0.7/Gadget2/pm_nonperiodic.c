@@ -57,122 +57,122 @@ static fftw_complex *fft_of_kernel[2], *fft_of_rhogrid;
  */
 void pm_init_regionsize(void)
 {
-  	double meshinner[2], xmin[2][3], xmax[2][3];
-  	int i, j, t;
+  double meshinner[2], xmin[2][3], xmax[2][3];
+  int i, j, t;
 
-  	/* find enclosing rectangle */
+  /* find enclosing rectangle */
 
-  	for(j = 0; j < 3; j++)
+  for(j = 0; j < 3; j++)
     {
-      	xmin[0][j] = xmin[1][j] = 1.0e36;
-      	xmax[0][j] = xmax[1][j] = -1.0e36;
+      xmin[0][j] = xmin[1][j] = 1.0e36;
+      xmax[0][j] = xmax[1][j] = -1.0e36;
     }
 
-  	for(i = 0; i < NumPart; i++)
-    	for(j = 0; j < 3; j++)
-      	{
-			t = 0;
+  for(i = 0; i < NumPart; i++)
+    for(j = 0; j < 3; j++)
+      {
+	t = 0;
 #ifdef PLACEHIGHRESREGION
-			if(((1 << P[i].Type) & (PLACEHIGHRESREGION)))
-	  			t = 1;
+	if(((1 << P[i].Type) & (PLACEHIGHRESREGION)))
+	  t = 1;
 #endif
-			if(P[i].Pos[j] > xmax[t][j])
-	  			xmax[t][j] = P[i].Pos[j];
-			if(P[i].Pos[j] < xmin[t][j])
-	  			xmin[t][j] = P[i].Pos[j];
-      	}
+	if(P[i].Pos[j] > xmax[t][j])
+	  xmax[t][j] = P[i].Pos[j];
+	if(P[i].Pos[j] < xmin[t][j])
+	  xmin[t][j] = P[i].Pos[j];
+      }
 
-  	MPI_Allreduce(xmin, All.Xmintot, 6, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
-  	MPI_Allreduce(xmax, All.Xmaxtot, 6, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+  MPI_Allreduce(xmin, All.Xmintot, 6, MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
+  MPI_Allreduce(xmax, All.Xmaxtot, 6, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
 
-  	for(j = 0; j < 2; j++)
+  for(j = 0; j < 2; j++)
     {
-      	All.TotalMeshSize[j] = All.Xmaxtot[j][0] - All.Xmintot[j][0];
-      	All.TotalMeshSize[j] = dmax(All.TotalMeshSize[j], All.Xmaxtot[j][1] - All.Xmintot[j][1]);
-      	All.TotalMeshSize[j] = dmax(All.TotalMeshSize[j], All.Xmaxtot[j][2] - All.Xmintot[j][2]);
+      All.TotalMeshSize[j] = All.Xmaxtot[j][0] - All.Xmintot[j][0];
+      All.TotalMeshSize[j] = dmax(All.TotalMeshSize[j], All.Xmaxtot[j][1] - All.Xmintot[j][1]);
+      All.TotalMeshSize[j] = dmax(All.TotalMeshSize[j], All.Xmaxtot[j][2] - All.Xmintot[j][2]);
 #ifdef ENLARGEREGION
-      	All.TotalMeshSize[j] *= ENLARGEREGION;
+      All.TotalMeshSize[j] *= ENLARGEREGION;
 #endif
 
-      	/* symmetrize the box onto the center */
-     	for(i = 0; i < 3; i++)
-		{
-	  		All.Xmintot[j][i] = (All.Xmintot[j][i] + All.Xmaxtot[j][i]) / 2 - All.TotalMeshSize[j] / 2;
-	  		All.Xmaxtot[j][i] = All.Xmintot[j][i] + All.TotalMeshSize[j];
-		}
+      /* symmetrize the box onto the center */
+      for(i = 0; i < 3; i++)
+	{
+	  All.Xmintot[j][i] = (All.Xmintot[j][i] + All.Xmaxtot[j][i]) / 2 - All.TotalMeshSize[j] / 2;
+	  All.Xmaxtot[j][i] = All.Xmintot[j][i] + All.TotalMeshSize[j];
+	}
     }
 
-  	/* this will produce enough room for zero-padding and buffer region to
-     	allow finite differencing of the potential  */
+  /* this will produce enough room for zero-padding and buffer region to
+     allow finite differencing of the potential  */
 
-  	for(j = 0; j < 2; j++)
+  for(j = 0; j < 2; j++)
     {
-      	meshinner[j] = All.TotalMeshSize[j];
-      	All.TotalMeshSize[j] *= 2.001 * (GRID) / ((double) (GRID - 2 - 8));
+      meshinner[j] = All.TotalMeshSize[j];
+      All.TotalMeshSize[j] *= 2.001 * (GRID) / ((double) (GRID - 2 - 8));
     }
 
-  	/* move lower left corner by two cells to allow finite differencing of the potential by a 4-point function */
+  /* move lower left corner by two cells to allow finite differencing of the potential by a 4-point function */
 
-  	for(j = 0; j < 2; j++)
-    	for(i = 0; i < 3; i++)
-      	{
-			All.Corner[j][i] = All.Xmintot[j][i] - 2.0005 * All.TotalMeshSize[j] / GRID;
-			All.UpperCorner[j][i] = All.Corner[j][i] + (GRID / 2 - 1) * (All.TotalMeshSize[j] / GRID);
-      	}
+  for(j = 0; j < 2; j++)
+    for(i = 0; i < 3; i++)
+      {
+	All.Corner[j][i] = All.Xmintot[j][i] - 2.0005 * All.TotalMeshSize[j] / GRID;
+	All.UpperCorner[j][i] = All.Corner[j][i] + (GRID / 2 - 1) * (All.TotalMeshSize[j] / GRID);
+      }
 
 
 #ifndef PERIODIC
-  	All.Asmth[0] = ASMTH * All.TotalMeshSize[0] / GRID;
-  	All.Rcut[0] = RCUT * All.Asmth[0];
+  All.Asmth[0] = ASMTH * All.TotalMeshSize[0] / GRID;
+  All.Rcut[0] = RCUT * All.Asmth[0];
 #endif
 
 #ifdef PLACEHIGHRESREGION
-  	All.Asmth[1] = ASMTH * All.TotalMeshSize[1] / GRID;
-  	All.Rcut[1] = RCUT * All.Asmth[1];
+  All.Asmth[1] = ASMTH * All.TotalMeshSize[1] / GRID;
+  All.Rcut[1] = RCUT * All.Asmth[1];
 #endif
 
 #ifdef PLACEHIGHRESREGION
-  	if(2 * All.TotalMeshSize[1] / GRID < All.Rcut[0])
+  if(2 * All.TotalMeshSize[1] / GRID < All.Rcut[0])
     {
-      	All.TotalMeshSize[1] = 2 * (meshinner[1] + 2 * All.Rcut[0]) * (GRID) / ((double) (GRID - 2));
+      All.TotalMeshSize[1] = 2 * (meshinner[1] + 2 * All.Rcut[0]) * (GRID) / ((double) (GRID - 2));
 
-      	for(i = 0; i < 3; i++)
-		{
-	  		All.Corner[1][i] = All.Xmintot[1][i] - 1.0001 * All.Rcut[0];
-	  		All.UpperCorner[1][i] = All.Corner[1][i] + (GRID / 2 - 1) * (All.TotalMeshSize[1] / GRID);
-		}
+      for(i = 0; i < 3; i++)
+	{
+	  All.Corner[1][i] = All.Xmintot[1][i] - 1.0001 * All.Rcut[0];
+	  All.UpperCorner[1][i] = All.Corner[1][i] + (GRID / 2 - 1) * (All.TotalMeshSize[1] / GRID);
+	}
 
-      	if(2 * All.TotalMeshSize[1] / GRID > All.Rcut[0])
-		{
-	  		All.TotalMeshSize[1] = 2 * (meshinner[1] + 2 * All.Rcut[0]) * (GRID) / ((double) (GRID - 10));
+      if(2 * All.TotalMeshSize[1] / GRID > All.Rcut[0])
+	{
+	  All.TotalMeshSize[1] = 2 * (meshinner[1] + 2 * All.Rcut[0]) * (GRID) / ((double) (GRID - 10));
 
-	  		for(i = 0; i < 3; i++)
-	    	{
-	      		All.Corner[1][i] = All.Xmintot[1][i] - 1.0001 * (All.Rcut[0] + 2 * All.TotalMeshSize[1] / GRID);
-	      		All.UpperCorner[1][i] = All.Corner[1][i] + (GRID / 2 - 1) * (All.TotalMeshSize[1] / GRID);
-	    	}
-		}
+	  for(i = 0; i < 3; i++)
+	    {
+	      All.Corner[1][i] = All.Xmintot[1][i] - 1.0001 * (All.Rcut[0] + 2 * All.TotalMeshSize[1] / GRID);
+	      All.UpperCorner[1][i] = All.Corner[1][i] + (GRID / 2 - 1) * (All.TotalMeshSize[1] / GRID);
+	    }
+	}
 
-      	All.Asmth[1] = ASMTH * All.TotalMeshSize[1] / GRID;
-      	All.Rcut[1] = RCUT * All.Asmth[1];
+      All.Asmth[1] = ASMTH * All.TotalMeshSize[1] / GRID;
+      All.Rcut[1] = RCUT * All.Asmth[1];
     }
 #endif
 
-  	if(ThisTask == 0)
+  if(ThisTask == 0)
     {
 #ifndef PERIODIC
-      	printf("\nAllowed region for isolated PM mesh (coarse):\n");
-      	printf("(%g|%g|%g)  -> (%g|%g|%g)   ext=%g  totmeshsize=%g  meshsize=%g\n\n",
-	     	All.Xmintot[0][0], All.Xmintot[0][1], All.Xmintot[0][2],
-	     	All.Xmaxtot[0][0], All.Xmaxtot[0][1], All.Xmaxtot[0][2], meshinner[0], All.TotalMeshSize[0],
-	     	All.TotalMeshSize[0] / GRID);
+      printf("\nAllowed region for isolated PM mesh (coarse):\n");
+      printf("(%g|%g|%g)  -> (%g|%g|%g)   ext=%g  totmeshsize=%g  meshsize=%g\n\n",
+	     All.Xmintot[0][0], All.Xmintot[0][1], All.Xmintot[0][2],
+	     All.Xmaxtot[0][0], All.Xmaxtot[0][1], All.Xmaxtot[0][2], meshinner[0], All.TotalMeshSize[0],
+	     All.TotalMeshSize[0] / GRID);
 #endif
 #ifdef PLACEHIGHRESREGION
-      	printf("\nAllowed region for isolated PM mesh (high-res):\n");
-      	printf("(%g|%g|%g)  -> (%g|%g|%g)   ext=%g  totmeshsize=%g  meshsize=%g\n\n",
-	     	All.Xmintot[1][0], All.Xmintot[1][1], All.Xmintot[1][2],
-	     	All.Xmaxtot[1][0], All.Xmaxtot[1][1], All.Xmaxtot[1][2],
-	     	meshinner[1], All.TotalMeshSize[1], All.TotalMeshSize[1] / GRID);
+      printf("\nAllowed region for isolated PM mesh (high-res):\n");
+      printf("(%g|%g|%g)  -> (%g|%g|%g)   ext=%g  totmeshsize=%g  meshsize=%g\n\n",
+	     All.Xmintot[1][0], All.Xmintot[1][1], All.Xmintot[1][2],
+	     All.Xmaxtot[1][0], All.Xmaxtot[1][1], All.Xmaxtot[1][2],
+	     meshinner[1], All.TotalMeshSize[1], All.TotalMeshSize[1] / GRID);
 #endif
     }
 
@@ -184,73 +184,73 @@ void pm_init_regionsize(void)
  */
 void pm_init_nonperiodic(void)
 {
-  	int i, slab_to_task_local[GRID];
-  	double bytes_tot = 0;
-  	size_t bytes;
+  int i, slab_to_task_local[GRID];
+  double bytes_tot = 0;
+  size_t bytes;
 
-  	/* Set up the FFTW plan files. */
+  /* Set up the FFTW plan files. */
 
-  	fft_forward_plan = rfftw3d_mpi_create_plan(MPI_COMM_WORLD, GRID, GRID, GRID,
-					    FFTW_REAL_TO_COMPLEX, FFTW_ESTIMATE | FFTW_IN_PLACE);
- 	fft_inverse_plan = rfftw3d_mpi_create_plan(MPI_COMM_WORLD, GRID, GRID, GRID,
-					    FFTW_COMPLEX_TO_REAL, FFTW_ESTIMATE | FFTW_IN_PLACE);
+  fft_forward_plan = rfftw3d_mpi_create_plan(MPI_COMM_WORLD, GRID, GRID, GRID,
+					     FFTW_REAL_TO_COMPLEX, FFTW_ESTIMATE | FFTW_IN_PLACE);
+  fft_inverse_plan = rfftw3d_mpi_create_plan(MPI_COMM_WORLD, GRID, GRID, GRID,
+					     FFTW_COMPLEX_TO_REAL, FFTW_ESTIMATE | FFTW_IN_PLACE);
 
-  	/* Workspace out the ranges on each processor. */
+  /* Workspace out the ranges on each processor. */
 
-  	rfftwnd_mpi_local_sizes(fft_forward_plan, &nslab_x, &slabstart_x, &nslab_y, &slabstart_y, &fftsize);
+  rfftwnd_mpi_local_sizes(fft_forward_plan, &nslab_x, &slabstart_x, &nslab_y, &slabstart_y, &fftsize);
 
 
-  	for(i = 0; i < GRID; i++)
-    	slab_to_task_local[i] = 0;
+  for(i = 0; i < GRID; i++)
+    slab_to_task_local[i] = 0;
 
-  	for(i = 0; i < nslab_x; i++)
-    	slab_to_task_local[slabstart_x + i] = ThisTask;
+  for(i = 0; i < nslab_x; i++)
+    slab_to_task_local[slabstart_x + i] = ThisTask;
 
-  	MPI_Allreduce(slab_to_task_local, slab_to_task, GRID, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+  MPI_Allreduce(slab_to_task_local, slab_to_task, GRID, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
 
-  	slabs_per_task = malloc(NTask * sizeof(int));
-  	MPI_Allgather(&nslab_x, 1, MPI_INT, slabs_per_task, 1, MPI_INT, MPI_COMM_WORLD);
+  slabs_per_task = malloc(NTask * sizeof(int));
+  MPI_Allgather(&nslab_x, 1, MPI_INT, slabs_per_task, 1, MPI_INT, MPI_COMM_WORLD);
 
 #ifndef PERIODIC
-  	if(ThisTask == 0)
-	{
-      	for(i = 0; i < NTask; i++)
-			printf("Task=%d  FFT-Slabs=%d\n", i, slabs_per_task[i]);
+  if(ThisTask == 0)
+    {
+      for(i = 0; i < NTask; i++)
+	printf("Task=%d  FFT-Slabs=%d\n", i, slabs_per_task[i]);
     }
 #endif
 
-  	first_slab_of_task = malloc(NTask * sizeof(int));
-  	MPI_Allgather(&slabstart_x, 1, MPI_INT, first_slab_of_task, 1, MPI_INT, MPI_COMM_WORLD);
+  first_slab_of_task = malloc(NTask * sizeof(int));
+  MPI_Allgather(&slabstart_x, 1, MPI_INT, first_slab_of_task, 1, MPI_INT, MPI_COMM_WORLD);
 
-  	meshmin_list = malloc(3 * NTask * sizeof(int));
-  	meshmax_list = malloc(3 * NTask * sizeof(int));
+  meshmin_list = malloc(3 * NTask * sizeof(int));
+  meshmax_list = malloc(3 * NTask * sizeof(int));
 
-  	MPI_Allreduce(&fftsize, &maxfftsize, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
+  MPI_Allreduce(&fftsize, &maxfftsize, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
 
   /* now allocate memory to hold the FFT fields */
 
 #if !defined(PERIODIC)
-  	if(!(kernel[0] = (fftw_real *) malloc(bytes = fftsize * sizeof(fftw_real))))
+  if(!(kernel[0] = (fftw_real *) malloc(bytes = fftsize * sizeof(fftw_real))))
     {
-      	printf("failed to allocate memory for `FFT-kernel[0]' (%g MB).\n", bytes / (1024.0 * 1024.0));
-      	endrun(1);
+      printf("failed to allocate memory for `FFT-kernel[0]' (%g MB).\n", bytes / (1024.0 * 1024.0));
+      endrun(1);
     }
-  	bytes_tot += bytes;
-  	fft_of_kernel[0] = (fftw_complex *) kernel[0];
+  bytes_tot += bytes;
+  fft_of_kernel[0] = (fftw_complex *) kernel[0];
 #endif
 
 #if defined(PLACEHIGHRESREGION)
-  	if(!(kernel[1] = (fftw_real *) malloc(bytes = fftsize * sizeof(fftw_real))))
+  if(!(kernel[1] = (fftw_real *) malloc(bytes = fftsize * sizeof(fftw_real))))
     {
-      	printf("failed to allocate memory for `FFT-kernel[1]' (%g MB).\n", bytes / (1024.0 * 1024.0));
-      	endrun(1);
+      printf("failed to allocate memory for `FFT-kernel[1]' (%g MB).\n", bytes / (1024.0 * 1024.0));
+      endrun(1);
     }
-  	bytes_tot += bytes;
-  	fft_of_kernel[1] = (fftw_complex *) kernel[1];
+  bytes_tot += bytes;
+  fft_of_kernel[1] = (fftw_complex *) kernel[1];
 #endif
 
-  	if(ThisTask == 0)
-    	printf("\nAllocated %g MByte for FFT kernel(s).\n\n", bytes_tot / (1024.0 * 1024.0));
+  if(ThisTask == 0)
+    printf("\nAllocated %g MByte for FFT kernel(s).\n\n", bytes_tot / (1024.0 * 1024.0));
 
 }
 
@@ -308,10 +308,10 @@ void pm_init_nonperiodic_allocate(int dimprod)
  */
 void pm_init_nonperiodic_free(void)
 {
-  	/* deallocate memory */
-  	free(workspace);
-  	free(forcegrid);
-  	free(rhogrid);
+  /* deallocate memory */
+  free(workspace);
+  free(forcegrid);
+  free(rhogrid);
 }
 
 
@@ -320,149 +320,149 @@ void pm_init_nonperiodic_free(void)
  */
 void pm_setup_nonperiodic_kernel(void)
 {
-  	int i, j, k;
-  	double x, y, z, r, u, fac;
-  	double kx, ky, kz, k2, fx, fy, fz, ff;
-  	int ip;
+  int i, j, k;
+  double x, y, z, r, u, fac;
+  double kx, ky, kz, k2, fx, fy, fz, ff;
+  int ip;
 
-  	/* now set up kernel and its Fourier transform */
+  /* now set up kernel and its Fourier transform */
 
-  	pm_init_nonperiodic_allocate(0);
+  pm_init_nonperiodic_allocate(0);
 
 #if !defined(PERIODIC)
-  	for(i = 0; i < fftsize; i++)	/* clear local density field */
-    	kernel[0][i] = 0;
+  for(i = 0; i < fftsize; i++)	/* clear local density field */
+    kernel[0][i] = 0;
 
-  	for(i = slabstart_x; i < (slabstart_x + nslab_x); i++)
-   	 	for(j = 0; j < GRID; j++)
-      		for(k = 0; k < GRID; k++)
-			{
-	  			x = ((double) i) / GRID;
-	  			y = ((double) j) / GRID;
-	  			z = ((double) k) / GRID;
+  for(i = slabstart_x; i < (slabstart_x + nslab_x); i++)
+    for(j = 0; j < GRID; j++)
+      for(k = 0; k < GRID; k++)
+	{
+	  x = ((double) i) / GRID;
+	  y = ((double) j) / GRID;
+	  z = ((double) k) / GRID;
 
-	  			if(x >= 0.5)
-	    			x -= 1.0;
-	  			if(y >= 0.5)
-	    			y -= 1.0;
-	  			if(z >= 0.5)
-	    			z -= 1.0;
+	  if(x >= 0.5)
+	    x -= 1.0;
+	  if(y >= 0.5)
+	    y -= 1.0;
+	  if(z >= 0.5)
+	    z -= 1.0;
 
-	  			r = sqrt(x * x + y * y + z * z);
+	  r = sqrt(x * x + y * y + z * z);
 
-	  			u = 0.5 * r / (((double) ASMTH) / GRID);
+	  u = 0.5 * r / (((double) ASMTH) / GRID);
 
-	  			fac = 1 - erfc(u);
+	  fac = 1 - erfc(u);
 
-	  			if(r > 0)
-	    			kernel[0][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] = -fac / r;
-	  			else
-	    			kernel[0][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] =
-	      				-1 / (sqrt(M_PI) * (((double) ASMTH) / GRID));
+	  if(r > 0)
+	    kernel[0][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] = -fac / r;
+	  else
+	    kernel[0][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] =
+	      -1 / (sqrt(M_PI) * (((double) ASMTH) / GRID));
 	}
 
-  	/* do the forward transform of the kernel */
+  /* do the forward transform of the kernel */
 
-  	rfftwnd_mpi(fft_forward_plan, 1, kernel[0], workspace, FFTW_TRANSPOSED_ORDER);
+  rfftwnd_mpi(fft_forward_plan, 1, kernel[0], workspace, FFTW_TRANSPOSED_ORDER);
 #endif
 
 
 #if defined(PLACEHIGHRESREGION)
-  	for(i = 0; i < fftsize; i++)	/* clear local density field */
-    	kernel[1][i] = 0;
+  for(i = 0; i < fftsize; i++)	/* clear local density field */
+    kernel[1][i] = 0;
 
-  	for(i = slabstart_x; i < (slabstart_x + nslab_x); i++)
-    	for(j = 0; j < GRID; j++)
-      		for(k = 0; k < GRID; k++)
-			{
-	  			x = ((double) i) / GRID;
-	  			y = ((double) j) / GRID;
-	  			z = ((double) k) / GRID;
+  for(i = slabstart_x; i < (slabstart_x + nslab_x); i++)
+    for(j = 0; j < GRID; j++)
+      for(k = 0; k < GRID; k++)
+	{
+	  x = ((double) i) / GRID;
+	  y = ((double) j) / GRID;
+	  z = ((double) k) / GRID;
 
-	  			if(x >= 0.5)
-	    			x -= 1.0;
-	  			if(y >= 0.5)
-	    			y -= 1.0;
-	  			if(z >= 0.5)
-	    			z -= 1.0;
+	  if(x >= 0.5)
+	    x -= 1.0;
+	  if(y >= 0.5)
+	    y -= 1.0;
+	  if(z >= 0.5)
+	    z -= 1.0;
 
-	  			r = sqrt(x * x + y * y + z * z);
+	  r = sqrt(x * x + y * y + z * z);
 
-	  			u = 0.5 * r / (((double) ASMTH) / GRID);
+	  u = 0.5 * r / (((double) ASMTH) / GRID);
 
-	  			fac = erfc(u * All.Asmth[1] / All.Asmth[0]) - erfc(u);
+	  fac = erfc(u * All.Asmth[1] / All.Asmth[0]) - erfc(u);
 
-	  			if(r > 0)
-	    			kernel[1][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] = -fac / r;
-	  			else
-	   	 		{
-	      			fac = 1 - All.Asmth[1] / All.Asmth[0];
-	      			kernel[1][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] =
-						-fac / (sqrt(M_PI) * (((double) ASMTH) / GRID));
-	    		}
-			}
+	  if(r > 0)
+	    kernel[1][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] = -fac / r;
+	  else
+	    {
+	      fac = 1 - All.Asmth[1] / All.Asmth[0];
+	      kernel[1][GRID * GRID2 * (i - slabstart_x) + GRID2 * j + k] =
+		-fac / (sqrt(M_PI) * (((double) ASMTH) / GRID));
+	    }
+	}
 
-  	/* do the forward transform of the kernel */
+  /* do the forward transform of the kernel */
 
-  	rfftwnd_mpi(fft_forward_plan, 1, kernel[1], workspace, FFTW_TRANSPOSED_ORDER);
+  rfftwnd_mpi(fft_forward_plan, 1, kernel[1], workspace, FFTW_TRANSPOSED_ORDER);
 #endif
 
-  	/* deconvolve the Greens function twice with the CIC kernel */
+  /* deconvolve the Greens function twice with the CIC kernel */
 
-  	for(y = slabstart_y; y < slabstart_y + nslab_y; y++)
-    	for(x = 0; x < GRID; x++)
-      		for(z = 0; z < GRID / 2 + 1; z++)
-			{
-	  			if(x > GRID / 2)
-	    			kx = x - GRID;
-	  			else
-	    			kx = x;
-	  			if(y > GRID / 2)
-	    			ky = y - GRID;
-	 	 		else
-	    			ky = y;
-	  			if(z > GRID / 2)
-	    			kz = z - GRID;
-	  			else
-	    			kz = z;
+  for(y = slabstart_y; y < slabstart_y + nslab_y; y++)
+    for(x = 0; x < GRID; x++)
+      for(z = 0; z < GRID / 2 + 1; z++)
+	{
+	  if(x > GRID / 2)
+	    kx = x - GRID;
+	  else
+	    kx = x;
+	  if(y > GRID / 2)
+	    ky = y - GRID;
+	  else
+	    ky = y;
+	  if(z > GRID / 2)
+	    kz = z - GRID;
+	  else
+	    kz = z;
 
-	  			k2 = kx * kx + ky * ky + kz * kz;
+	  k2 = kx * kx + ky * ky + kz * kz;
 
-	  			if(k2 > 0)
-	    		{
-	      			fx = fy = fz = 1;
-	      			if(kx != 0)
-					{
-		  				fx = (M_PI * kx) / GRID;
-		  				fx = sin(fx) / fx;
-					}
-	      			if(ky != 0)
-					{
-		  				fy = (M_PI * ky) / GRID;
-		  				fy = sin(fy) / fy;
-					}
-	      			if(kz != 0)
-					{
-		  				fz = (M_PI * kz) / GRID;
-		  				fz = sin(fz) / fz;
-					}
-	      			ff = 1 / (fx * fy * fz);
-	      			ff = ff * ff * ff * ff;
+	  if(k2 > 0)
+	    {
+	      fx = fy = fz = 1;
+	      if(kx != 0)
+		{
+		  fx = (M_PI * kx) / GRID;
+		  fx = sin(fx) / fx;
+		}
+	      if(ky != 0)
+		{
+		  fy = (M_PI * ky) / GRID;
+		  fy = sin(fy) / fy;
+		}
+	      if(kz != 0)
+		{
+		  fz = (M_PI * kz) / GRID;
+		  fz = sin(fz) / fz;
+		}
+	      ff = 1 / (fx * fy * fz);
+	      ff = ff * ff * ff * ff;
 
-	      			ip = GRID * (GRID / 2 + 1) * (y - slabstart_y) + (GRID / 2 + 1) * x + z;
+	      ip = GRID * (GRID / 2 + 1) * (y - slabstart_y) + (GRID / 2 + 1) * x + z;
 #if !defined(PERIODIC)
-	      			fft_of_kernel[0][ip].re *= ff;
-	      			fft_of_kernel[0][ip].im *= ff;
+	      fft_of_kernel[0][ip].re *= ff;
+	      fft_of_kernel[0][ip].im *= ff;
 #endif
 #if defined(PLACEHIGHRESREGION)
-	      			fft_of_kernel[1][ip].re *= ff;
-	      			fft_of_kernel[1][ip].im *= ff;
+	      fft_of_kernel[1][ip].re *= ff;
+	      fft_of_kernel[1][ip].im *= ff;
 #endif
-	    		}
-			}
-  	/* end deconvolution */
+	    }
+	}
+  /* end deconvolution */
 
-  	pm_init_nonperiodic_free();
+  pm_init_nonperiodic_free();
 }
 
 
@@ -982,64 +982,64 @@ int pmforce_nonperiodic(int grnr)
  */
 int pmpotential_nonperiodic(int grnr)
 {
-  	double dx, dy, dz;
-  	double fac, to_slab_fac;
-  	double re, im, pot;
-  	int i, j, slab, level, sendTask, recvTask, flag, flagsum;
-  	int x, y, z, ip;
-  	int slab_x, slab_y, slab_z;
-  	int slab_xx, slab_yy, slab_zz;
-  	int meshmin[3], meshmax[3], sendmin, sendmax, recvmin, recvmax;
-	int dimx, dimy, dimz, recv_dimx, recv_dimy, recv_dimz;
-  	MPI_Status status;
+  double dx, dy, dz;
+  double fac, to_slab_fac;
+  double re, im, pot;
+  int i, j, slab, level, sendTask, recvTask, flag, flagsum;
+  int x, y, z, ip;
+  int slab_x, slab_y, slab_z;
+  int slab_xx, slab_yy, slab_zz;
+  int meshmin[3], meshmax[3], sendmin, sendmax, recvmin, recvmax;
+  int dimx, dimy, dimz, recv_dimx, recv_dimy, recv_dimz;
+  MPI_Status status;
 
 
-  	if(ThisTask == 0)
-    	printf("Starting non-periodic PM-potential calculation.\n");
+  if(ThisTask == 0)
+    printf("Starting non-periodic PM-potential calculation.\n");
 
-  	fac = All.G / pow(All.TotalMeshSize[grnr], 4) * pow(All.TotalMeshSize[grnr] / GRID, 3);	/* to get potential */
+  fac = All.G / pow(All.TotalMeshSize[grnr], 4) * pow(All.TotalMeshSize[grnr] / GRID, 3);	/* to get potential */
 
-  	to_slab_fac = GRID / All.TotalMeshSize[grnr];
+  to_slab_fac = GRID / All.TotalMeshSize[grnr];
 
-  	/* first, establish the extension of the local patch in GRID (for binning) */
+  /* first, establish the extension of the local patch in GRID (for binning) */
 
-  	for(j = 0; j < 3; j++)
+  for(j = 0; j < 3; j++)
     {
-      	meshmin[j] = GRID;
-      	meshmax[j] = 0;
+      meshmin[j] = GRID;
+      meshmax[j] = 0;
     }
 
-  	for(i = 0, flag = 0; i < NumPart; i++)
+  for(i = 0, flag = 0; i < NumPart; i++)
     {
 #ifdef PLACEHIGHRESREGION
-      	if(grnr == 0 || (grnr == 1 && ((1 << P[i].Type) & (PLACEHIGHRESREGION))))
+      if(grnr == 0 || (grnr == 1 && ((1 << P[i].Type) & (PLACEHIGHRESREGION))))
 #endif
+	{
+	  for(j = 0; j < 3; j++)
+	    {
+	      if(P[i].Pos[j] < All.Xmintot[grnr][j] || P[i].Pos[j] > All.Xmaxtot[grnr][j])
 		{
-	  		for(j = 0; j < 3; j++)
-	    	{
-	      		if(P[i].Pos[j] < All.Xmintot[grnr][j] || P[i].Pos[j] > All.Xmaxtot[grnr][j])
-				{
-		  			if(flag == 0)
-		    		{
-		     	 		printf
-							("Particle Id=%d on task=%d with coordinates (%g|%g|%g) lies outside PM mesh.\nStopping\n",
-			 				(int)P[i].ID, ThisTask, P[i].Pos[0], P[i].Pos[1], P[i].Pos[2]);
-		      			fflush(stdout);
-		    		}
-		  			flag++;
-		  			break;
-				}
-	    	}
+		  if(flag == 0)
+		    {
+		      printf
+			("Particle Id=%d on task=%d with coordinates (%g|%g|%g) lies outside PM mesh.\nStopping\n",
+			 (int)P[i].ID, ThisTask, P[i].Pos[0], P[i].Pos[1], P[i].Pos[2]);
+		      fflush(stdout);
+		    }
+		  flag++;
+		  break;
 		}
+	    }
+	}
 
-      	if(flag > 0)
-			continue;
+      if(flag > 0)
+	continue;
 
-      	if(P[i].Pos[0] >= All.Corner[grnr][0] && P[i].Pos[0] < All.UpperCorner[grnr][0])
-			if(P[i].Pos[1] >= All.Corner[grnr][1] && P[i].Pos[1] < All.UpperCorner[grnr][1])
-	  			if(P[i].Pos[2] >= All.Corner[grnr][2] && P[i].Pos[2] < All.UpperCorner[grnr][2])
-	   	 		{
-	      			for(j = 0; j < 3; j++)
+      if(P[i].Pos[0] >= All.Corner[grnr][0] && P[i].Pos[0] < All.UpperCorner[grnr][0])
+	if(P[i].Pos[1] >= All.Corner[grnr][1] && P[i].Pos[1] < All.UpperCorner[grnr][1])
+	  if(P[i].Pos[2] >= All.Corner[grnr][2] && P[i].Pos[2] < All.UpperCorner[grnr][2])
+	    {
+	      for(j = 0; j < 3; j++)
 		{
 		  slab = to_slab_fac * (P[i].Pos[j] - All.Corner[grnr][j]);
 
