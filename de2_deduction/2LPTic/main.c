@@ -87,8 +87,8 @@ int main(int argc, char **argv)
 
 	case 2:
 		/* Identical */
-		Mass[1] = Mass[2];
-		Mass[0] = Mass[2];
+		Mass[1] = Mass[0];
+		Mass[2] = Mass[0];
 		break;
 
 	default:
